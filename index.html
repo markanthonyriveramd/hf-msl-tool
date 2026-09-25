@@ -298,7 +298,7 @@ s1: {
           {title:"\u2713 Screening tool", subtitle:"Used before diagnosis, to flag which patients need echo/NT-proBNP workup", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"},
           {title:"\u2717 Not a risk stratifier", subtitle:"In confirmed HFpEF: HR 1.07 for HF hospitalization, not significant for mortality", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"}
         ]},
-      citation:"Prognostic Utility of the HFpEF-ABA Score: Insights From TOPCAT. JACC Adv. 2026.", url:"https://www.jacc.org/doi/10.1016/j.jacadv.2026.102632" },
+      citation:"Zhu W, Guo L, Chen X, Ye M. Prognostic Utility of the HFpEF-ABA Score for HFpEF Patients: Insights From the TOPCAT Trial. JACC Adv. 2026;5(3):102632.", url:"https://www.jacc.org/doi/10.1016/j.jacadv.2026.102632" },
     { tag:"practical", label:"Practical positioning: pre-echo triage, not a diagnostic determination",
       detail:"Given a probability output, ABA is best positioned as prioritizing which patients need echo/NT-proBNP workup \u2014 not as a stand-alone diagnosis. For cardiologists who already order echo routinely, ABA adds limited incremental value over their existing workup; its real value proposition is upstream, in primary care.",
       chart:{type:"pathway", title:"What it's for vs. what it isn't", connector:"\u2260",
@@ -316,7 +316,7 @@ s2: {
       detail:"ESC and AHA recommend a 125 pg/mL threshold for a positive outpatient test. UK NICE recommends 400 pg/mL instead \u2014 the applicable threshold depends on which guideline body governs the market where the HCP practices.",
       chart:{type:"compare", title:"NT-proBNP positive threshold by guideline body", unit:"pg/mL", max:450,
         rows:[{label:"ESC / AHA", value:125},{label:"UK NICE", value:400}]},
-      citation:"NT-proBNP testing for HF diagnosis in people with AF: diagnostic accuracy study. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12574882/" },
+      citation:"Taylor CJ, Ord\u00f3\u00f1ez-Mena JM, Lay-Flurrie SL, et al. Natriuretic peptide testing and heart failure diagnosis in primary care: diagnostic accuracy study. Br J Gen Pract. 2023;73(726):e1\u2013e8.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC9799346" },
     { tag:"limitation", label:"Atrial fibrillation confounds interpretation \u2014 the same population flagged by HFpEF-ABA",
       detail:"In a chronic HF cohort, median NT-proBNP was roughly 2.8x higher in patients with AF than in sinus rhythm, independent of true HF status. Since AF is one of only three HFpEF-ABA inputs, this creates a genuine interpretive tension: AF patients are simultaneously flagged as high pre-test probability by ABA, while their NT-proBNP result is inherently less specific.",
       chart:{type:"compare", title:"Median NT-proBNP by cardiac rhythm (chronic HF)", unit:"pg/mL", max:2800,
@@ -329,7 +329,7 @@ s2: {
       detail:"Elevated BMI is a recognized cause of falsely low NT-proBNP \u2014 meaning standard thresholds may under-detect HFpEF in obese patients, a population that overlaps substantially with the broader cardio-renal-metabolic HFpEF phenotype. A large prospective multi-site emergency department study (PRECISE-HF) found the standard rule-out threshold misses cases in patients with BMI \u226530 kg/m\u00b2, and found sensitivity and negative predictive value improved using a lower, obesity-adjusted threshold instead.",
       chart:{type:"compare", title:"NT-proBNP rule-out threshold, standard vs. obesity-adjusted", unit:"ng/L", max:320,
         rows:[{label:"Standard threshold", value:300}, {label:"BMI \u226530 kg/m\u00b2 (adjusted)", value:150}]},
-      citation:"Optimizing NT-proBNP diagnostic performance in the patient with obesity. Eur Heart J. 2025 (PRECISE-HF).", url:"https://academic.oup.com/eurheartj/article/46/Supplement_1/ehaf784.1147/8308563" },
+      citation:"Allen B, Peacock WF, Headden G, et al. PRECISE-HF: Optimizing NT-proBNP diagnostic performance in the patient with obesity. Eur Heart J. 2025;46(Suppl 1):ehaf784.1147.", url:"https://academic.oup.com/eurheartj/article/46/Supplement_1/ehaf784.1147/8308563" },
     { tag:"practical", label:"Real-world access and pathway gaps remain common even where testing exists",
       detail:"A multi-country HFA survey found 40% of respondent clinicians lacked a formal diagnostic referral pathway for elevated natriuretic peptides in their area, and roughly one-third lacked access to NP testing in the community setting at all \u2014 an access problem, not just an interpretation problem.",
       chart:{type:"badge", items:[{value:"40%", label:"lack a formal referral pathway", color:"limitation"},{value:"~33%", label:"lack community NP testing access", color:"limitation"}]},
@@ -355,7 +355,7 @@ s3: {
           {title:"Elevated result", subtitle:"Refer to secondary-care HF diagnostic service", bg:"rgba(184,134,11,0.08)", border:"var(--practical)", color:"var(--practical)"},
           {title:"Specialist confirmation", subtitle:"Echocardiography + cardiology review", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
         ]},
-      citation:"HFA consensus diagnostic pathway algorithms, referenced in NP awareness/access survey, PMC 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11770566/" },
+      citation:"Bayes-Genis A, Docherty KF, Petrie MC, et al. Practical algorithms for early diagnosis of heart failure and heart stress using NT-proBNP: A clinical consensus statement from the Heart Failure Association of the ESC. Eur J Heart Fail. 2023;25(11):1891\u20131898.", url:"https://onlinelibrary.wiley.com/doi/full/10.1002/ejhf.3036" },
     { tag:"guideline", label:"2026 ACC pathway frames a positive ABA result as triggering options, not a mandate",
       detail:"The consensus pathway states HFpEF-ABA probability should prompt \u2018further imaging, natriuretic peptide testing, cardiology referral, or all of these\u2019 \u2014 giving PCPs a menu of next steps rather than mandating immediate specialist referral for every flagged patient, which may ease bottleneck concerns where implemented well.",
       chart:{type:"badge", items:[
@@ -413,7 +413,7 @@ t1: {
       citations:[
         {citation:"Anker SD, et al. Empagliflozin in Heart Failure with a Preserved Ejection Fraction. N Engl J Med. 2021;385:1451\u20131461.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038"},
         {citation:"Zinman B, Wanner C, Lachin JM, et al. Empagliflozin, Cardiovascular Outcomes, and Mortality in Type 2 Diabetes (EMPA-REG OUTCOME). N Engl J Med. 2015;373:2117\u20132128.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa1504720"},
-        {citation:"Empagliflozin in Heart Failure With Predicted Preserved Versus Reduced Ejection Fraction: Data From the EMPA-REG OUTCOME Trial. J Card Fail. 2021.", url:"https://onlinejcf.com/article/S1071-9164(21)00202-5/fulltext"}
+        {citation:"Savarese G, Uijl A, Lund LH, et al. Empagliflozin in Heart Failure With Predicted Preserved Versus Reduced Ejection Fraction: Data From the EMPA-REG OUTCOME Trial. J Card Fail. 2021;27(8):888\u2013895.", url:"https://onlinejcf.com/article/S1071-9164(21)00202-5/fulltext"}
       ] },
     { tag:"guideline", label:"2026 ESC Guidelines expand SGLT2i's role further \u2014 now including in-hospital initiation during decompensated HF",
       detail:"MRA's HFpEF upgrade to Class I/A came from a retrospective pooled meta-analysis of existing trials (TOPCAT + FINEARTS-HF), not a new prospective trial. SGLT2i, by contrast, picked up a genuinely new, dedicated recommendation in this same 2026 update: in-hospital initiation of an SGLT2i after initial stabilization in decompensated HF is now Class I, Level B1. MRA has no equivalent new decompensated-HF-specific recommendation in this update.",
@@ -429,7 +429,7 @@ t1: {
     { tag:"limitation", label:"Real-world uptake still lags guideline recommendation, especially in non-diabetic patients",
       detail:"Despite Class I/A status, SGLT2i prescribing has lagged. In a real-world HF registry, only 57.9% of patients overall received an SGLT2i \u2014 a clear gap against a Class I/A recommendation. Diabetes mellitus was among the strongest independent predictors of use (adjusted OR 2.29, 95% CI 1.60\u20133.29), meaning non-diabetic patients were correspondingly less likely to be treated, even though benefit is independent of diabetes status. Cost, administrative/reimbursement hurdles, and historical framing as a \u2018diabetes drug\u2019 are cited contributing factors. This diabetes-status gap is not uniform across every cohort studied; some series (particularly in older adults) have found no significant difference by diabetes status, so its size should be expected to vary by setting.",
       chart:{type:"badge", items:[{value:"57.9%", label:"of eligible HF patients received an SGLT2i in a real-world registry, despite Class I/A guideline status", color:"limitation"}]},
-      citation:"Utilization Patterns and Barriers to SGLT2i Prescription in Patients with Heart Failure: Real-World Evidence. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC13542037/" },
+      citation:"Utilization Patterns and Barriers to Sodium-Glucose Cotransporter-2 Inhibitor Prescription in Patients with Heart Failure: Real-World Evidence from Saudi Arabia. Cardiol Ther. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC13542037/" },
     { tag:"practical", label:"Known, manageable safety profile",
       detail:"Genital mycotic infections and volume depletion are common but manageable. Euglycemic DKA, Fournier's gangrene, and lower-limb amputation are rare but serious — a class-level signal. Fixed-dose with no titration, and can be initiated even during HF hospitalization before discharge — operationally the simplest of the GDMT pillars to start.",
       chart:{type:"table", title:"Adverse event profile", columns:["Common (manageable)","Rare but serious (class-level)"],
@@ -477,7 +477,7 @@ t2: {
         {label:"Americas", hr:0.82, lo:0.69, hi:0.98},
         {label:"Russia / Georgia", hr:1.10, lo:0.79, hi:1.51}
       ]},
-      citation:"Detection and Management of Geographic Disparities in TOPCAT. Am Heart J. 2016.", url:"https://pubmed.ncbi.nlm.nih.gov/27747305/" },
+      citation:"Bristow MR, Enciso JS, Gersh BJ, et al. Detection and Management of Geographic Disparities in the TOPCAT Trial: Lessons Learned and Derivative Recommendations. JACC Basic Transl Sci. 2016;1(3):180\u2013189.", url:"https://pubmed.ncbi.nlm.nih.gov/27747305/" },
     { tag:"evidence", label:"Biomarker-guided benefit: elevated BNP identifies likely responders",
       detail:"In TOPCAT, patients randomized via the elevated-BNP entry route achieved significant benefit from spironolactone (P=0.003, P for interaction between strata = 0.01); those randomized via the prior-hospitalization route saw no effect \u2014 establishing biomarker-based patient selection as an evidence-based clinical strategy for this class.",
       chart:{type:"hr", title:"TOPCAT primary outcome by entry stratum (HR, 95% CI)", rows:[
@@ -546,7 +546,10 @@ t3: {
         {label:"Q3: 74\u201379 yrs", hr:0.98, lo:0.76, hi:1.26},
         {label:"Q4: \u226580 yrs", hr:0.85, lo:0.67, hi:1.07}
       ]},
-      citation:"Finerenone Improves Outcomes Irrespective of Age: FINEARTS-HF Prespecified Analysis. Circ Heart Fail. 2024.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11573060/" },
+      citations:[
+        {citation:"Chimura M, Petrie MC, Schou M, et al. Finerenone Improves Outcomes in Patients With Heart Failure With Mildly Reduced or Preserved Ejection Fraction Irrespective of Age: A Prespecified Analysis of FINEARTS-HF. Circ Heart Fail. 2024;17(10):e012437.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11573060/"},
+        {citation:"Butt JH, Jhund PS, Henderson AD, et al. Finerenone and new-onset diabetes in heart failure: a prespecified analysis of the FINEARTS-HF trial. Lancet Diabetes Endocrinol. 2025;13(2):107\u2013118.", url:"https://pubmed.ncbi.nlm.nih.gov/39818225/"}
+      ] },
     { tag:"limitation", label:"No significant reduction in cardiovascular or all-cause mortality alone",
       detail:"As with SGLT2i, the benefit is driven by reduced HF events/hospitalization rather than a mortality signal.",
       chart:{type:"hr", title:"FINEARTS-HF mortality outcomes (HR, 95% CI)", rows:[
@@ -638,7 +641,7 @@ r2: {
       detail:"Renal function concerns are the leading cited reason for MRA underuse/discontinuation. In a Swedish HFrEF registry, MRA use declined steadily as kidney function worsened \u2014 yet safety outcomes (renal events, all-cause death, all-cause hospitalization) were not significantly different across the eGFR spectrum in multivariable analysis, suggesting appropriately monitored use is more broadly tolerable than current prescribing patterns reflect. This dataset is from HFrEF; equivalent HFpEF-specific registry evidence is not yet available.",
       chart:{type:"compare", title:"% of eligible HFrEF patients receiving MRA, by eGFR (Swedish registry)", unit:"%", max:60,
         rows:[{label:"eGFR \u226560", value:54},{label:"eGFR 45\u201359", value:54},{label:"eGFR 30\u201344", value:45},{label:"eGFR <30", value:32}]},
-      citation:"Safety of continuing mineralocorticoid receptor antagonist treatment in HFrEF and severe kidney disease: Swedish Heart Failure Registry. Eur J Heart Fail. 2023.", url:"https://onlinelibrary.wiley.com/doi/full/10.1002/ejhf.3049" },
+      citation:"Guidetti F, Lund LH, Benson L, et al. Safety of continuing mineralocorticoid receptor antagonist treatment in patients with heart failure with reduced ejection fraction and severe kidney disease: data from Swedish Heart Failure Registry. Eur J Heart Fail. 2023;25(12):2164\u20132173.", url:"https://onlinelibrary.wiley.com/doi/full/10.1002/ejhf.3049" },
     { tag:"practical", label:"Practical monitoring addresses the real barrier without abandoning the class",
       detail:"Contemporary HF guidance recommends checking renal function and potassium at defined intervals after initiation or up-titration \u2014 avoiding concurrent high-dose potassium-sparing combinations. This positions MRA risk as manageable with a defined monitoring protocol, rather than an absolute contraindication, while still being a real, if manageable, tradeoff relative to SGLT2i's simpler fixed-dose profile.",
       chart:{type:"pathway", title:"Guideline-recommended monitoring after MRA initiation", connector:"\u2192",
@@ -660,7 +663,10 @@ r3: {
         {value:"Primary endpoint", label:"STEP-HFpEF and STEP-HFpEF DM", color:"evidence"},
         {value:"Secondary endpoint", label:"FINEARTS-HF", color:"guideline"}
       ]},
-      citation:"STEP-HFpEF / STEP-HFpEF DM trial design; FINEARTS-HF secondary endpoints, N Engl J Med. 2024.", url:"https://pubmed.ncbi.nlm.nih.gov/37294245/" },
+      citations:[
+        {citation:"Kosiborod MN, et al. Design and Baseline Characteristics of STEP-HFpEF Program Evaluating Semaglutide in Patients With Obesity HFpEF Phenotype. JACC Heart Fail. 2023.", url:"https://pubmed.ncbi.nlm.nih.gov/37294245/"},
+        {citation:"Yang M, Henderson AD, Talebi A, et al. Effect of Finerenone on the KCCQ in Patients With HFmrEF/HFpEF: A Prespecified Analysis of FINEARTS-HF. J Am Coll Cardiol. 2025;85(2):120\u2013136.", url:"https://pubmed.ncbi.nlm.nih.gov/39520455/"}
+      ] },
     { tag:"evidence", label:"Emerging concept: residual inflammatory risk, even with lipids/metabolic factors controlled",
       detail:"Recent phenotyping work describes \u2018residual inflammatory risk\u2019 (elevated hs-CRP despite controlled LDL-C) as a distinct HFpEF risk phenotype associated with higher HFA-PEFF-derived probability \u2014 an emerging risk phenotype that explains why \u2018stable-looking\u2019 patients may still carry unaddressed risk.",
       chart:{type:"table", title:"Four residual-risk phenotypes (LDL-C <1.8 mmol/L, hs-CRP \u22652 mg/L)", columns:["LDL-C controlled","LDL-C not controlled"],
@@ -668,7 +674,7 @@ r3: {
           {label:"hs-CRP elevated", values:["Residual inflammatory risk (RIR)","Combined residual risk (RCIR)"]},
           {label:"hs-CRP normal", values:["No residual risk","Residual cholesterol risk (RCR)"]}
         ]},
-      citation:"Inflammatory\u2013lipid residual risk phenotypes delineate the HFpEF probability spectrum. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC13528071/" },
+      citation:"Chen C, Zhang S, Liu Y, et al. Inflammatory\u2013lipid residual risk phenotypes delineate the HFpEF probability spectrum independent of cardiometabolic mediation. BMC Cardiovasc Disord. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC13528071/" },
     { tag:"evidence", label:"Biomarker trajectories, not single readings, better identify escalation need",
       detail:"Modeling work using serial NT-proBNP and other biomarkers suggests dynamic, trajectory-based monitoring \u2014 rather than fixed annual check-ins \u2014 more accurately identifies patients approaching decompensation, allowing earlier escalation before a hospitalization event occurs.",
       chart:{type:"pathway", title:"Two monitoring strategies", connector:"vs.",
@@ -676,7 +682,7 @@ r3: {
           {title:"Fixed-interval monitoring", subtitle:"Same schedule for every patient, regardless of trajectory", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"},
           {title:"Risk-based, trajectory monitoring", subtitle:"Next visit timed to the individual patient's changing risk", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
         ]},
-      citation:"Risk-Profile Based Monitoring Intervals for Longitudinal Biomarker Measurements in Stable Heart Failure. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12083058/" },
+      citation:"Petersen TB, Boersma E, Kardys I, Rizopoulos D. Risk-Profile Based Monitoring Intervals for Multivariate Longitudinal Biomarker Measurements and Competing Events With Applications in Stable Heart Failure. Stat Med. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12083058/" },
     { tag:"practical", label:"CKM staging offers a structured framework for escalation triggers",
       detail:"A patient moving from CKM Stage 2 to Stage 3 represents an objective, guideline-anchored escalation trigger \u2014 distinct from, and complementary to, symptom-based assessment alone.",
       chart:{type:"pathway", title:"An objective escalation trigger", connector:"\u2192",
@@ -693,7 +699,7 @@ r4: {
     { tag:"evidence", label:"CKD affects roughly half of all HF patients and independently worsens outcomes",
       detail:"Chronic kidney disease coexists in approximately 50% of heart failure patients and increases the risk of death and HF hospitalization as it progresses \u2014 a genuine risk multiplier rather than an incidental comorbidity.",
       chart:{type:"badge", items:[{value:"~50%", label:"of heart failure patients have coexisting chronic kidney disease", color:"limitation"}]},
-      citation:"Albuminuria as a diagnostic criterion and therapeutic target in heart failure and other CVD. Eur J Heart Fail. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12765049/" },
+      citation:"Bozkurt B, Rossignol P, Vassalotti JA. Albuminuria as a diagnostic criterion and a therapeutic target in heart failure and other cardiovascular disease. Eur J Heart Fail. 2025;27(11):2357\u20132371.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12765049/" },
     { tag:"evidence", label:"SGLT2i doesn't just tolerate CKD \u2014 it slows the trajectory that makes CKD a risk multiplier in the first place",
       detail:"Nearly every major SGLT2i trial shows the same eGFR pattern, sometimes called the \u2018square-root sign\u2019: an initial dip of roughly 3\u20136 mL/min/1.73m\u00b2 within the first ~4 weeks \u2014 a hemodynamic effect from afferent arteriole vasoconstriction, reducing intraglomerular pressure, not true kidney injury \u2014 followed by a slower rate of long-term decline than placebo. The two trajectories cross at roughly 12\u201318 months, after which SGLT2i-treated patients have higher eGFR than those on placebo. In the absence of other adverse signals, this initial dip should not prompt discontinuation.",
       chart:{type:"pathway", title:"eGFR trajectory after SGLT2i initiation", connector:"\u2192",
@@ -706,7 +712,7 @@ r4: {
       detail:"A systematic review found albuminuria predictive of adverse outcomes across both HFpEF and HFrEF phenotypes, while reduced eGFR showed a stronger prognostic signal specifically in HFrEF \u2014 meaning UACR may be the more broadly informative kidney marker in the HFpEF population specifically.",
       chart:{type:"compare", title:"Mortality risk vs normoalbuminuria (chronic HF)", unit:"relative risk", max:3,
         rows:[{label:"Microalbuminuria", value:1.8, range:"1.18\u20131.80x"},{label:"Macroalbuminuria", value:2.48, range:"1.33\u20132.48x"}]},
-      citation:"Renal Biomarkers and Prognosis in HFpEF and HFrEF: A Systematic Review. Medicina (Kaunas). 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12387696/" },
+      citation:"Palc\u0103u CA, P\u0103duraru LF, Paraschiv C, Poian\u0103 IR, St\u0103nescu AMA. Renal Biomarkers and Prognosis in HFpEF and HFrEF: The Role of Albuminuria and eGFR\u2014A Systematic Review. Medicina (Kaunas). 2025;61(8):1386.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12387696/" },
     { tag:"evidence", label:"UACR correlates with worse cardiac structure and function specifically in HFpEF",
       detail:"In a prospective HFpEF cohort, higher UACR was independently associated with increased LV mass index, impaired global longitudinal strain, and right ventricular remodeling \u2014 UACR isn't just a kidney marker in this population; it tracks with the severity of the cardiac phenotype itself.",
       chart:{type:"badge", items:[
@@ -714,12 +720,12 @@ r4: {
         {value:"\u2193 Global longitudinal strain", label:"Independently associated with higher UACR", color:"limitation"},
         {value:"RV remodeling", label:"Independently associated with higher UACR", color:"limitation"}
       ]},
-      citation:"Katz DH, et al., cited in Renal Biomarkers and Prognosis in HFpEF/HFrEF Systematic Review. Medicina. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12387696/" },
+      citation:"Katz DH, Burns JA, Aguilar FG, Beussink L, Shah SJ. Albuminuria Is Independently Associated With Cardiac Remodeling, Abnormal Right and Left Ventricular Function, and Worse Outcomes in Heart Failure With Preserved Ejection Fraction. JACC Heart Fail. 2014;2(6):586\u2013596.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4256131" },
     { tag:"limitation", label:"UACR is guideline-recommended but not routinely measured in practice",
       detail:"Despite CKD and cardiovascular guideline recommendations, UACR testing remains inconsistently adopted in routine practice \u2014 a well-documented, actionable gap between guideline recommendation and everyday clinical workflow. The companion 2026 ESC Guidelines for CVD and CKD now make this explicit: systematic screening with both eGFR and UACR is Class I in all patients with cardiovascular disease, at diagnosis and at least annually in those with diabetes or at high risk of worsening kidney function \u2014 not eGFR alone.",
       chart:{type:"badge", items:[{value:"I", label:"eGFR + UACR screening in all CVD patients \u2014 not eGFR alone (2026 ESC CVD+CKD Guideline)", color:"guideline"}]},
       citations:[
-        {citation:"Albuminuria as a diagnostic criterion and therapeutic target in HF. Eur J Heart Fail. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12765049/"},
+        {citation:"Bozkurt B, Rossignol P, Vassalotti JA. Albuminuria as a diagnostic criterion and a therapeutic target in heart failure and other cardiovascular disease. Eur J Heart Fail. 2025;27(11):2357\u20132371.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12765049/"},
         {citation:"2026 ESC Guidelines for the management of cardiovascular disease and chronic kidney disease. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag098"}
       ] },
     { tag:"guideline", label:"2026 ESC CVD+CKD Guideline: SGLT2i recommended down to eGFR 20, addressing a common prescribing hesitation",
@@ -738,7 +744,7 @@ r4: {
           {title:"Chronic, ambulatory HFpEF", subtitle:"Strong, consistent prognostic association", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"},
           {title:"Acute decompensated HF", subtitle:"Largely not significant (exception: non-diabetics, admission UACR predicts death)", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"}
         ]},
-      citation:"Albuminuria is associated with worse outcomes in non-diabetics hospitalized with acute HF. ESC Heart Failure. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12719845/" }
+      citation:"Takaoka Y, Horiuchi Y, Strader M, Murray P, Wettersten N. Albuminuria is associated with worse outcomes in non-diabetics hospitalized with acute heart failure. ESC Heart Fail. 2025;12(6):4369\u20134378.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12719845/" }
   ]
 }
 
