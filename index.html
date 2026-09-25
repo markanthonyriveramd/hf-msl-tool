@@ -205,6 +205,24 @@
   .rd-outcomes-single ul{ margin:0; padding-left:16px; }
   .rd-outcomes-single li{ font-size:10.5px; line-height:1.7; color:rgba(255,255,255,0.9); }
 
+  /* ============ DUAL PATHWAY (two independent mechanisms, neutral styling) ============ */
+  .dp-wrap{ display:flex; align-items:stretch; gap:0; }
+  .dp-panel{ flex:1; border:1.5px solid var(--line); border-radius:12px; padding:14px 14px 16px; background:#FBFCFB; display:flex; flex-direction:column; }
+  .dp-panel-title{ font-size:12px; font-weight:800; font-family:'Manrope',sans-serif; color:var(--dark); margin-bottom:10px; text-align:center; }
+  .dp-trigger{ background:rgba(92,114,105,0.1); border:1.5px solid var(--muted); color:var(--dark); font-size:11px; font-weight:600; padding:6px 12px; border-radius:20px; text-align:center; margin:0 auto 8px; display:inline-block; }
+  .dp-trigger-row{ text-align:center; }
+  .dp-connector{ text-align:center; font-size:15px; color:var(--muted); line-height:1; margin:2px 0; }
+  .dp-target{ background:#EEF2F0; border:1.5px solid var(--dark); color:var(--dark); font-weight:700; font-size:11.5px; text-align:center; padding:10px; border-radius:8px; margin-bottom:10px; }
+  .dp-outcomes{ background:var(--dark); color:#fff; border-radius:8px; padding:10px 12px; margin-top:auto; }
+  .dp-outcomes ul{ margin:0; padding-left:14px; }
+  .dp-outcomes li{ font-size:10px; line-height:1.65; color:rgba(255,255,255,0.9); }
+  .dp-divider{ flex:none; width:44px; display:flex; align-items:center; justify-content:center; }
+  .dp-divider-inner{ font-size:18px; font-weight:800; color:var(--muted); }
+  @media (max-width: 700px){
+    .dp-wrap{ flex-direction:column; gap:10px; }
+    .dp-divider{ width:100%; height:24px; }
+  }
+
   @media (max-width: 700px){
     .topic-title{ font-size:16px; }
     .focus-headline{ font-size:17px; }
@@ -585,12 +603,14 @@ r1: {
       ]},
       citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
     { tag:"evidence", label:"Mechanistically distinct: SGLT2i does not act via the mineralocorticoid pathway",
-      detail:"Empagliflozin's cardiorenal benefit operates via natriuresis, improved cardiac energetics, and anti-fibrotic effects — independent of the renin–angiotensin–aldosterone system. SGLT2i and MRA/finerenone act on separate pathways: complementary mechanisms, not competitors.",
-      chart:{type:"pathway", title:"Two independent mechanisms", connector:"≠",
-        items:[
-          {title:"SGLT2i (Empagliflozin)", subtitle:"Renal sodium-glucose cotransport", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"},
-          {title:"MRA / Finerenone", subtitle:"Mineralocorticoid receptor", bg:"rgba(59,111,212,0.08)", border:"var(--guideline)", color:"var(--guideline)"}
-        ]} },
+      detail:"Empagliflozin's cardiorenal benefit operates via natriuresis, improved cardiac energetics, and anti-fibrotic effects \u2014 through a distinct primary mechanism, not via mineralocorticoid receptor blockade. SGLT2i does not significantly perturb the renin\u2013angiotensin\u2013aldosterone system in chronic use, though a transient early rise in plasma renin activity has been described. SGLT2i and MRA/finerenone act on separate pathways: complementary mechanisms, not competitors.",
+      chart:{type:"dual-pathway", title:"Two distinct pathways to cardiorenal benefit",
+        panelA:{title:"SGLT2i (Empagliflozin)", trigger:"Empagliflozin", target:"SGLT2 transporter (renal proximal tubule)",
+          outcomes:["Natriuresis / glucosuria","Reduced intraglomerular pressure","Improved cardiac energetics, anti-fibrotic signaling"]},
+        panelB:{title:"Mineralocorticoid Pathway", trigger:"Aldosterone", target:"Mineralocorticoid receptor (cardiomyocyte, renal tubule)",
+          outcomes:["Sodium/water retention, potassium excretion","Cardiac fibrosis, hypertrophy, inflammation"]}
+      },
+      citation:"Wilcox CS. Antihypertensive and Renal Mechanisms of SGLT2 (Sodium-Glucose Linked Transporter 2) Inhibitors. Hypertension. 2020;75(4):894\u2013901.", url:"https://www.ahajournals.org/doi/10.1161/HYPERTENSIONAHA.119.11684" },
     { tag:"evidence", label:"Steroidal vs nonsteroidal MR blockade: real pharmacological differences",
       detail:"Spironolactone/eplerenone have off-target activity at androgen and progesterone receptors, driving gynecomastia/breast pain in some patients. Finerenone is structurally distinct — more MR-selective with a shorter half-life, designed to reduce off-target effects while retaining potent anti-fibrotic activity.",
       chart:{type:"table", title:"Steroidal vs nonsteroidal MRA", columns:["Spironolactone/Eplerenone","Finerenone"],
@@ -855,6 +875,31 @@ function buildChart(chart){
           <div class="rd-receptor">${b.receptor}</div>
           <div class="rd-connector">\u2193</div>
           <div class="rd-outcomes-single"><div class="rd-cols">${outcomeCols}</div></div>
+        </div>
+      </div>
+    </div>`;
+  }
+  if(chart.type === "dual-pathway"){
+    const a = chart.panelA, b = chart.panelB;
+    const outcomesA = a.outcomes.map(i=>`<li>${i}</li>`).join("");
+    const outcomesB = b.outcomes.map(i=>`<li>${i}</li>`).join("");
+    return `<div class="bullet-chart">
+      <div class="chart-title">${chart.title||''}</div>
+      <div class="dp-wrap">
+        <div class="dp-panel">
+          <div class="dp-panel-title">${a.title}</div>
+          <div class="dp-trigger-row"><span class="dp-trigger">${a.trigger}</span></div>
+          <div class="dp-connector">\u2193</div>
+          <div class="dp-target">${a.target}</div>
+          <div class="dp-outcomes"><ul>${outcomesA}</ul></div>
+        </div>
+        <div class="dp-divider"><span class="dp-divider-inner">\u2260</span></div>
+        <div class="dp-panel">
+          <div class="dp-panel-title">${b.title}</div>
+          <div class="dp-trigger-row"><span class="dp-trigger">${b.trigger}</span></div>
+          <div class="dp-connector">\u2193</div>
+          <div class="dp-target">${b.target}</div>
+          <div class="dp-outcomes"><ul>${outcomesB}</ul></div>
         </div>
       </div>
     </div>`;
