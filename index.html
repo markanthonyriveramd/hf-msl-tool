@@ -247,6 +247,12 @@
   .calc-seg button{ flex:1; border:none; background:#FBFCFB; padding:9px; font-size:12.5px; font-weight:600; color:var(--muted); cursor:pointer; border-right:1.5px solid var(--line); }
   .calc-seg button:last-child{ border-right:none; }
   .calc-seg button.on{ background:var(--dark); color:#fff; }
+  .calc-btn-row{ display:flex; gap:10px; margin-top:14px; }
+  .calc-btn{ flex:1; border-radius:10px; padding:11px; font-size:13px; font-weight:700; cursor:pointer; font-family:'Inter',sans-serif; border:1.5px solid var(--line); }
+  .calc-btn-primary{ background:var(--brand); color:#fff; border-color:var(--brand); }
+  .calc-btn-primary:hover{ background:var(--dark); }
+  .calc-btn-reset{ background:#fff; color:var(--muted); }
+  .calc-btn-reset:hover{ background:var(--bg); }
   .calc-results{ background:linear-gradient(160deg,var(--deep), var(--dark)); color:#fff; border-radius:14px; padding:18px; }
   .calc-results h3{ font-size:15px; margin:0 0 4px; color:var(--accent); }
   .calc-gauge-wrap{ display:flex; flex-direction:column; align-items:center; padding:6px 0 4px; }
@@ -976,6 +982,10 @@ function buildChart(chart){
             <label>Atrial fibrillation (history of)</label>
             <div class="calc-seg" id="calc-afSeg"><button data-v="1">Yes</button><button data-v="0">No</button></div>
           </div>
+          <div class="calc-btn-row">
+            <button class="calc-btn calc-btn-primary" id="calc-calculateBtn" type="button">Calculate</button>
+            <button class="calc-btn calc-btn-reset" id="calc-resetBtn" type="button">Reset</button>
+          </div>
         </div>
         <div class="calc-results">
           <h3>Result &amp; Recommended Action</h3>
@@ -987,7 +997,7 @@ function buildChart(chart){
             <div class="calc-gauge-num" id="calc-scoreNum">\u2014</div>
             <div class="calc-gauge-cat calc-cat-neutral" id="calc-cat">\u2014</div>
           </div>
-          <div class="calc-action-box" id="calc-actionBox">Enter all patient values to calculate.</div>
+          <div class="calc-action-box" id="calc-actionBox">Enter all patient values, then press Calculate.</div>
           <div class="calc-ntprobnp-box" id="calc-ntprobnpBox">
             <label>Enter NT-proBNP result (pg/mL) to determine next step:</label>
             <input type="number" id="calc-ntprobnp" placeholder="pg/mL">
@@ -1042,21 +1052,31 @@ function initCalculator(){
     $('calc-arc').setAttribute('stroke-dashoffset', offset);
     $('calc-arc').setAttribute('stroke', color);
   }
+  function updateBmiOnly(){
+    const htStr = htEl.value, wtStr = wtEl.value;
+    const ht = parseFloat(htStr), wt = parseFloat(wtStr);
+    const bmi = (htStr!=='' && wtStr!=='') ? wt/((ht/100)*(ht/100)) : NaN;
+    $('calc-bmiOut').textContent = !isNaN(bmi) ? bmi.toFixed(1)+' kg/m\u00B2' : '\u2014';
+  }
+  function resetResult(){
+    $('calc-scoreNum').textContent = '\u2014';
+    $('calc-cat').textContent = '\u2014';
+    $('calc-cat').className = 'calc-gauge-cat calc-cat-neutral';
+    $('calc-actionBox').innerHTML = 'Enter all patient values, then press Calculate.';
+    $('calc-ntprobnpBox').classList.remove('show');
+    setGauge(0, 'rgba(255,255,255,0.18)');
+  }
   function calc(){
     const ageStr = ageEl.value, htStr = htEl.value, wtStr = wtEl.value;
     const afSel = segVal();
     const ht = parseFloat(htStr), wt = parseFloat(wtStr);
     const bmi = (htStr!=='' && wtStr!=='') ? wt/((ht/100)*(ht/100)) : NaN;
-    $('calc-bmiOut').textContent = !isNaN(bmi) ? bmi.toFixed(1)+' kg/m\u00B2' : '\u2014';
+    updateBmiOnly();
 
     const complete = ageStr!=='' && htStr!=='' && wtStr!=='' && afSel!==null;
     if(!complete){
-      $('calc-scoreNum').textContent = '\u2014';
-      $('calc-cat').textContent = '\u2014';
-      $('calc-cat').className = 'calc-gauge-cat calc-cat-neutral';
-      $('calc-actionBox').innerHTML = 'Enter all patient values to calculate.';
-      $('calc-ntprobnpBox').classList.remove('show');
-      setGauge(0, 'rgba(255,255,255,0.18)');
+      resetResult();
+      $('calc-actionBox').innerHTML = 'Please enter age, height, weight, and AF history before calculating.';
       return;
     }
     const age = parseFloat(ageStr);
@@ -1085,18 +1105,28 @@ function initCalculator(){
     $('calc-actionBox').innerHTML = actionHtml;
     setGauge(prob/100, color);
   }
+  function resetAll(){
+    ageEl.value = ''; htEl.value = ''; wtEl.value = '';
+    afSegEl.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+    const ntEl = $('calc-ntprobnp');
+    ntEl.value = '';
+    $('calc-ntprobnpResult').classList.remove('show');
+    $('calc-bmiOut').textContent = '\u2014';
+    resetResult();
+    $('calc-actionBox').innerHTML = 'Enter all patient values, then press Calculate.';
+  }
 
   function bindCalcEvents(){
-    ageEl.addEventListener('input', calc);
-    htEl.addEventListener('input', calc);
-    wtEl.addEventListener('input', calc);
+    htEl.addEventListener('input', updateBmiOnly);
+    wtEl.addEventListener('input', updateBmiOnly);
     afSegEl.querySelectorAll('button').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         afSegEl.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
         btn.classList.add('on');
-        calc();
       });
     });
+    $('calc-calculateBtn').addEventListener('click', calc);
+    $('calc-resetBtn').addEventListener('click', resetAll);
     const ntEl = $('calc-ntprobnp');
     ntEl.addEventListener('input', function(){
       const val = parseFloat(this.value);
@@ -1110,7 +1140,6 @@ function initCalculator(){
   }
 
   bindCalcEvents();
-  calc();
 }
 
 function renderFocus(){
