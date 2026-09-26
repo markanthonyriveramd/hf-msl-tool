@@ -60,7 +60,7 @@
 
   /* ============ EXIT BUTTON (returns to landing page) ============ */
   .brand-name-group{ display:flex; align-items:center; gap:10px; transition:margin-left 0.15s; }
-  body.fullscreen-active .brand-name-group{ margin-left:64px; }
+  body.fullscreen-active.touch-device .brand-name-group{ margin-left:64px; }
   .exit-btn{
     background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff;
     width:28px; height:28px; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -1059,6 +1059,12 @@ if(document.fullscreenEnabled){
   document.addEventListener('fullscreenchange', updateFullscreenIcon);
 }
 updateFullscreenIcon();
+
+/* Detect a real touch device (iPad) rather than trusting the User-Agent string,
+   since iPadOS Safari deliberately reports itself as a Mac in the UA. */
+if(navigator.maxTouchPoints > 1){
+  document.body.classList.add('touch-device');
+}
 
 /* Landing page <-> main app toggle */
 document.getElementById('enterBtn').addEventListener('click', ()=>{
