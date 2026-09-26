@@ -229,6 +229,49 @@
     .dp-divider{ width:100%; height:24px; }
   }
 
+  /* ============ INTERACTIVE CALCULATOR (ported from PCP screening tool) ============ */
+  .calc-grid{ display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+  .calc-card{ background:var(--card); border:1.5px solid var(--line); border-radius:14px; padding:18px; }
+  .calc-card h3{ font-size:15px; margin:0 0 4px; color:var(--dark); }
+  .calc-hint{ margin:0 0 14px; color:var(--muted); font-size:12px; line-height:1.5; }
+  .calc-field-row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:12px; }
+  .calc-field{ display:flex; flex-direction:column; gap:5px; }
+  .calc-field.full{ grid-column:1 / -1; }
+  .calc-field label{ font-size:11.5px; font-weight:600; color:var(--ink); }
+  .calc-field input[type=number]{
+    border:1.5px solid var(--line); border-radius:10px; padding:9px 10px; font-size:14px;
+    font-family:'IBM Plex Mono',monospace; color:var(--ink); background:#FBFCFB; outline:none; width:100%;
+  }
+  .calc-field input:focus{ border-color:var(--brand); background:#fff; }
+  .calc-seg{ display:flex; border:1.5px solid var(--line); border-radius:10px; overflow:hidden; }
+  .calc-seg button{ flex:1; border:none; background:#FBFCFB; padding:9px; font-size:12.5px; font-weight:600; color:var(--muted); cursor:pointer; border-right:1.5px solid var(--line); }
+  .calc-seg button:last-child{ border-right:none; }
+  .calc-seg button.on{ background:var(--dark); color:#fff; }
+  .calc-results{ background:linear-gradient(160deg,var(--deep), var(--dark)); color:#fff; border-radius:14px; padding:18px; }
+  .calc-results h3{ font-size:15px; margin:0 0 4px; color:var(--accent); }
+  .calc-gauge-wrap{ display:flex; flex-direction:column; align-items:center; padding:6px 0 4px; }
+  .calc-gauge-num{ font-family:'IBM Plex Mono',monospace; font-size:34px; font-weight:600; margin-top:-42px; color:#fff; }
+  .calc-gauge-cat{ font-family:'Manrope',sans-serif; font-weight:800; font-size:13px; padding:5px 14px; border-radius:999px; margin-top:8px; }
+  .calc-cat-low{ background:rgba(15,163,107,0.18); color:#5FEBB2; border:1px solid rgba(95,235,178,0.4); }
+  .calc-cat-interm{ background:rgba(225,160,39,0.18); color:#F5C15E; border:1px solid rgba(245,193,94,0.4); }
+  .calc-cat-high{ background:rgba(216,72,76,0.18); color:#F58D90; border:1px solid rgba(245,141,144,0.4); }
+  .calc-cat-neutral{ background:rgba(255,255,255,0.1); color:rgba(255,255,255,0.65); border:1px solid rgba(255,255,255,0.2); }
+  .calc-action-box{
+    margin-top:14px; font-size:12.5px; line-height:1.65; color:#fff; background:rgba(255,255,255,0.09);
+    border-radius:10px; padding:12px 13px; border-left:3px solid var(--accent);
+  }
+  .calc-action-box b{ display:block; margin-bottom:4px; font-size:13px; }
+  .calc-ntprobnp-box{ margin-top:12px; background:rgba(255,255,255,0.06); border-radius:10px; padding:12px 13px; display:none; }
+  .calc-ntprobnp-box.show{ display:block; }
+  .calc-ntprobnp-box label{ font-size:11.5px; font-weight:600; display:block; margin-bottom:6px; }
+  .calc-ntprobnp-box input{ width:100%; border:1.5px solid rgba(255,255,255,0.25); background:rgba(255,255,255,0.08); color:#fff; border-radius:8px; padding:8px 9px; font-family:'IBM Plex Mono',monospace; font-size:13px; }
+  .calc-ntprobnp-result{ margin-top:9px; font-size:12px; line-height:1.6; display:none; }
+  .calc-ntprobnp-result.show{ display:block; }
+  .calc-disclaimer{ font-size:10.5px; color:var(--muted); line-height:1.6; margin-top:16px; padding-top:12px; border-top:1px dashed var(--line); }
+  @media (max-width: 700px){
+    .calc-grid{ grid-template-columns:1fr; }
+  }
+
   @media (max-width: 700px){
     .topic-title{ font-size:16px; }
     .focus-headline{ font-size:17px; }
@@ -329,7 +372,11 @@ s1: {
         items:[
           {title:"\u2713 Pre-echo triage tool", subtitle:"Helps prioritize which patients need echo/NT-proBNP workup next", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"},
           {title:"\u2717 Not a diagnostic tool", subtitle:"Doesn't confirm HFpEF or replace echo on its own", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"}
-        ]} }
+        ]} },
+    { tag:"practical", label:"Screen your patient",
+      detail:"This interactive calculator applies the exact HFpEF-ABA formula \u2014 Age, BMI, and Atrial Fibrillation history \u2014 to produce a probability score with a recommended next step. Use it to walk through the tool live during a discussion, including how the NT-proBNP follow-up step works for intermediate-probability results.",
+      chart:{type:"calculator"},
+      citation:"Reddy YNV, Carter RE, Sundaram V, et al. An evidence-based screening tool for heart failure with preserved ejection fraction: the HFpEF-ABA score. Nat Med. 2024;30(8):2258\u20132264.", url:"https://www.nature.com/articles/s41591-024-03140-1" }
   ]
 },
 
@@ -911,6 +958,47 @@ function buildChart(chart){
       </div>
     </div>`;
   }
+  if(chart.type === "calculator"){
+    return `<div class="bullet-chart" style="padding:0; border:none; background:transparent;">
+      <div class="calc-grid">
+        <div class="calc-card">
+          <h3>HFpEF-ABA Screening Calculator</h3>
+          <p class="calc-hint">No echocardiogram required \u00b7 Reddy YNV et al., Nat Med 2024;30(8):2258\u201364</p>
+          <div class="calc-field-row">
+            <div class="calc-field"><label>Age (years)</label><input type="number" id="calc-age" placeholder="e.g. 65"></div>
+            <div class="calc-field"><label>Height (cm)</label><input type="number" id="calc-ht" placeholder="e.g. 165"></div>
+          </div>
+          <div class="calc-field-row">
+            <div class="calc-field"><label>Weight (kg)</label><input type="number" id="calc-wt" placeholder="e.g. 80"></div>
+            <div class="calc-field"><label>Calculated BMI</label><div class="mono" id="calc-bmiOut" style="font-size:14px;color:var(--brand);font-weight:600;padding-top:8px;font-family:'IBM Plex Mono',monospace;">\u2014</div></div>
+          </div>
+          <div class="calc-field full">
+            <label>Atrial fibrillation (history of)</label>
+            <div class="calc-seg" id="calc-afSeg"><button data-v="1">Yes</button><button data-v="0">No</button></div>
+          </div>
+        </div>
+        <div class="calc-results">
+          <h3>Result &amp; Recommended Action</h3>
+          <div class="calc-gauge-wrap">
+            <svg viewBox="0 0 200 110" width="180">
+              <path d="M10,100 A90,90 0 0,1 190,100" fill="none" stroke="rgba(255,255,255,0.12)" stroke-width="14" stroke-linecap="round"/>
+              <path id="calc-arc" d="M10,100 A90,90 0 0,1 190,100" fill="none" stroke="#00E58A" stroke-width="14" stroke-linecap="round" stroke-dasharray="283" stroke-dashoffset="283"/>
+            </svg>
+            <div class="calc-gauge-num" id="calc-scoreNum">\u2014</div>
+            <div class="calc-gauge-cat calc-cat-neutral" id="calc-cat">\u2014</div>
+          </div>
+          <div class="calc-action-box" id="calc-actionBox">Enter all patient values to calculate.</div>
+          <div class="calc-ntprobnp-box" id="calc-ntprobnpBox">
+            <label>Enter NT-proBNP result (pg/mL) to determine next step:</label>
+            <input type="number" id="calc-ntprobnp" placeholder="pg/mL">
+            <div class="calc-ntprobnp-result" id="calc-ntprobnpResult"></div>
+          </div>
+          <div class="calc-disclaimer">Probability bands (Low &lt;20%, Intermediate 20\u201370%, High &gt;70%) and the NT-proBNP threshold (125 pg/mL, non-acute setting) are a pragmatic triage framework; the original HFpEF-ABA publication does not itself specify validated categorical cutoffs. This tool supports, and does not replace, clinical judgment.</div>
+        </div>
+      </div>
+      <div class="calc-disclaimer" style="margin-top:14px;"><b>Disclaimer:</b> This tool was developed by the Boehringer Ingelheim Medical Affairs team. The screening calculator is based on the HFpEF-ABA score, a validated, peer-reviewed screening tool, and the educational content draws on highly reputable, publicly available references and regional guideline consensus statements. References publicly available guidelines and screening scores; this is not an official partnership with the cited organizations. It is not a substitute for clinical judgement or current regional guidelines. Verify all inputs and outputs before use in patient care.</div>
+    </div>`;
+  }
   return "";
 }
 
@@ -938,6 +1026,93 @@ function renderBulletChips(){
   document.getElementById('bulletChips').scrollLeft = 0;
 }
 
+function initCalculator(){
+  const $ = id => document.getElementById(id);
+  const ageEl = $('calc-age'), htEl = $('calc-ht'), wtEl = $('calc-wt');
+  const afSegEl = $('calc-afSeg');
+  if(!ageEl) return;
+
+  function segVal(){
+    const btn = afSegEl.querySelector('button.on');
+    return btn ? btn.dataset.v : null;
+  }
+  function setGauge(fraction, color){
+    const circumference = 283;
+    const offset = circumference - (circumference*Math.max(0,Math.min(1,fraction)));
+    $('calc-arc').setAttribute('stroke-dashoffset', offset);
+    $('calc-arc').setAttribute('stroke', color);
+  }
+  function calc(){
+    const ageStr = ageEl.value, htStr = htEl.value, wtStr = wtEl.value;
+    const afSel = segVal();
+    const ht = parseFloat(htStr), wt = parseFloat(wtStr);
+    const bmi = (htStr!=='' && wtStr!=='') ? wt/((ht/100)*(ht/100)) : NaN;
+    $('calc-bmiOut').textContent = !isNaN(bmi) ? bmi.toFixed(1)+' kg/m\u00B2' : '\u2014';
+
+    const complete = ageStr!=='' && htStr!=='' && wtStr!=='' && afSel!==null;
+    if(!complete){
+      $('calc-scoreNum').textContent = '\u2014';
+      $('calc-cat').textContent = '\u2014';
+      $('calc-cat').className = 'calc-gauge-cat calc-cat-neutral';
+      $('calc-actionBox').innerHTML = 'Enter all patient values to calculate.';
+      $('calc-ntprobnpBox').classList.remove('show');
+      setGauge(0, 'rgba(255,255,255,0.18)');
+      return;
+    }
+    const age = parseFloat(ageStr);
+    const af = parseInt(afSel);
+    const y = -7.78875077116607 + 0.0625642747159337*age + 0.135149246234458*bmi + 2.04080564803471*af;
+    const z = Math.exp(y);
+    const prob = (z/(1+z))*100;
+    $('calc-scoreNum').innerHTML = prob.toFixed(1)+'<span style="font-size:14px;">%</span>';
+
+    let catClass, catText, actionHtml, color;
+    if(prob<20){
+      catClass='calc-cat-low'; catText='Low probability'; color='#0FA36B';
+      actionHtml = '<b>Low probability</b>HFpEF is unlikely based on this screen. Consider alternative explanations for the symptoms. Reassess if symptoms progress.';
+      $('calc-ntprobnpBox').classList.remove('show');
+    } else if(prob<=70){
+      catClass='calc-cat-interm'; catText='Intermediate probability'; color='#E1A027';
+      actionHtml = '<b>Intermediate probability</b>Recommended next step: order NT-proBNP to guide the referral decision.';
+      $('calc-ntprobnpBox').classList.add('show');
+    } else {
+      catClass='calc-cat-high'; catText='High probability'; color='#D8484C';
+      actionHtml = '<b>High probability</b>Recommended next step: refer to cardiology for further evaluation.';
+      $('calc-ntprobnpBox').classList.remove('show');
+    }
+    $('calc-cat').textContent = catText;
+    $('calc-cat').className = 'calc-gauge-cat '+catClass;
+    $('calc-actionBox').innerHTML = actionHtml;
+    setGauge(prob/100, color);
+  }
+
+  function bindCalcEvents(){
+    ageEl.addEventListener('input', calc);
+    htEl.addEventListener('input', calc);
+    wtEl.addEventListener('input', calc);
+    afSegEl.querySelectorAll('button').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        afSegEl.querySelectorAll('button').forEach(b=>b.classList.remove('on'));
+        btn.classList.add('on');
+        calc();
+      });
+    });
+    const ntEl = $('calc-ntprobnp');
+    ntEl.addEventListener('input', function(){
+      const val = parseFloat(this.value);
+      const box = $('calc-ntprobnpResult');
+      if(this.value===''){ box.classList.remove('show'); return; }
+      box.classList.add('show');
+      box.textContent = val < 125
+        ? 'NT-proBNP below threshold: HFpEF unlikely. Continue monitoring; reassess if symptoms change.'
+        : 'NT-proBNP at or above threshold: refer to cardiologist for further evaluation (echocardiography recommended).';
+    });
+  }
+
+  bindCalcEvents();
+  calc();
+}
+
 function renderFocus(){
   const t = TOPICS[activeTopic];
   const b = t.bullets[activeBulletIdx];
@@ -959,6 +1134,9 @@ function renderFocus(){
     <div class="focus-detail" id="detailBox"><div class="focus-detail-inner">${b.detail}</div></div>
     ${citeHtml ? `<div class="focus-citations">${citeHtml}</div>` : ''}
   `;
+
+  const chartTypes = Array.isArray(b.chart) ? b.chart.map(c=>c && c.type) : [b.chart && b.chart.type];
+  if(chartTypes.includes("calculator")) initCalculator();
 
   document.getElementById('slideCounter').textContent = `${activeBulletIdx+1} / ${t.bullets.length}`;
   document.getElementById('prevBtn').disabled = activeBulletIdx === 0;
