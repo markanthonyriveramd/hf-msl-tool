@@ -59,7 +59,8 @@
   .landing-enter:hover{ transform:translateY(-2px); box-shadow:0 8px 20px rgba(0,229,138,0.25); }
 
   /* ============ EXIT BUTTON (returns to landing page) ============ */
-  .brand-name-group{ display:flex; align-items:center; gap:10px; }
+  .brand-name-group{ display:flex; align-items:center; gap:10px; transition:margin-left 0.15s; }
+  body.fullscreen-active .brand-name-group{ margin-left:64px; }
   .exit-btn{
     background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.2); color:#fff;
     width:28px; height:28px; border-radius:8px; cursor:pointer; display:flex; align-items:center; justify-content:center;
@@ -1044,6 +1045,7 @@ function updateFullscreenIcon(){
     const icon = document.getElementById(id);
     if(icon) icon.innerHTML = isFs ? ICON_COLLAPSE : ICON_EXPAND;
   });
+  document.body.classList.toggle('fullscreen-active', isFs);
 }
 if(document.fullscreenEnabled){
   ['fullscreenBtn','fullscreenBtnLanding'].forEach(id=>{
