@@ -1358,6 +1358,33 @@ document.addEventListener('keydown', (e)=>{
   zone.addEventListener('pointercancel', ()=>{ dragging = false; startX = null; });
 })();
 
+/* Contain vertical touch drags at the scroll boundary so they don't leak out to the
+   page/OS and get misread as a swipe-to-exit-fullscreen gesture on iPad. Only
+   intervenes exactly at the top/bottom edge; normal scrolling is untouched. */
+(function(){
+  const scrollZone = document.querySelector('.focus-content');
+  if(!scrollZone) return;
+  let touchStartY = null;
+
+  scrollZone.addEventListener('touchstart', (e)=>{
+    if(e.touches.length !== 1) return;
+    touchStartY = e.touches[0].clientY;
+  }, {passive:true});
+
+  scrollZone.addEventListener('touchmove', (e)=>{
+    if(e.touches.length !== 1 || touchStartY === null) return;
+    const deltaY = e.touches[0].clientY - touchStartY; // positive = finger moving down
+    const atTop = scrollZone.scrollTop <= 0;
+    const atBottom = scrollZone.scrollTop + scrollZone.clientHeight >= scrollZone.scrollHeight - 1;
+    if((deltaY > 0 && atTop) || (deltaY < 0 && atBottom)){
+      e.preventDefault();
+    }
+  }, {passive:false});
+
+  scrollZone.addEventListener('touchend', ()=>{ touchStartY = null; });
+  scrollZone.addEventListener('touchcancel', ()=>{ touchStartY = null; });
+})();
+
 /* Fullscreen button */
 const ICON_EXPAND = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>';
 const ICON_COLLAPSE = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3"/></svg>';
