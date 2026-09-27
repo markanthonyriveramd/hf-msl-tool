@@ -278,6 +278,19 @@
     .calc-grid{ grid-template-columns:1fr; }
   }
 
+  /* ============ INTERCEPT PATHWAY (one sequential pathway, two block points marked) ============ */
+  .ip-wrap{ display:flex; flex-direction:column; align-items:center; max-width:480px; margin:0 auto; }
+  .ip-stage{ background:var(--card); border:1.5px solid var(--line); border-radius:10px; padding:10px 18px; text-align:center; font-weight:700; font-size:13px; color:var(--ink); width:100%; }
+  .ip-stage-sub{ display:block; font-weight:500; font-size:10.5px; color:var(--muted); margin-top:2px; }
+  .ip-arrow{ font-size:14px; color:var(--muted); line-height:1; padding:3px 0; }
+  .ip-intercept{ display:flex; align-items:center; gap:10px; width:100%; margin:2px 0 2px 28px; padding:8px 12px; border-radius:9px; border-left-width:3px; border-left-style:solid; }
+  .ip-intercept-asi{ background:rgba(184,134,11,0.08); border-left-color:var(--practical); }
+  .ip-intercept-mra{ background:rgba(15,163,107,0.08); border-left-color:var(--evidence); }
+  .ip-intercept-label{ flex:none; font-family:'Manrope',sans-serif; font-weight:800; font-size:11.5px; padding:3px 9px; border-radius:6px; color:#fff; }
+  .ip-intercept-asi .ip-intercept-label{ background:var(--practical); }
+  .ip-intercept-mra .ip-intercept-label{ background:var(--evidence); }
+  .ip-intercept-text{ font-size:11px; line-height:1.4; color:var(--ink); }
+
   @media (max-width: 700px){
     .topic-title{ font-size:16px; }
     .focus-headline{ font-size:17px; }
@@ -643,10 +656,10 @@ t3: {
 
 /* ============ RESIDUAL RISK / TREATMENT ESCALATION ============ */
 r1: {
-  cat: "residual", title: "SGLT2i to Aldosterone Blockade vs Receptor Blockade — Evidence Comparison",
+  cat: "residual", title: "SGLT2i and Mineralocorticoid Receptor Blockade — Evidence Comparison",
   bullets: [
-    { tag:"evidence", label:"SGLT2i is the foundation \u2014 its 20% relative risk reduction still leaves real residual risk for aldosterone/receptor blockade to address",
-      detail:"A 2026 prespecified pooled analysis of EMPEROR-Preserved and DELIVER (n=12,251) found empagliflozin/dapagliflozin reduce the composite of CV death or HF hospitalization by 20% (HR 0.80, 95% CI 0.73\u20130.87), consistent across the full LVEF spectrum. That 20% reduction means roughly 80% of the original relative risk remains even in a patient already optimized on an SGLT2i \u2014 real, substantial residual risk. This is precisely where aldosterone/receptor blockade (MRA) adds value: not as a competitor to SGLT2i, but as the next step once SGLT2i is established.",
+    { tag:"evidence", label:"SGLT2i is the foundation \u2014 its 20% relative risk reduction still leaves real residual risk for receptor blockade to address",
+      detail:"A 2026 prespecified pooled analysis of EMPEROR-Preserved and DELIVER (n=12,251) found empagliflozin/dapagliflozin reduce the composite of CV death or HF hospitalization by 20% (HR 0.80, 95% CI 0.73\u20130.87), consistent across the full LVEF spectrum. That 20% reduction means roughly 80% of the original relative risk remains even in a patient already optimized on an SGLT2i \u2014 real, substantial residual risk. This is precisely where receptor blockade (MRA) adds value: not as a competitor to SGLT2i, but as the next step once SGLT2i is established.",
       chart:{type:"pathway", title:"A practical sequence, not a forced order", connector:"\u2192",
         items:[
           {title:"1. SGLT2i", subtitle:"Foundational \u2014 fixed dose, no titration, start here", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"},
@@ -695,7 +708,11 @@ r1: {
           {label:"Evidence base", values:["Dedicated pooled analysis, full LVEF spectrum","Pooled meta-analysis, LVEF \u226540\u201345% and above"]},
           {label:"Mortality benefit alone", values:["Not significant","Not significant"]},
           {label:"Position in treatment sequence", values:["Foundational \u2014 no stated sequencing preference","Foundational \u2014 no stated sequencing preference"]}
-        ]} }
+        ]} },
+    { tag:"practical", label:"On the horizon: aldosterone synthase inhibition (ASI) \u2014 a different point of attack, still investigational",
+      detail:"Aldosterone synthase inhibitors (ASIs) work upstream of MRA \u2014 blocking CYP11B2, the enzyme that produces aldosterone, rather than blocking the receptor after aldosterone is already made. The rationale: MRA can trigger a compensatory rise in circulating aldosterone (\"aldosterone escape\") since the hormone itself isn't reduced, only its receptor binding; ASI addresses the source instead. The main class-level theoretical concern is off-target inhibition of cortisol synthesis, since the aldosterone- and cortisol-producing enzymes are structurally similar \u2014 trial data on vicadrostat so far show high selectivity for the aldosterone-producing enzyme with no meaningful cortisol changes observed. In HFpEF specifically, EASi-HF Preserved (vicadrostat + empagliflozin vs. placebo + empagliflozin) is an ongoing Phase III trial \u2014 there is no completed outcomes data yet, and this remains investigational, not an established treatment option.",
+      chart:{type:"intercept-pathway", title:"Two different points of attack on the same pathway"},
+      citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288" }
   ]
 },
 
@@ -1007,6 +1024,30 @@ function buildChart(chart){
         </div>
       </div>
       <div class="calc-disclaimer" style="margin-top:14px;"><b>Disclaimer:</b> This tool was developed by the Boehringer Ingelheim Medical Affairs team. The screening calculator is based on the HFpEF-ABA score, a validated, peer-reviewed screening tool, and the educational content draws on highly reputable, publicly available references and regional guideline consensus statements. References publicly available guidelines and screening scores; this is not an official partnership with the cited organizations. It is not a substitute for clinical judgement or current regional guidelines. Verify all inputs and outputs before use in patient care.</div>
+    </div>`;
+  }
+  if(chart.type === "intercept-pathway"){
+    return `<div class="bullet-chart">
+      <div class="chart-title">${chart.title||''}</div>
+      <div class="ip-wrap">
+        <div class="ip-stage">Adrenal cortex<span class="ip-stage-sub">Zona glomerulosa</span></div>
+        <div class="ip-arrow">\u2193</div>
+        <div class="ip-stage">CYP11B2<span class="ip-stage-sub">Aldosterone synthase</span></div>
+        <div class="ip-intercept ip-intercept-asi">
+          <span class="ip-intercept-label">ASI</span>
+          <span class="ip-intercept-text">Blocks here \u2014 reduces aldosterone production at the source (investigational)</span>
+        </div>
+        <div class="ip-arrow">\u2193</div>
+        <div class="ip-stage">Aldosterone</div>
+        <div class="ip-arrow">\u2193</div>
+        <div class="ip-stage">Mineralocorticoid receptor</div>
+        <div class="ip-intercept ip-intercept-mra">
+          <span class="ip-intercept-label">MRA</span>
+          <span class="ip-intercept-text">Blocks here \u2014 aldosterone still produced, can't bind (established)</span>
+        </div>
+        <div class="ip-arrow">\u2193</div>
+        <div class="ip-stage">Downstream effects<span class="ip-stage-sub">Sodium retention, fibrosis, remodeling</span></div>
+      </div>
     </div>`;
   }
   return "";
