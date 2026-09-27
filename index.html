@@ -18,7 +18,7 @@
     --evidence:#0FA36B; --limitation:#D8484C; --guideline:#3B6FD4; --practical:#B8860B;
   }
   *{box-sizing:border-box;}
-  html,body{ height:100%; margin:0; }
+  html,body{ height:100%; margin:0; overflow:hidden; }
   html{ scrollbar-width:none; -ms-overflow-style:none; }
   html::-webkit-scrollbar{ display:none; }
   body{
@@ -144,7 +144,7 @@
   }
   .nav-btn:disabled{ opacity:0.35; cursor:default; }
 
-  .focus-content{ flex:1; padding:8px 20px calc(100px + env(safe-area-inset-bottom, 0px)); overflow-y:auto; scrollbar-width:none; -ms-overflow-style:none; }
+  .focus-content{ flex:1; padding:8px 20px calc(100px + env(safe-area-inset-bottom, 0px)); overflow-y:auto; overscroll-behavior-y:contain; scrollbar-width:none; -ms-overflow-style:none; }
   .focus-content::-webkit-scrollbar{ display:none; }
   .focus-inner{ max-width:760px; width:100%; margin:0 auto; padding-bottom:120px; }
 
