@@ -1082,14 +1082,14 @@ function renderTabs(){
   document.getElementById('tabRow').innerHTML = topicTabs + refTab;
 }
 
-function renderTopicPills(){
+function renderTopicPills(resetScroll){
   document.getElementById('topicPills').innerHTML = TAB_TOPICS[activeTab].map(tid=>
     `<button class="topic-pill ${tid===activeTopic?'active':''}" onclick="selectTopic('${tid}')">${TOPICS[tid].title}</button>`
   ).join('');
-  document.getElementById('topicPills').scrollLeft = 0;
+  if(resetScroll) document.getElementById('topicPills').scrollLeft = 0;
 }
 
-function renderBulletChips(){
+function renderBulletChips(resetScroll){
   const t = TOPICS[activeTopic];
   document.getElementById('bulletChips').innerHTML = t.bullets.map((b,i)=>
     `<div class="bullet-chip ${i===activeBulletIdx?'active':''}" onclick="selectBullet(${i})">
@@ -1097,7 +1097,7 @@ function renderBulletChips(){
       <span class="bchip-text">${b.label}</span>
     </div>`
   ).join('');
-  document.getElementById('bulletChips').scrollLeft = 0;
+  if(resetScroll) document.getElementById('bulletChips').scrollLeft = 0;
 }
 
 function initCalculator(){
@@ -1257,7 +1257,7 @@ function selectTab(tab){
   document.getElementById('mainTopbar').style.display = '';
   document.getElementById('referencesView').style.display = 'none';
   document.getElementById('focusInner').style.display = '';
-  renderAll();
+  renderAll(true, true);
 }
 function collectAllReferences(){
   const seen = new Map();
@@ -1308,11 +1308,11 @@ function showReferences(){
 function selectTopic(tid){
   activeTopic = tid;
   activeBulletIdx = 0;
-  renderAll();
+  renderAll(false, true);
 }
 function selectBullet(i){
   activeBulletIdx = i;
-  renderBulletChips();
+  renderBulletChips(false);
   renderFocus();
   window.scrollTo({top:0, behavior:'smooth'});
 }
@@ -1322,10 +1322,10 @@ function goBullet(delta){
   if(next >= 0 && next < t.bullets.length) selectBullet(next);
 }
 
-function renderAll(){
+function renderAll(resetPillsScroll, resetChipsScroll){
   renderTabs();
-  renderTopicPills();
-  renderBulletChips();
+  renderTopicPills(resetPillsScroll);
+  renderBulletChips(resetChipsScroll);
   renderFocus();
 }
 
@@ -1426,7 +1426,7 @@ document.getElementById('exitBtn').addEventListener('click', ()=>{
   document.getElementById('landingPage').style.display = 'flex';
 });
 
-renderAll();
+renderAll(true, true);
 </script>
 </body>
 </html>
