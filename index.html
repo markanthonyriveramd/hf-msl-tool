@@ -83,12 +83,18 @@
   #fullscreenIcon svg{ width:11px; height:11px; }
 
   /* ============ TAB ROW ============ */
-  .tab-row{ display:flex; gap:6px; }
+  .tab-row{
+    display:flex; gap:6px; flex-wrap:nowrap; overflow-x:auto;
+    scrollbar-width:none; -ms-overflow-style:none;
+  }
+  .tab-row::-webkit-scrollbar{ display:none; }
   .tab-btn{
-    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.75);
+    flex:none; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); color:rgba(255,255,255,0.75);
     font-size:12px; font-weight:700; padding:8px 16px; border-radius:9px; cursor:pointer; font-family:'Inter',sans-serif;
   }
   .tab-btn.active{ background:var(--accent); color:var(--deep); border-color:var(--accent); }
+  .tab-btn-ref{ border-left:1px solid rgba(255,255,255,0.25); margin-left:4px; padding-left:20px; }
+  .tab-btn-ref.active{ background:rgba(255,255,255,0.18); color:#fff; border-color:rgba(255,255,255,0.3); }
 
   /* ============ TOPIC PILLS ROW ============ */
   .topic-row{ background:var(--card); border-bottom:1px solid var(--line); padding:10px 20px; flex:none; }
@@ -291,6 +297,19 @@
   .ip-intercept-mra .ip-intercept-label{ background:var(--evidence); }
   .ip-intercept-text{ font-size:11px; line-height:1.4; color:var(--ink); }
 
+  /* ============ REFERENCES VIEW ============ */
+  .ref-header{ margin-bottom:18px; }
+  .ref-eyebrow{ font-size:10.5px; font-weight:700; color:var(--brand); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
+  .ref-title{ font-size:20px; color:var(--deep); font-family:'Manrope',sans-serif; font-weight:800; margin-bottom:4px; }
+  .ref-count{ font-size:12px; color:var(--muted); }
+  .ref-list{ display:flex; flex-direction:column; gap:2px; }
+  .ref-item{ display:flex; gap:10px; padding:11px 0; border-bottom:1px solid var(--line); font-size:12.5px; line-height:1.6; }
+  .ref-item:last-child{ border-bottom:none; }
+  .ref-num{ flex:none; color:var(--muted); font-family:'IBM Plex Mono',monospace; font-size:11px; padding-top:1px; width:26px; }
+  .ref-item a{ color:var(--brand); text-decoration:none; }
+  .ref-item a:hover{ text-decoration:underline; }
+  .ref-item span.ref-plain{ color:var(--ink); }
+
   @media (max-width: 700px){
     .topic-title{ font-size:16px; }
     .focus-headline{ font-size:17px; }
@@ -328,21 +347,21 @@
     <div class="tab-row" id="tabRow"></div>
   </header>
 
-  <div class="topic-row">
+  <div class="topic-row" id="topicRow">
     <div class="topic-pills" id="topicPills"></div>
   </div>
 
-  <div class="topic-title-row">
+  <div class="topic-title-row" id="topicTitleRow">
     <div class="topic-eyebrow" id="topicEyebrow"></div>
     <div class="topic-title" id="topicTitle"></div>
   </div>
 
-  <div class="bullet-row">
+  <div class="bullet-row" id="bulletRow">
     <div class="bullet-chips" id="bulletChips"></div>
   </div>
 
   <div class="main">
-    <div class="main-topbar">
+    <div class="main-topbar" id="mainTopbar">
       <div class="slide-counter" id="slideCounter"></div>
       <div class="nav-btns">
         <button class="nav-btn" id="prevBtn" onclick="goBullet(-1)">&larr; Prev</button>
@@ -351,6 +370,7 @@
     </div>
     <div class="focus-content">
       <div class="focus-inner" id="focusInner"></div>
+      <div class="focus-inner" id="referencesView" style="display:none;"></div>
     </div>
   </div>
 </div>
@@ -1054,9 +1074,11 @@ function buildChart(chart){
 }
 
 function renderTabs(){
-  document.getElementById('tabRow').innerHTML = Object.keys(TAB_TOPICS).map(tab=>
+  const topicTabs = Object.keys(TAB_TOPICS).map(tab=>
     `<button class="tab-btn ${tab===activeTab?'active':''}" onclick="selectTab('${tab}')">${TAB_LABELS[tab]}</button>`
   ).join('');
+  const refTab = `<button class="tab-btn tab-btn-ref ${activeTab==='references'?'active':''}" onclick="showReferences()">References</button>`;
+  document.getElementById('tabRow').innerHTML = topicTabs + refTab;
 }
 
 function renderTopicPills(){
@@ -1228,7 +1250,59 @@ function selectTab(tab){
   activeTab = tab;
   activeTopic = TAB_TOPICS[tab][0];
   activeBulletIdx = 0;
+  document.getElementById('topicRow').style.display = '';
+  document.getElementById('topicTitleRow').style.display = '';
+  document.getElementById('bulletRow').style.display = '';
+  document.getElementById('mainTopbar').style.display = '';
+  document.getElementById('referencesView').style.display = 'none';
+  document.getElementById('focusInner').style.display = '';
   renderAll();
+}
+function collectAllReferences(){
+  const seen = new Map();
+  Object.values(TOPICS).forEach(topic=>{
+    topic.bullets.forEach(b=>{
+      let cites = [];
+      if(Array.isArray(b.citations)) cites = b.citations;
+      else if(b.citation) cites = [{citation:b.citation, url:b.url}];
+      cites.forEach(c=>{
+        const key = c.url || c.citation;
+        if(!seen.has(key)) seen.set(key, c);
+      });
+    });
+  });
+  return [...seen.values()].sort((a,b)=>a.citation.localeCompare(b.citation));
+}
+
+function renderReferences(){
+  const refs = collectAllReferences();
+  const items = refs.map((r,i)=>
+    `<div class="ref-item">
+      <span class="ref-num">${i+1}.</span>
+      <span>${r.url ? `<a href="${r.url}" target="_blank" rel="noopener">${r.citation}</a>` : `<span class="ref-plain">${r.citation}</span>`}</span>
+    </div>`
+  ).join('');
+  document.getElementById('referencesView').innerHTML = `
+    <div class="ref-header">
+      <div class="ref-eyebrow">All Sources</div>
+      <div class="ref-title">References</div>
+      <div class="ref-count">${refs.length} sources cited throughout this guide, alphabetized by first author</div>
+    </div>
+    <div class="ref-list">${items}</div>
+  `;
+}
+
+function showReferences(){
+  activeTab = 'references';
+  document.getElementById('topicRow').style.display = 'none';
+  document.getElementById('topicTitleRow').style.display = 'none';
+  document.getElementById('bulletRow').style.display = 'none';
+  document.getElementById('mainTopbar').style.display = 'none';
+  document.getElementById('focusInner').style.display = 'none';
+  document.getElementById('referencesView').style.display = '';
+  renderTabs();
+  renderReferences();
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 function selectTopic(tid){
   activeTopic = tid;
