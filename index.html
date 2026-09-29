@@ -113,7 +113,18 @@
   /* ============ TOPIC TITLE (full width, own row) ============ */
   .topic-title-row{ background:var(--card); padding:16px 20px 4px; flex:none; }
   .topic-eyebrow{ font-size:10.5px; font-weight:700; color:var(--brand); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
-  .topic-title{ font-size:19px; line-height:1.3; color:var(--deep); }
+  .topic-title{ font-size:19px; line-height:1.3; color:var(--deep); flex:1; }
+  .title-and-insight{ display:flex; align-items:flex-start; justify-content:space-between; gap:14px; }
+  .insight-btn{
+    flex:none; display:flex; align-items:center; gap:6px; background:#FFF8E1; border:1.5px solid #E6C558;
+    color:#7A5C00; font-size:11.5px; font-weight:700; padding:7px 12px; border-radius:20px; cursor:pointer;
+    font-family:'Inter',sans-serif; margin-top:2px;
+  }
+  .insight-btn:hover{ background:#FFF0BD; }
+  .insight-box{ display:none; background:#FFF8E1; border:1.5px solid #E6C558; border-radius:10px; padding:12px 14px; margin:10px 0 6px; }
+  .insight-box.show{ display:block; }
+  .insight-box-label{ font-size:10px; font-weight:800; color:#7A5C00; text-transform:uppercase; letter-spacing:0.04em; margin-bottom:4px; }
+  .insight-box-text{ font-size:13px; line-height:1.55; color:#3D2E00; }
 
   /* ============ BULLET CHIP ROW (full width, BELOW the title) ============ */
   .bullet-row{ background:var(--card); padding:12px 20px 14px; border-bottom:1px solid var(--line); flex:none; }
@@ -353,7 +364,16 @@
 
   <div class="topic-title-row" id="topicTitleRow">
     <div class="topic-eyebrow" id="topicEyebrow"></div>
-    <div class="topic-title" id="topicTitle"></div>
+    <div class="title-and-insight">
+      <div class="topic-title" id="topicTitle"></div>
+      <button class="insight-btn" id="insightBtn" onclick="toggleInsight()" type="button">
+        <span>💡</span><span>Gather Insight</span>
+      </button>
+    </div>
+    <div class="insight-box" id="insightBox">
+      <div class="insight-box-label">MSL Insight-Gathering Question</div>
+      <div class="insight-box-text" id="insightBoxText"></div>
+    </div>
   </div>
 
   <div class="bullet-row" id="bulletRow">
@@ -381,7 +401,16 @@ const TOPICS = {
 /* ============ SCREENING & DIAGNOSIS ============ */
 s1: {
   cat: "screening", title: "HFpEF-ABA Screening Tool — Is It Good Enough, Easy, Practical?",
+  insight: "How do you currently screen for and diagnose HFpEF in your practice today, and how would you rate the quality of referrals you receive for suspected HFpEF?",
   bullets: [
+    { tag:"guideline", label:"What is the HFpEF-ABA score? A quick primer",
+      detail:"HFpEF-ABA stands for the three variables the score is built from: Age, BMI, and Atrial fibrillation history. It's a simple logistic-regression-based probability score using only these three universally available clinical variables \u2014 no echocardiogram, no NT-proBNP, no specialist equipment required. It was developed precisely because HFpEF is widely under-recognized, and existing diagnostic tools (echo, natriuretic peptides) aren't always accessible or practical for first-line screening, especially in primary care.",
+      chart:{type:"badge", items:[
+        {value:"A", label:"Age (years)", color:"guideline"},
+        {value:"B", label:"BMI \u2014 Body Mass Index (kg/m\u00b2)", color:"guideline"},
+        {value:"A", label:"Atrial Fibrillation (history of)", color:"guideline"}
+      ]},
+      citation:"Reddy YNV, Carter RE, Sundaram V, et al. An evidence-based screening tool for heart failure with preserved ejection fraction: the HFpEF-ABA score. Nat Med. 2024;30(8):2258\u20132264.", url:"https://www.nature.com/articles/s41591-024-03140-1" },
     { tag:"evidence", label:"Consistently picks out the right patient, across three separate test groups",
       detail:"If you compared one patient who truly has HFpEF against one who doesn't, the tool correctly identifies which one has HFpEF roughly 8 times out of 10 \u2014 in the original derivation group, and again when tested independently in two other patient groups. That consistency across separate populations is what makes it reliable, not just accurate once. Uses only age, BMI, and AF history \u2014 no imaging required, unlike H2FPEF or HFA-PEFF. (Statistically, this is expressed as AUC: 0.839 derivation, 0.813 international validation, 0.840 unexplained-dyspnea cohort.)",
       chart:{type:"badge", items:[
@@ -421,6 +450,7 @@ s1: {
 
 s2: {
   cat: "screening", title: "HFpEF Diagnosis — NT-proBNP Utilization by Cardiologists & GPs",
+  insight: "What's your perspective on the current gaps in HFpEF diagnosis, and where do tools like NT-proBNP and the ABA score fit \u2014 or fall short \u2014 in your day-to-day practice?",
   bullets: [
     { tag:"guideline", label:"Diagnostic threshold varies meaningfully by region",
       detail:"ESC and AHA recommend a 125 pg/mL threshold for a positive outpatient test. UK NICE recommends 400 pg/mL instead \u2014 the applicable threshold depends on which guideline body governs the market where the HCP practices.",
@@ -449,6 +479,7 @@ s2: {
 
 s3: {
   cat: "screening", title: "Referral Pathway Post-ABA Screening — Gaps, Resources, Challenges",
+  insight: "If we wanted to build a more practical referral pathway for GPs to screen and refer HFpEF patients to you, what would that need to look like?",
   bullets: [
     { tag:"limitation", label:"No dedicated referral pathway in roughly 40% of surveyed regions",
       detail:"Even where screening successfully flags a high-probability patient, the absence of a structured community-to-specialist pathway is a documented, common bottleneck \u2014 not a hypothetical concern. This is the same HFA survey data relevant to the NT-proBNP access discussion.",
@@ -487,6 +518,7 @@ s3: {
 /* ============ TREATMENT ============ */
 t1: {
   cat: "treatment", title: "SGLT2 Inhibitors — Standard of Care in All HFpEF?",
+  insight: "Are you using SGLT2 inhibitors as a foundational therapy in all your HFpEF patients? If not, what's holding that back?",
   bullets: [
     { tag:"guideline", label:"Class I, Level A \u2014 reconfirmed as foundational therapy in the 2026 ESC Guidelines",
       detail:"The 2026 ESC Guidelines recommend an SGLT2i (dapagliflozin or empagliflozin) for symptomatic HF independent of LVEF, Class I, Level A \u2014 reconfirming the position established in the 2023 Focused Update. Under the new 2026 framework, GDMT is now an umbrella term split into Foundational Medical Therapy (FMT) and Additional Medical Therapy (AMT); for HFpEF, FMT consists of SGLT2i and MRA together \u2014 both now Class I, Level A (MRA was upgraded from Class IIb, Level C; see the MRA topic for details).",
@@ -551,6 +583,7 @@ t1: {
 
 t2: {
   cat: "treatment", title: "MRA (Spironolactone) in HFpEF — Why/Why Not, Old vs New Evidence, ESC Guidelines",
+  insight: "With the recent ESC guideline changes, would you now consider using an SGLT2i and an MRA together in all HFpEF patients? And how do you personally think about the differences between spironolactone, eplerenone, and finerenone?",
   bullets: [
     { tag:"practical", label:"Mechanism of action: blocking aldosterone's cardiac and renal effects",
       detail:"Aldosterone acts beyond its classic renal sodium-retention role \u2014 its receptors are also expressed in cardiomyocytes, vascular smooth muscle, and endothelial cells, where chronic activation drives inflammation, oxidative stress, cardiac fibrosis, and hypertrophy. Spironolactone and eplerenone competitively block this receptor, and in combination with ACE inhibitors/ARBs, achieve near-complete suppression of the renin\u2013angiotensin\u2013aldosterone system. This mechanism underpins their established benefit in HFrEF, shown in the landmark RALES (spironolactone) and EPHESUS/EMPHASIS-HF (eplerenone) trials.",
@@ -606,7 +639,7 @@ t2: {
         {citation:"Jhund PS, Talebi A, Henderson AD, et al. Mineralocorticoid receptor antagonists in heart failure: an individual patient level meta-analysis. Lancet. 2024;404:1119\u20131131.", url:"https://doi.org/10.1016/S0140-6736(24)01733-1"}
       ] },
     { tag:"limitation", label:"Real-world underuse, largely due to hyperkalemia/renal safety concerns",
-      detail:"In the CHAMP-HF registry of outpatients with HFrEF, MRA was the least-prescribed of the guideline-directed therapy classes among eligible patients \u2014 well behind renin-angiotensin system inhibition and beta-blockers. Hyperkalemia and renal function concerns, especially relevant given CKD coexists in nearly half of HF patients, are cited as the leading reasons for under-prescription and early discontinuation. This registry is HFrEF-specific; equivalent HFpEF-focused prescribing-rate data is more limited.",
+      detail:"In the CHAMP-HF registry of outpatients with HFrEF, MRA was the least-prescribed of the guideline-directed therapy classes among eligible patients \u2014 well behind renin-angiotensin system inhibition and beta-blockers. Hyperkalemia and renal function concerns, especially relevant given CKD coexists in nearly half of HF patients, are cited as the leading reasons for under-prescription and early discontinuation. This registry is HFrEF-specific; equivalent HFpEF-focused prescribing-rate data is more limited. Australian data tells a similar story of underuse: in the SHAPE study, a real-world Australian general-practice HF cohort (not HFpEF-specific), only 16.0% of patients were prescribed spironolactone and just 1.2% eplerenone.",
       chart:[
         {type:"compare", title:"CHAMP-HF: % of eligible patients prescribed (HFrEF registry)", unit:"%", max:100,
           rows:[{label:"RAS inhibition (ACEi/ARB/ARNI)", value:73.4},{label:"Beta-blocker", value:67},{label:"MRA", value:33.4}]},
@@ -615,17 +648,23 @@ t2: {
             {label:"Spironolactone prescriptions", values:["34","149"]},
             {label:"Hyperkalemia hospitalization", values:["2.4","11.0"]},
             {label:"Hyperkalemia-associated death", values:["0.3","2.0"]}
-          ]}
+          ]},
+        {type:"badge", items:[
+          {value:"16.0%", label:"Spironolactone prescribed, Australian general-practice HF cohort (SHAPE study)", color:"limitation"},
+          {value:"1.2%", label:"Eplerenone prescribed, same Australian cohort", color:"limitation"}
+        ]}
       ],
       citations:[
         {citation:"Greene SJ, Butler J, Albert NM, et al. Medical Therapy for Heart Failure with Reduced Ejection Fraction: The CHAMP-HF Registry. J Am Coll Cardiol. 2018;72(4):351\u2013366.", url:"https://www.jacc.org/doi/10.1016/j.jacc.2018.04.070"},
-        {citation:"Juurlink DN, Mamdani MM, Lee DS, et al. Rates of Hyperkalemia after Publication of the Randomized Aldactone Evaluation Study. N Engl J Med. 2004;351:543\u2013551.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa040135"}
+        {citation:"Juurlink DN, Mamdani MM, Lee DS, et al. Rates of Hyperkalemia after Publication of the Randomized Aldactone Evaluation Study. N Engl J Med. 2004;351:543\u2013551.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa040135"},
+        {citation:"Sindone AP, Haikerwal D, Audehm RG, et al. Clinical characteristics of people with heart failure in Australian general practice: results from a retrospective cohort study. ESC Heart Fail. 2021;8(6):4497\u20134505.", url:"https://onlinelibrary.wiley.com/doi/full/10.1002/ehf2.13661"}
       ] }
   ]
 },
 
 t3: {
   cat: "treatment", title: "Finerenone in HFpEF — Strength of Evidence, Limitations & Challenges",
+  insight: "Where do you see the gap in MRA use in HFrEF today, and do you think that same gap could carry over into HFpEF as guidelines evolve?",
   bullets: [
     { tag:"practical", label:"Mechanism of action: nonsteroidal vs steroidal MR blockade",
       detail:"Finerenone is a nonsteroidal, bulky-structure MR antagonist — distinct from the flat, steroidal structure of spironolactone and eplerenone. This structural difference underlies its higher MR selectivity, shorter half-life, and lower rate of sex-hormone-related side effects (e.g., gynecomastia/breast pain) historically associated with spironolactone.",
@@ -677,6 +716,7 @@ t3: {
 /* ============ RESIDUAL RISK / TREATMENT ESCALATION ============ */
 r1: {
   cat: "residual", title: "SGLT2i and Mineralocorticoid Receptor Blockade — Evidence Comparison",
+  insight: "In patients already on an SGLT2i, what's actually driving your decision on whether or when to add an MRA?",
   bullets: [
     { tag:"evidence", label:"SGLT2i is the foundation \u2014 its 20% relative risk reduction still leaves real residual risk for receptor blockade to address",
       detail:"A 2026 prespecified pooled analysis of EMPEROR-Preserved and DELIVER (n=12,251) found empagliflozin/dapagliflozin reduce the composite of CV death or HF hospitalization by 20% (HR 0.80, 95% CI 0.73\u20130.87), consistent across the full LVEF spectrum. That 20% reduction means roughly 80% of the original relative risk remains even in a patient already optimized on an SGLT2i \u2014 real, substantial residual risk. This is precisely where receptor blockade (MRA) adds value: not as a competitor to SGLT2i, but as the next step once SGLT2i is established.",
@@ -738,6 +778,7 @@ r1: {
 
 r2: {
   cat: "residual", title: "Real-World Use of MRAs & Residual Risk When Not Used",
+  insight: "When you don't end up using an MRA in a patient who might benefit, what's usually the reason \u2014 and how do you think about the residual risk that's left on the table?",
   bullets: [
     { tag:"limitation", label:"MRA remains literally the least-prescribed of the guideline-directed HF therapy pillars",
       detail:"This pattern holds even in HFrEF, where MRA has long carried a strong Class I/A recommendation. Since the 2026 ESC Guidelines now give MRA the same Class I, Level A rating in HFpEF as well, the persistent underuse gap is harder to explain on evidence-strength grounds alone \u2014 both indications now carry equally strong formal guideline backing.",
@@ -772,6 +813,7 @@ r2: {
 
 r3: {
   cat: "residual", title: "Identifying Residual Risk in HFpEF — Stable Patients & Escalation Triggers",
+  insight: "How do you personally identify residual risk in an HFpEF patient who looks clinically stable \u2014 and what specific triggers, clinical or biomarker-based, would make you escalate treatment?",
   bullets: [
     { tag:"practical", label:"KCCQ is now the shared quality-of-life yardstick across major recent HFpEF trials",
       detail:"The Kansas City Cardiomyopathy Questionnaire Clinical Summary Score was the primary endpoint in STEP-HFpEF and STEP-HFpEF DM, and appears in FINEARTS-HF's secondary endpoint hierarchy. A declining KCCQ score in an apparently \u2018stable\u2019 patient is a guideline-recognized signal of disease progression, not a subjective complaint.",
@@ -812,6 +854,7 @@ r3: {
 
 r4: {
   cat: "residual", title: "Role of CKD as a Risk Multiplier in HFpEF — UACR",
+  insight: "Do you think UACR could serve as a simple, early marker of residual risk in HFpEF \u2014 and what would need to change in your clinical practice for you to start using it that way?",
   bullets: [
     { tag:"evidence", label:"CKD affects roughly half of all HF patients and independently worsens outcomes",
       detail:"Chronic kidney disease coexists in approximately 50% of heart failure patients and increases the risk of death and HF hospitalization as it progresses \u2014 a genuine risk multiplier rather than an incidental comorbidity.",
@@ -1040,7 +1083,7 @@ function buildChart(chart){
             <input type="number" id="calc-ntprobnp" placeholder="pg/mL">
             <div class="calc-ntprobnp-result" id="calc-ntprobnpResult"></div>
           </div>
-          <div class="calc-disclaimer">Probability bands (Low &lt;20%, Intermediate 20\u201370%, High &gt;70%) and the NT-proBNP threshold (125 pg/mL, non-acute setting) are a pragmatic triage framework; the original HFpEF-ABA publication does not itself specify validated categorical cutoffs. This tool supports, and does not replace, clinical judgment.</div>
+          <div class="calc-disclaimer">Probability bands (Low &lt;20%, Intermediate 20\u201370%, High &gt;70%) and the NT-proBNP threshold (125 pg/mL, non-acute setting) are a pragmatic triage framework; the original HFpEF-ABA publication does not itself specify validated categorical cutoffs. The ABA score itself is calculated from Age, BMI, and AF only \u2014 CKD is not an input to this score, and entering an NT-proBNP value does not change it; NT-proBNP is a separate, independent follow-up check. Note that CKD independently raises baseline NT-proBNP, so the fixed 125 pg/mL threshold may warrant more clinical judgment in a CKD patient. This tool supports, and does not replace, clinical judgment.</div>
         </div>
       </div>
       <div class="calc-disclaimer" style="margin-top:14px;"><b>Disclaimer:</b> This tool was developed by the Boehringer Ingelheim Medical Affairs team. The screening calculator is based on the HFpEF-ABA score, a validated, peer-reviewed screening tool, and the educational content draws on highly reputable, publicly available references and regional guideline consensus statements. References publicly available guidelines and screening scores; this is not an official partnership with the cited organizations. It is not a substitute for clinical judgement or current regional guidelines. Verify all inputs and outputs before use in patient care.</div>
@@ -1246,6 +1289,16 @@ function toggleDetail(){
   label.textContent = isOpen ? 'Hide clinical detail' : 'Show full clinical detail';
 }
 
+function renderTopicInsight(){
+  const t = TOPICS[activeTopic];
+  document.getElementById('insightBoxText').textContent = t.insight || '';
+  document.getElementById('insightBox').classList.remove('show');
+}
+
+function toggleInsight(){
+  document.getElementById('insightBox').classList.toggle('show');
+}
+
 function selectTab(tab){
   activeTab = tab;
   activeTopic = TAB_TOPICS[tab][0];
@@ -1256,6 +1309,7 @@ function selectTab(tab){
   document.getElementById('mainTopbar').style.display = '';
   document.getElementById('referencesView').style.display = 'none';
   document.getElementById('focusInner').style.display = '';
+  renderTopicInsight();
   renderAll(true, true);
 }
 function collectAllReferences(){
@@ -1307,6 +1361,7 @@ function showReferences(){
 function selectTopic(tid){
   activeTopic = tid;
   activeBulletIdx = 0;
+  renderTopicInsight();
   renderAll(false, true);
 }
 function selectBullet(i){
@@ -1425,6 +1480,7 @@ document.getElementById('exitBtn').addEventListener('click', ()=>{
   document.getElementById('landingPage').style.display = 'flex';
 });
 
+renderTopicInsight();
 renderAll(true, true);
 </script>
 </body>
