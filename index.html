@@ -911,7 +911,29 @@ h1: {
     { tag:"practical", label:"A different point of attack: blocking aldosterone production, not just its receptor",
       detail:"Aldosterone synthase inhibitors (ASIs) work upstream of MRA \u2014 blocking CYP11B2, the enzyme that produces aldosterone, rather than blocking the receptor after aldosterone is already made. The rationale: MRA can trigger a compensatory rise in circulating aldosterone (\"aldosterone escape\") since the hormone itself isn't reduced, only its receptor binding; ASI addresses the source instead. The main class-level theoretical concern is off-target inhibition of cortisol synthesis, since the aldosterone- and cortisol-producing enzymes are structurally similar \u2014 trial data on vicadrostat so far show high selectivity for the aldosterone-producing enzyme with no meaningful cortisol changes observed. This mechanism is investigational, not an established treatment option; the goal here is understanding, ahead of Phase III HF outcomes data.",
       chart:{type:"intercept-pathway", title:"Two different points of attack on the same pathway"},
-      citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288" }
+      citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288" },
+    { tag:"evidence", label:"The broader ASI class: mixed early signals, then a positive Phase III confirmation \u2014 in hypertension, not yet HF",
+      detail:"Vicadrostat is Boehringer Ingelheim's own ASI, but it isn't the only molecule in this class \u2014 baxdrostat (AstraZeneca) has the most mature human data, all in hypertension, not heart failure. Its Phase 2 BrigHTN trial (resistant hypertension) showed a significant placebo-corrected systolic BP reduction of \u221211.0 mmHg at the 2 mg dose, stopped early for overwhelming efficacy, with no adrenocortical insufficiency observed. Its other Phase 2 trial, HALO (uncontrolled hypertension), missed its primary endpoint \u2014 investigators attributed this to an unusually large blood-pressure improvement in the placebo group, linked to better medication adherence during the trial rather than a true lack of drug effect. The definitive Phase III BaxHTN trial (2025) subsequently met its primary and secondary endpoints for both resistant and uncontrolled hypertension. None of this is heart failure data \u2014 it establishes the mechanism works to lower blood pressure and aldosterone in humans, not that it improves HF outcomes.",
+      chart:{type:"table", title:"Baxdrostat's hypertension trial trajectory (not HF data)", columns:["Population","Result"],
+        rows:[
+          {label:"BrigHTN (Phase 2)", values:["Resistant hypertension","Positive \u2014 stopped early for efficacy"]},
+          {label:"HALO (Phase 2)", values:["Uncontrolled hypertension","Missed endpoint \u2014 confounded by placebo-arm adherence"]},
+          {label:"BaxHTN (Phase 3)", values:["Resistant + uncontrolled hypertension","Positive \u2014 met primary and secondary endpoints"]}
+        ]},
+      citations:[
+        {citation:"Freeman MW, Halvorsen YD, Marshall W, et al. Phase 2 Trial of Baxdrostat for Treatment-Resistant Hypertension. N Engl J Med. 2023;388(5):395\u2013405.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2213169"},
+        {citation:"Dey S, Frishman WH, Aronow WS. Baxdrostat: An Aldosterone Synthase Inhibitor for the Treatment of Systemic Hypertension. Cardiol Rev. 2025;33(3):243\u2013245.", url:"https://pubmed.ncbi.nlm.nih.gov/37548462/"},
+        {citation:"Flack JM, Azizi M, Brown JM, et al; BaxHTN Investigators. Efficacy and Safety of Baxdrostat in Uncontrolled and Resistant Hypertension. N Engl J Med. 2025;393(14):1363\u20131374.", url:"https://www.nejm.org/doi/10.1056/NEJMoa2507109"}
+      ] },
+    { tag:"guideline", label:"MRA vs. ASI, side by side \u2014 where each stands today",
+      detail:"The two approaches share a therapeutic target but differ in mechanism, effect on circulating aldosterone, and evidence maturity. This is a summary for orientation, not a head-to-head recommendation \u2014 there is no trial directly comparing the two in HFpEF.",
+      chart:{type:"table", title:"MRA vs. ASI \u2014 current status", columns:["MRA (spironolactone/eplerenone/finerenone)","ASI (e.g. vicadrostat)"],
+        rows:[
+          {label:"Point of action", values:["Mineralocorticoid receptor (downstream)","CYP11B2 / aldosterone synthase (upstream)"]},
+          {label:"Effect on circulating aldosterone", values:["Unchanged or compensatory rise (\u201caldosterone escape\u201d)","Reduced at the source"]},
+          {label:"HFpEF outcomes evidence", values:["Established \u2014 guideline Class I/A (2026 ESC)","None yet \u2014 Phase III HF trials ongoing, no results"]},
+          {label:"Key safety watch-point", values:["Hyperkalemia, renal function","Theoretical off-target cortisol effect (not observed to date)"]}
+        ]} }
   ]
 },
 
@@ -934,11 +956,16 @@ h2: {
         {citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288"}
       ] },
     { tag:"practical", label:"Primary endpoint and timeline — when will we know?",
-      detail:"Both trials share the same primary endpoint: time to first event of cardiovascular death, hospitalization for heart failure, or urgent heart failure visit \u2014 assessed over up to 42\u201343 months. Key secondary endpoints include time to CV death alone, time to all-cause mortality, and change in KCCQ symptom score. EASi-HF Reduced began in May 2025 with an estimated completion around February 2029; EASi-HF Preserved's estimated completion has been reported as May 2028. These are investigational timelines and subject to change \u2014 there is no completed outcomes data for either trial today.",
-      chart:{type:"badge", items:[
-        {value:"Up to 43mo", label:"Follow-up window for the primary composite endpoint, both trials", color:"guideline"},
-        {value:"No data yet", label:"Both trials are actively recruiting \u2014 investigational, not established", color:"limitation"}
-      ]},
+      detail:"Both trials share the same primary endpoint and a common set of key secondary endpoints, assessed over up to 42\u201343 months of follow-up. EASi-HF Reduced began in May 2025 with an estimated completion around February 2029; EASi-HF Preserved's estimated completion has been reported as May 2028. These are investigational timelines and subject to change \u2014 there is no completed outcomes data for either trial today.",
+      chart:{type:"table", title:"EASi-HF Reduced & Preserved \u2014 endpoints (up to 42\u201343 months)", columns:["Definition"],
+        rows:[
+          {label:"Primary endpoint", values:["Time to first event of CV death, hospitalization for heart failure (HHF), or urgent HF visit"]},
+          {label:"Key secondary", values:["Time to CV death or HHF"]},
+          {label:"Key secondary", values:["Occurrences of HHF (first and recurrent)"]},
+          {label:"Key secondary", values:["Time to CV death (alone)"]},
+          {label:"Key secondary", values:["Time to all-cause mortality"]},
+          {label:"Key secondary", values:["Change from baseline in KCCQ symptom score (patient-reported quality of life)"]}
+        ]},
       citations:[
         {citation:"EASi-HF Reduced (NCT06935370): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure and a Weak Pumping Function of the Left Side of the Heart. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06935370"},
         {citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288"}
