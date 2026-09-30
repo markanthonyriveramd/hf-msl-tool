@@ -308,6 +308,14 @@
   .ip-intercept-mra .ip-intercept-label{ background:var(--evidence); }
   .ip-intercept-text{ font-size:11px; line-height:1.4; color:var(--ink); }
 
+  /* ============ HF DIAGNOSTIC ALGORITHM (ESC Figure 4 style flowchart) ============ */
+  .dxflow-wrap{ width:100%; overflow-x:auto; }
+  .dxflow-wrap svg{ display:block; margin:0 auto; min-width:900px; }
+  .dxflow-box{ font-family:'Inter',sans-serif; font-size:15px; font-weight:600; fill:#1B2430; text-anchor:middle; }
+  .dxflow-box tspan{ font-size:15px; font-weight:500; }
+  .dxflow-label{ font-family:'Inter',sans-serif; font-size:13px; fill:#1B2430; text-anchor:middle; }
+  .dxflow-yn{ font-family:'Manrope',sans-serif; font-size:14px; font-weight:800; fill:#fff; text-anchor:middle; dominant-baseline:middle; }
+
   /* ============ REFERENCES VIEW ============ */
   .ref-header{ margin-bottom:18px; margin-top:22px; }
   .ref-eyebrow{ font-size:10.5px; font-weight:700; color:var(--brand); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
@@ -474,6 +482,17 @@ s2: {
       detail:"A multi-country HFA survey found 40% of respondent clinicians lacked a formal diagnostic referral pathway for elevated natriuretic peptides in their area, and roughly one-third lacked access to NP testing in the community setting at all \u2014 an access problem, not just an interpretation problem.",
       chart:{type:"badge", items:[{value:"40%", label:"lack a formal referral pathway", color:"limitation"},{value:"~33%", label:"lack community NP testing access", color:"limitation"}]},
       citation:"Awareness, access, and adoption of natriuretic peptides for diagnosis of heart failure. ESC HFA survey, PMC. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11770566/" }
+  ]
+},
+
+s2b: {
+  cat: "screening", title: "The Formal Diagnostic Algorithm — 2026 ESC Guidelines",
+  insight: "Walking through this diagnostic pathway, where does your own process tend to diverge from it in practice \u2014 and what typically causes that gap?",
+  bullets: [
+    { tag:"guideline", label:"The official ESC pathway: from suspected symptoms to a confirmed HFrEF or HFpEF diagnosis",
+      detail:"This is the diagnostic algorithm exactly as published in the 2026 ESC Heart Failure Guidelines (Figure 4). It starts from suspected symptoms, runs through clinical assessment and natriuretic peptide testing (with the age-stratified thresholds shown), and resolves into echocardiography and a confirmed classification \u2014 HFrEF or HFpEF \u2014 followed by a multiparametric aetiology assessment. Where NP testing isn't available, the pathway routes directly to echocardiography rather than stalling.",
+      chart:{type:"hf-dx-algorithm", title:"Diagnostic algorithm for chronic heart failure (2026 ESC Guidelines, Figure 4)"},
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" }
   ]
 },
 
@@ -980,7 +999,7 @@ h2: {
 </script>
 <script>
 const TAB_TOPICS = {
-  screening: ["s1","s2","s3"],
+  screening: ["s1","s2","s2b","s3"],
   treatment: ["t1","t2","t3"],
   residual: ["r1","r2","r3","r4"],
   horizon: ["h1","h2"]
@@ -1176,6 +1195,75 @@ function buildChart(chart){
         </div>
         <div class="ip-arrow">\u2193</div>
         <div class="ip-stage">Downstream effects<span class="ip-stage-sub">Sodium retention, fibrosis, remodeling</span></div>
+      </div>
+    </div>`;
+  }
+  if(chart.type === "hf-dx-algorithm"){
+    return `<div class="bullet-chart">
+      <div class="chart-title">${chart.title||''}</div>
+      <div class="dxflow-wrap">
+      <svg viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <marker id="dxarrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5C7269"/></marker>
+        </defs>
+        <g stroke="#5C7269" stroke-width="1.5" fill="none" marker-end="url(#dxarrow)">
+          <path d="M530,55 L530,83"/>
+          <path d="M530,125 L530,153"/>
+          <path d="M490,195 L490,235 L360,235 L360,253"/>
+          <path d="M610,195 L610,240 L960,240 L960,579 L922,579"/>
+          <path d="M280,400 L280,458"/>
+          <path d="M440,400 L440,470 L730,470 L730,553"/>
+          <path d="M230,520 L230,560 L135,560 L135,603"/>
+          <path d="M420,520 L420,581 L538,581"/>
+          <path d="M135,647 L135,688"/>
+          <path d="M650,607 L650,627 L627,627 L627,648"/>
+          <path d="M810,607 L810,627 L842,627 L842,648"/>
+          <path d="M800,705 L800,725 L780,725 L780,743"/>
+          <path d="M885,705 L885,725 L940,725 L940,743"/>
+          <path d="M780,790 L780,805 L810,805 L810,813"/>
+          <path d="M940,790 L940,805 L910,805 L910,813"/>
+        </g>
+        <rect x="330" y="15" width="400" height="40" rx="8" fill="#E8E1F5"/>
+        <text class="dxflow-box" x="530" y="39">Signs and/or symptoms of suspected HF</text>
+        <rect x="330" y="85" width="400" height="40" rx="8" fill="#E8E1F5"/>
+        <text class="dxflow-box" x="530" y="109">Clinical assessment, ECG, laboratory tests, CXR</text>
+        <rect x="330" y="155" width="400" height="40" rx="8" fill="#E8E1F5"/>
+        <text class="dxflow-box" x="530" y="179">Natriuretic peptide testing available</text>
+        <circle cx="490" cy="218" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="490" y="219">Yes</text>
+        <circle cx="610" cy="218" r="14" fill="#D8484C"/><text class="dxflow-yn" x="610" y="219">No</text>
+        <rect x="180" y="253" width="360" height="147" rx="8" fill="#D6E4F0"/>
+        <text class="dxflow-box" x="360" y="277">Elevated natriuretic peptide levels</text>
+        <text class="dxflow-box" x="360" y="302"><tspan>NT-proBNP: \u2265125 pg/mL (&lt;50y)</tspan></text>
+        <text class="dxflow-box" x="360" y="322"><tspan>\u2265250 pg/mL (50\u201374y) \u00b7 \u2265500 pg/mL (\u226575y)</tspan></text>
+        <text class="dxflow-box" x="360" y="345"><tspan>Or BNP \u226535 pg/mL</tspan></text>
+        <circle cx="280" cy="435" r="14" fill="#D8484C"/><text class="dxflow-yn" x="280" y="436">No</text>
+        <circle cx="440" cy="435" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="440" y="436">Yes</text>
+        <rect x="170" y="458" width="220" height="62" rx="8" fill="#D6E4F0"/>
+        <text class="dxflow-box" x="280" y="483">Still high clinical</text>
+        <text class="dxflow-box" x="280" y="502">suspicion of HF</text>
+        <circle cx="230" cy="548" r="14" fill="#D8484C"/><text class="dxflow-yn" x="230" y="549">No</text>
+        <circle cx="420" cy="548" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="420" y="549">Yes</text>
+        <rect x="40" y="605" width="190" height="42" rx="8" fill="#8CA3BD"/>
+        <text class="dxflow-box" x="135" y="631" fill="#fff">HF very unlikely</text>
+        <rect x="40" y="690" width="190" height="42" rx="8" fill="#D6E4F0"/>
+        <text class="dxflow-box" x="135" y="716">Consider other causes</text>
+        <rect x="540" y="555" width="380" height="52" rx="8" fill="#D6E4F0"/>
+        <text class="dxflow-box" x="730" y="586">Echocardiogram and specialist review</text>
+        <rect x="540" y="648" width="175" height="55" rx="8" fill="#D6E4F0"/>
+        <text class="dxflow-box" x="627" y="671">HF ruled out</text>
+        <text class="dxflow-box" x="627" y="689"><tspan>(No abnormal findings)</tspan></text>
+        <rect x="755" y="648" width="175" height="55" rx="8" fill="#8CA3BD"/>
+        <text class="dxflow-box" x="842" y="680" fill="#fff">HF confirmed</text>
+        <rect x="710" y="743" width="140" height="47" rx="8" fill="#8CA3BD"/>
+        <text class="dxflow-box" x="780" y="762" fill="#fff">HFrEF</text>
+        <text class="dxflow-box" x="780" y="779" fill="#fff"><tspan>LVEF &lt;50%</tspan></text>
+        <rect x="870" y="743" width="140" height="47" rx="8" fill="#8CA3BD"/>
+        <text class="dxflow-box" x="940" y="762" fill="#fff">HFpEF</text>
+        <text class="dxflow-box" x="940" y="779" fill="#fff"><tspan>LVEF \u226550%</tspan></text>
+        <rect x="710" y="813" width="300" height="55" rx="8" fill="#8CA3BD"/>
+        <text class="dxflow-box" x="860" y="836" fill="#fff">Multiparametric aetiology</text>
+        <text class="dxflow-box" x="860" y="853" fill="#fff">assessment and treatment</text>
+      </svg>
       </div>
     </div>`;
   }
