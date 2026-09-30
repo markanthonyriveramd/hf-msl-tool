@@ -1296,6 +1296,12 @@ function renderBulletChips(resetScroll){
   if(resetScroll) document.getElementById('bulletChips').scrollLeft = 0;
 }
 
+function centerDxFlowScroll(){
+  const wrap = document.querySelector('.dxflow-wrap');
+  if(!wrap) return;
+  wrap.scrollLeft = (wrap.scrollWidth - wrap.clientWidth) / 2;
+}
+
 function initCalculator(){
   const $ = id => document.getElementById(id);
   const ageEl = $('calc-age'), htEl = $('calc-ht'), wtEl = $('calc-wt');
@@ -1426,6 +1432,7 @@ function renderFocus(){
 
   const chartTypes = Array.isArray(b.chart) ? b.chart.map(c=>c && c.type) : [b.chart && b.chart.type];
   if(chartTypes.includes("calculator")) initCalculator();
+  if(chartTypes.includes("hf-dx-algorithm")) centerDxFlowScroll();
 
   document.getElementById('slideCounter').textContent = `${activeBulletIdx+1} / ${t.bullets.length}`;
   document.getElementById('prevBtn').disabled = activeBulletIdx === 0;
