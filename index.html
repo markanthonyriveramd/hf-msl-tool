@@ -310,7 +310,7 @@
 
   /* ============ HF DIAGNOSTIC ALGORITHM (ESC Figure 4 style flowchart) ============ */
   .dxflow-wrap{ width:100%; overflow-x:auto; }
-  .dxflow-wrap svg{ display:block; margin:0 auto; min-width:900px; }
+  .dxflow-wrap svg{ display:block; margin:0 auto; min-width:940px; }
   .dxflow-box{ font-family:'Inter',sans-serif; font-size:15px; font-weight:600; fill:#1B2430; text-anchor:middle; }
   .dxflow-box tspan{ font-size:15px; font-weight:500; }
   .dxflow-label{ font-family:'Inter',sans-serif; font-size:13px; fill:#1B2430; text-anchor:middle; }
@@ -1202,47 +1202,24 @@ function buildChart(chart){
     return `<div class="bullet-chart">
       <div class="chart-title">${chart.title||''}</div>
       <div class="dxflow-wrap">
-      <svg viewBox="0 0 1000 900" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="0 0 1040 900" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <marker id="dxarrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="#5C7269"/></marker>
         </defs>
-        <g stroke="#5C7269" stroke-width="1.5" fill="none" marker-end="url(#dxarrow)">
-          <path d="M530,55 L530,83"/>
-          <path d="M530,125 L530,153"/>
-          <path d="M490,195 L490,235 L360,235 L360,253"/>
-          <path d="M610,195 L610,240 L960,240 L960,579 L922,579"/>
-          <path d="M280,400 L280,458"/>
-          <path d="M440,400 L440,470 L730,470 L730,553"/>
-          <path d="M230,520 L230,560 L135,560 L135,603"/>
-          <path d="M420,520 L420,581 L538,581"/>
-          <path d="M135,647 L135,688"/>
-          <path d="M650,607 L650,627 L627,627 L627,648"/>
-          <path d="M810,607 L810,627 L842,627 L842,648"/>
-          <path d="M800,705 L800,725 L780,725 L780,743"/>
-          <path d="M885,705 L885,725 L940,725 L940,743"/>
-          <path d="M780,790 L780,805 L810,805 L810,813"/>
-          <path d="M940,790 L940,805 L910,805 L910,813"/>
-        </g>
         <rect x="330" y="15" width="400" height="40" rx="8" fill="#E8E1F5"/>
         <text class="dxflow-box" x="530" y="39">Signs and/or symptoms of suspected HF</text>
         <rect x="330" y="85" width="400" height="40" rx="8" fill="#E8E1F5"/>
         <text class="dxflow-box" x="530" y="109">Clinical assessment, ECG, laboratory tests, CXR</text>
         <rect x="330" y="155" width="400" height="40" rx="8" fill="#E8E1F5"/>
         <text class="dxflow-box" x="530" y="179">Natriuretic peptide testing available</text>
-        <circle cx="490" cy="218" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="490" y="219">Yes</text>
-        <circle cx="610" cy="218" r="14" fill="#D8484C"/><text class="dxflow-yn" x="610" y="219">No</text>
         <rect x="180" y="253" width="360" height="147" rx="8" fill="#D6E4F0"/>
         <text class="dxflow-box" x="360" y="277">Elevated natriuretic peptide levels</text>
         <text class="dxflow-box" x="360" y="302"><tspan>NT-proBNP: \u2265125 pg/mL (&lt;50y)</tspan></text>
         <text class="dxflow-box" x="360" y="322"><tspan>\u2265250 pg/mL (50\u201374y) \u00b7 \u2265500 pg/mL (\u226575y)</tspan></text>
         <text class="dxflow-box" x="360" y="345"><tspan>Or BNP \u226535 pg/mL</tspan></text>
-        <circle cx="280" cy="435" r="14" fill="#D8484C"/><text class="dxflow-yn" x="280" y="436">No</text>
-        <circle cx="440" cy="435" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="440" y="436">Yes</text>
         <rect x="170" y="458" width="220" height="62" rx="8" fill="#D6E4F0"/>
         <text class="dxflow-box" x="280" y="483">Still high clinical</text>
         <text class="dxflow-box" x="280" y="502">suspicion of HF</text>
-        <circle cx="230" cy="548" r="14" fill="#D8484C"/><text class="dxflow-yn" x="230" y="549">No</text>
-        <circle cx="420" cy="548" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="420" y="549">Yes</text>
         <rect x="40" y="605" width="190" height="42" rx="8" fill="#8CA3BD"/>
         <text class="dxflow-box" x="135" y="631" fill="#fff">HF very unlikely</text>
         <rect x="40" y="690" width="190" height="42" rx="8" fill="#D6E4F0"/>
@@ -1263,6 +1240,29 @@ function buildChart(chart){
         <rect x="710" y="813" width="300" height="55" rx="8" fill="#8CA3BD"/>
         <text class="dxflow-box" x="860" y="836" fill="#fff">Multiparametric aetiology</text>
         <text class="dxflow-box" x="860" y="853" fill="#fff">assessment and treatment</text>
+        <g stroke="#5C7269" stroke-width="1.5" fill="none" marker-end="url(#dxarrow)">
+          <path d="M530,55 L530,83"/>
+          <path d="M530,125 L530,153"/>
+          <path d="M490,195 L490,235 L360,235 L360,253"/>
+          <path d="M610,195 L610,240 L960,240 L960,579 L922,579"/>
+          <path d="M280,400 L280,458"/>
+          <path d="M440,400 L440,470 L730,470 L730,553"/>
+          <path d="M230,520 L230,560 L135,560 L135,603"/>
+          <path d="M350,520 L350,581 L538,581"/>
+          <path d="M135,647 L135,688"/>
+          <path d="M650,607 L650,627 L627,627 L627,648"/>
+          <path d="M810,607 L810,627 L842,627 L842,648"/>
+          <path d="M800,705 L800,725 L780,725 L780,743"/>
+          <path d="M885,705 L885,725 L940,725 L940,743"/>
+          <path d="M780,790 L780,805 L810,805 L810,813"/>
+          <path d="M940,790 L940,805 L910,805 L910,813"/>
+        </g>
+        <circle cx="490" cy="218" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="490" y="219">Yes</text>
+        <circle cx="610" cy="218" r="14" fill="#D8484C"/><text class="dxflow-yn" x="610" y="219">No</text>
+        <circle cx="280" cy="435" r="14" fill="#D8484C"/><text class="dxflow-yn" x="280" y="436">No</text>
+        <circle cx="440" cy="435" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="440" y="436">Yes</text>
+        <circle cx="230" cy="548" r="14" fill="#D8484C"/><text class="dxflow-yn" x="230" y="549">No</text>
+        <circle cx="350" cy="548" r="14" fill="#0FA36B"/><text class="dxflow-yn" x="350" y="549">Yes</text>
       </svg>
       </div>
     </div>`;
