@@ -341,6 +341,22 @@
   .pyramid-big{ font-family:'Manrope',sans-serif; font-size:22px; font-weight:800; fill:#1B2430; text-anchor:middle; }
   .pyramid-small{ font-family:'Inter',sans-serif; font-size:13px; font-weight:700; fill:#1B2430; text-anchor:middle; }
 
+  /* ============ FMT STRATEGIC FUNNEL ============ */
+  .funnel-wrap{ display:flex; flex-direction:column; align-items:center; gap:0; max-width:540px; margin:0 auto; }
+  .funnel-stage{ background:var(--card); border:1.5px solid var(--line); border-radius:10px; padding:12px 18px; text-align:center; width:100%; }
+  .funnel-stage-title{ font-size:10.5px; font-weight:700; color:var(--muted); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:4px; }
+  .funnel-stage-drugs{ font-size:14px; font-weight:700; color:var(--ink); }
+  .funnel-stage.core{ background:rgba(15,163,107,0.08); border-color:var(--evidence); }
+  .funnel-stage.core .funnel-stage-drugs{ color:var(--evidence); }
+  .funnel-arrow{ font-size:16px; color:var(--muted); padding:4px 0; line-height:1; }
+  .funnel-branches{ display:flex; gap:12px; width:100%; margin-top:2px; }
+  .funnel-branch{ flex:1; background:var(--card); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; }
+  .funnel-branch-label{ font-weight:800; font-size:11px; color:var(--brand); margin-bottom:4px; }
+  .funnel-branch-text{ font-size:12px; color:var(--ink); line-height:1.4; }
+  @media (max-width: 700px){
+    .funnel-branches{ flex-direction:column; }
+  }
+
   /* ============ REFERENCES VIEW ============ */
   .ref-header{ margin-bottom:18px; margin-top:22px; }
   .ref-eyebrow{ font-size:10.5px; font-weight:700; color:var(--brand); text-transform:uppercase; letter-spacing:0.05em; margin-bottom:4px; }
@@ -598,6 +614,19 @@ t1: {
     { tag:"guideline", label:"New nomenclature: Foundational, Additional, and Guideline Directed Interventional Therapy",
       detail:"This is Figure 3 exactly as published in the 2026 ESC Heart Failure Guidelines. Guideline-Directed Medical Therapy (GDMT) is now an umbrella term covering two tiers: Foundational Medical Therapy (FMT) \u2014 the broad base every eligible patient should be on \u2014 and Additional Medical Therapy (AMT), layered on top for specific situations. Guideline Directed Interventional Therapy (GDIT) sits alongside AMT as a separate, device- or procedure-based category. SGLT2i sits within FMT for HFpEF, alongside MRA \u2014 both are now Class I, Level A foundational agents under this framework.",
       chart:{type:"therapy-pyramid", title:"New nomenclature for heart failure therapies (2026 ESC Guidelines, Figure 3)"},
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
+    { tag:"guideline", label:"SGLT2i and MRA are the only two pillars that are FMT across the entire LVEF spectrum",
+      detail:"The 2026 ESC framework reconceives the traditional four pillars. ARNI/ACE-I/ARB and beta-blockers remain FMT, but only for HFrEF \u2014 in HFpEF they drop to IIb, Level C (\"may be considered... to reduce the risk of HFH\"), not a foundational recommendation. SGLT2i and MRA are the only two classes that clear the bar as LVEF-independent FMT: Class I, Level A in both HFrEF and HFpEF. The strategic picture: every HF patient, regardless of LVEF, starts on SGLT2i + MRA \u2014 then HFrEF patients layer on ARNI/ACE-I/ARB and a beta-blocker, while HFpEF patients layer on additional therapies selected by phenotype and comorbidities. The guideline calls for FMT uptitration at least every 1\u20132 weeks, guided by symptoms, vital signs, and laboratory findings, continuing at the highest tolerated dose even if the patient becomes asymptomatic or LVEF improves.",
+      chart:[
+        {type:"table", title:"2026 ESC FMT framework by pillar and phenotype", columns:["HFrEF","HFpEF"],
+          rows:[
+            {label:"SGLT2 inhibitor", values:["FMT \u2014 I, A","FMT \u2014 I, A"]},
+            {label:"MRA", values:["FMT \u2014 I, A","FMT \u2014 I, A"]},
+            {label:"ARNI / ACE-I / ARB", values:["FMT \u2014 I, A","IIb, C (not FMT)"]},
+            {label:"Beta-blocker", values:["FMT \u2014 I, A","Not FMT"]}
+          ]},
+        {type:"fmt-funnel", title:"The strategic picture"}
+      ],
       citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
     { tag:"evidence", label:"Benefit is now shown to be uniform across the entire LVEF spectrum, including \u226560%",
       detail:"A 2026 prespecified pooled analysis of EMPEROR-Preserved and DELIVER (n=12,251) found a 20% risk reduction overall (HR 0.80, 95% CI 0.73\u20130.87), consistent across LVEF <50% (HR 0.76), 50\u201359% (HR 0.79), and \u226560% (HR 0.82) \u2014 interaction P=0.690, meaning no statistically meaningful heterogeneity. This directly resolves earlier uncertainty about whether benefit fades at higher EF.",
@@ -1426,6 +1455,33 @@ function buildChart(chart){
       </svg>
       </div>
       ${chart.footnote ? `<div class="calc-disclaimer" style="margin-top:12px;">${chart.footnote}</div>` : ''}
+    </div>`;
+  }
+  if(chart.type === "fmt-funnel"){
+    return `<div class="bullet-chart">
+      <div class="chart-title">${chart.title||''}</div>
+      <div class="funnel-wrap">
+        <div class="funnel-stage">
+          <div class="funnel-stage-title">HFrEF</div>
+          <div class="funnel-stage-drugs">SGLT2i + MRA + ARNI/ACE-I + \u03b2-blocker</div>
+        </div>
+        <div class="funnel-arrow">\u2193</div>
+        <div class="funnel-stage core">
+          <div class="funnel-stage-title">HF across the LVEF spectrum</div>
+          <div class="funnel-stage-drugs">SGLT2i + MRA</div>
+        </div>
+        <div class="funnel-arrow">\u2193</div>
+        <div class="funnel-branches">
+          <div class="funnel-branch">
+            <div class="funnel-branch-label">HFrEF</div>
+            <div class="funnel-branch-text">+ ARNI/ACE-I/ARB + \u03b2-blocker</div>
+          </div>
+          <div class="funnel-branch">
+            <div class="funnel-branch-label">HFpEF</div>
+            <div class="funnel-branch-text">Selected additional therapies per phenotype/comorbidities</div>
+          </div>
+        </div>
+      </div>
     </div>`;
   }
   return "";
