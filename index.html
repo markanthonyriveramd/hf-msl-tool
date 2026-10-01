@@ -523,6 +523,14 @@ s2: {
   cat: "screening", title: "HFpEF Diagnosis — NT-proBNP Utilization by Cardiologists & GPs",
   insight: "What's your perspective on the current gaps in HFpEF diagnosis, and where do tools like NT-proBNP and the ABA score fit \u2014 or fall short \u2014 in your day-to-day practice?",
   bullets: [
+    { tag:"guideline", label:"What is NT-proBNP? A quick primer",
+      detail:"NT-proBNP stands for N-terminal pro-B-type Natriuretic Peptide. When cardiac myocytes \u2014 mainly in the ventricles \u2014 experience wall stress from volume or pressure overload, they synthesize and release a prohormone, proBNP, which is cleaved into two fragments: biologically active BNP (which has natriuretic, diuretic, and vasodilatory effects) and biologically inactive NT-proBNP. NT-proBNP has a longer half-life and is more stable in blood, which is why it's the preferred fragment for clinical lab testing even though BNP itself is the active hormone. Elevated levels reflect myocardial wall stress and are used both to rule out HF at low values and support the diagnosis at elevated ones.",
+      chart:{type:"badge", items:[
+        {value:"Wall stress", label:"Triggers release from cardiac myocytes, mainly ventricular", color:"guideline"},
+        {value:"proBNP \u2192 BNP + NT-proBNP", label:"Cleaved into active BNP and inactive NT-proBNP", color:"guideline"},
+        {value:"Longer half-life", label:"NT-proBNP is more stable in blood \u2014 the preferred lab biomarker", color:"guideline"}
+      ]},
+      citation:"Bayes-Genis A, Docherty KF, Petrie MC, et al. Practical algorithms for early diagnosis of heart failure and heart stress using NT-proBNP: A clinical consensus statement from the Heart Failure Association of the ESC. Eur J Heart Fail. 2023;25(11):1891\u20131898.", url:"https://onlinelibrary.wiley.com/doi/full/10.1002/ejhf.3036" },
     { tag:"guideline", label:"Diagnostic threshold varies meaningfully by region",
       detail:"ESC and AHA recommend a 125 pg/mL threshold for a positive outpatient test. UK NICE recommends 400 pg/mL instead \u2014 the applicable threshold depends on which guideline body governs the market where the HCP practices.",
       chart:{type:"compare", title:"NT-proBNP positive threshold by guideline body", unit:"pg/mL", max:450,
@@ -856,12 +864,12 @@ r0: {
   bullets: [
     { tag:"guideline", label:"Established tools exist to quantify risk in HF \u2014 including one built specifically for HFpEF",
       detail:"The 2026 ESC Guidelines name four risk-prediction tools for patients with established HF: the MAGGIC risk score and the Seattle Heart Failure Model (older, general-HF tools), and two newer ESC-initiated models \u2014 LIFE-HF for HFrEF (LVEF \u226440%) and LIFE-Preserved for HFpEF (LVEF \u226550%). LIFE-Preserved was derived and externally validated in a combined ~48,000 HFpEF patients, using 14 routinely available predictors to estimate both short-term and lifetime risk of HF hospitalization or CV death \u2014 giving HFpEF, for the first time, a dedicated, validated risk tool rather than relying on models built for HFrEF populations.",
-      chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population","Calculator"],
+      chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population"],
         rows:[
-          {label:"MAGGIC risk score", values:["General HF","<a href=\"https://www.heartfailurerisk.org\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]},
-          {label:"Seattle Heart Failure Model", values:["General HF","<a href=\"https://www.seattleheartfailuremodel.org\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]},
-          {label:"LIFE-HF", values:["HFrEF (LVEF \u226440%)","<a href=\"https://onlinelibrary.wiley.com/doi/10.1002/ejhf.3028\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a><span class=\"table-link-sub\">Via supplementary material</span>"]},
-          {label:"LIFE-Preserved", values:["HFpEF (LVEF \u226550%)","<a href=\"https://tessa-r.shinyapps.io/shiny/\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]}
+          {label:"MAGGIC risk score", values:["General HF"]},
+          {label:"Seattle Heart Failure Model", values:["General HF"]},
+          {label:"LIFE-HF", values:["HFrEF (LVEF \u226440%)"]},
+          {label:"LIFE-Preserved", values:["HFpEF (LVEF \u226550%)"]}
         ]},
       citations:[
         {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"},
@@ -869,11 +877,11 @@ r0: {
       ] },
     { tag:"practical", label:"LIFE-Preserved specifically: built for HFpEF, when to reach for it",
       detail:"LVEF is the real fork in the road for which tool to use. LIFE-HF was derived and validated specifically in LVEF \u226440% populations (PARADIGM-HF/ATMOSPHERE, validated in DAPA-HF); it shouldn't be applied to HFpEF. LIFE-Preserved is the mirror image \u2014 the only one of the four derived and externally validated specifically in HFpEF (LVEF \u226550%), including validation against the EMPEROR-Preserved trial itself. MAGGIC remains a reasonable cross-check in HFpEF since it's been separately re-validated there, though its output is mortality-only \u2014 narrower than LIFE-Preserved's HF-hospitalization-plus-CV-death composite. Seattle Heart Failure Model is the least suited of the four to HFpEF: it was derived in PRAISE-1, an HFrEF trial population, and its standout feature \u2014 modeling benefit from beta-blockers, ICDs, and CRT \u2014 reflects the HFrEF treatment landscape, not HFpEF's actual therapies. LIFE-Preserved uses 14 routinely available predictors in sex-specific models, estimates both short-term and lifetime risk, and \u2014 genuinely useful for an MSL conversation \u2014 can estimate individualized treatment benefit from starting an SGLT2i.",
-      chart:{type:"table", title:"Which tool, by LVEF", columns:["Recommended tool"],
+      chart:{type:"table", title:"Which tool, by LVEF", columns:["Recommended tool","Calculator"],
         rows:[
-          {label:"LVEF \u226440% (HFrEF)", values:["LIFE-HF"]},
-          {label:"LVEF \u226550% (HFpEF)", values:["LIFE-Preserved"]},
-          {label:"Either, as a cross-check", values:["MAGGIC (mortality only)"]}
+          {label:"LVEF \u226440% (HFrEF)", values:["LIFE-HF","<a href=\"https://onlinelibrary.wiley.com/doi/10.1002/ejhf.3028\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a><span class=\"table-link-sub\">Via supplementary material</span>"]},
+          {label:"LVEF \u226550% (HFpEF)", values:["LIFE-Preserved","<a href=\"https://tessa-r.shinyapps.io/shiny/\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]},
+          {label:"Either, as a cross-check", values:["MAGGIC (mortality only)","<a href=\"https://www.heartfailurerisk.org\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]}
         ]},
       citations:[
         {citation:"Piepoli M, Rossello X, Lees JS, et al. Risk prediction in patients with heart failure with preserved ejection fraction: the LIFE-Preserved model. Eur Heart J. 2026;47(34):4773\u20134788.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag182/8505998"},
