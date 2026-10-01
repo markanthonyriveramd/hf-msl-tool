@@ -968,7 +968,8 @@ r3: {
         items:[
           {title:"Fixed-interval monitoring", subtitle:"Same schedule for every patient, regardless of trajectory", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"},
           {title:"Risk-based, trajectory monitoring", subtitle:"Next visit timed to the individual patient's changing risk", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
-        ]},
+        ],
+        footnote:"Based on serial <b>NT-proBNP and troponin</b> measurements (Bio-SHiFT cohort) \u2014 a statistical modeling finding, not an ESC guideline recommendation."},
       citations:[
         {citation:"Petersen TB, Boersma E, Kardys I, Rizopoulos D. Risk-Profile Based Monitoring Intervals for Multivariate Longitudinal Biomarker Measurements and Competing Events With Applications in Stable Heart Failure. Stat Med. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12083058/"},
         {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"}
@@ -1180,7 +1181,7 @@ function buildChart(chart){
         <div style="font-size:11px; color:var(--ink); line-height:1.5;">${it.subtitle}</div>
       </div>`
     ).join(`<div style="display:flex; align-items:center; padding:0 8px; color:var(--muted); font-size:11px; font-weight:700; flex-direction:column; text-align:center;">${chart.connector||'\u2260'}</div>`);
-    return `<div class="bullet-chart"><div class="chart-title">${chart.title||''}</div><div style="display:flex; align-items:stretch;">${boxes}</div></div>`;
+    return `<div class="bullet-chart"><div class="chart-title">${chart.title||''}</div><div style="display:flex; align-items:stretch;">${boxes}</div>${chart.footnote ? `<div class="calc-disclaimer" style="margin-top:12px;">${chart.footnote}</div>` : ''}</div>`;
   }
   if(chart.type === "table"){
     const headerCells = chart.columns.map(col=>`<th style="text-align:center; padding:9px 10px; font-size:11px; font-weight:700; color:var(--dark); border-bottom:2px solid var(--line);">${col}</th>`).join("");
