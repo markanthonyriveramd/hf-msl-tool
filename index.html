@@ -847,6 +847,34 @@ t3: {
 },
 
 /* ============ RESIDUAL RISK / TREATMENT ESCALATION ============ */
+r0: {
+  cat: "residual", title: "What Is Risk, and Residual Risk, in HFpEF?",
+  insight: "When you think about a stable-looking HFpEF patient on foundational therapy, what would make you say they still have meaningful residual risk \u2014 and do you currently use a formal risk-prediction tool for this, or is it more intuitive?",
+  bullets: [
+    { tag:"guideline", label:"Established tools exist to quantify risk in HF \u2014 including one built specifically for HFpEF",
+      detail:"The 2026 ESC Guidelines name four risk-prediction tools for patients with established HF: the MAGGIC risk score and the Seattle Heart Failure Model (older, general-HF tools), and two newer ESC-initiated models \u2014 LIFE-HF for HFrEF (LVEF \u226440%) and LIFE-Preserved for HFpEF (LVEF \u226550%). LIFE-Preserved was derived and externally validated in a combined ~48,000 HFpEF patients, using 14 routinely available predictors to estimate both short-term and lifetime risk of HF hospitalization or CV death \u2014 giving HFpEF, for the first time, a dedicated, validated risk tool rather than relying on models built for HFrEF populations.",
+      chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population"],
+        rows:[
+          {label:"MAGGIC risk score", values:["General HF"]},
+          {label:"Seattle Heart Failure Model", values:["General HF"]},
+          {label:"LIFE-HF", values:["HFrEF (LVEF \u226440%)"]},
+          {label:"LIFE-Preserved", values:["HFpEF (LVEF \u226550%)"]}
+        ]},
+      citations:[
+        {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"},
+        {citation:"Piepoli M, Rossello X, Lees JS, et al. Risk prediction in patients with heart failure with preserved ejection fraction: the LIFE-Preserved model. Eur Heart J. 2026;47(34):4773\u20134788.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag182/8505998"}
+      ] },
+    { tag:"practical", label:"Residual risk: what remains even after a patient is on optimal foundational therapy",
+      detail:"SGLT2i and MRA together form FMT and meaningfully reduce risk \u2014 but FMT lowers risk, it doesn't eliminate it. A patient fully optimized on foundational therapy can still carry substantial residual risk of HF hospitalization or CV death. This is the frame for the rest of this section: where that remaining risk comes from (real-world therapy underuse, biomarker trajectories signaling early deterioration, comorbid CKD), and what practical steps help identify and address it.",
+      chart:{type:"pathway", title:"The residual risk concept", connector:"\u2192",
+        items:[
+          {title:"Baseline risk", subtitle:"Before foundational therapy", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"},
+          {title:"Residual risk", subtitle:"What remains even on optimal FMT", bg:"rgba(184,134,11,0.08)", border:"var(--practical)", color:"var(--practical)"}
+        ]},
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" }
+  ]
+},
+
 r1: {
   cat: "residual", title: "SGLT2i and Mineralocorticoid Receptor Blockade — Evidence Comparison",
   insight: "In patients already on an SGLT2i, what's actually driving your decision on whether or when to add an MRA?",
@@ -987,7 +1015,7 @@ r3: {
 
 r4: {
   cat: "residual", title: "Role of CKD as a Risk Multiplier in HFpEF — UACR",
-  insight: "Do you think UACR could serve as a simple, early marker of residual risk in HFpEF \u2014 and what would need to change in your clinical practice for you to start using it that way?",
+  insight: "Do you currently incorporate UACR as a cardiovascular/CKD risk marker in how you assess residual risk in HFpEF \u2014 and what would need to change in your practice for that to become routine?",
   bullets: [
     { tag:"evidence", label:"CKD affects roughly half of all HF patients and independently worsens outcomes",
       detail:"Chronic kidney disease coexists in approximately 50% of heart failure patients and increases the risk of death and HF hospitalization as it progresses \u2014 a genuine risk multiplier rather than an incidental comorbidity.",
@@ -1015,7 +1043,7 @@ r4: {
       ]},
       citation:"Katz DH, Burns JA, Aguilar FG, Beussink L, Shah SJ. Albuminuria Is Independently Associated With Cardiac Remodeling, Abnormal Right and Left Ventricular Function, and Worse Outcomes in Heart Failure With Preserved Ejection Fraction. JACC Heart Fail. 2014;2(6):586\u2013596.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC4256131" },
     { tag:"limitation", label:"UACR is guideline-recommended but not routinely measured in practice",
-      detail:"Despite CKD and cardiovascular guideline recommendations, UACR testing remains inconsistently adopted in routine practice \u2014 a well-documented, actionable gap between guideline recommendation and everyday clinical workflow. The companion 2026 ESC Guidelines for CVD and CKD now make this explicit: systematic screening with both eGFR and UACR is Class I in all patients with cardiovascular disease, at diagnosis and at least annually in those with diabetes or at high risk of worsening kidney function \u2014 not eGFR alone.",
+      detail:"Despite CKD and cardiovascular guideline recommendations, UACR testing remains inconsistently adopted in routine practice \u2014 a well-documented, actionable gap between guideline recommendation and everyday clinical workflow. The companion 2026 ESC Guidelines for CVD and CKD now make this explicit: systematic screening with both eGFR and UACR is Class I in all patients with cardiovascular disease, at diagnosis and at least annually in those with diabetes or at high risk of worsening kidney function \u2014 not eGFR alone. Worth being precise about what's established versus what isn't: the guidelines firmly support UACR as a CKD and cardiovascular risk marker \u2014 part of their STAMP framework (Screen, Triage, Address risk, Modify CVD management, Plan health services). Whether actively lowering UACR itself, independent of broader guideline-directed therapy, directly reduces residual risk is a less settled claim than its value as a risk marker.",
       chart:{type:"badge", items:[{value:"I", label:"eGFR + UACR screening in all CVD patients \u2014 not eGFR alone (2026 ESC CVD+CKD Guideline)", color:"guideline"}]},
       citations:[
         {citation:"Bozkurt B, Rossignol P, Vassalotti JA. Albuminuria as a diagnostic criterion and a therapeutic target in heart failure and other cardiovascular disease. Eur J Heart Fail. 2025;27(11):2357\u20132371.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12765049/"},
@@ -1119,7 +1147,7 @@ h2: {
 const TAB_TOPICS = {
   screening: ["s0","s1","s2","s2b","s2c","s3"],
   treatment: ["t1","t2","t3"],
-  residual: ["r1","r2","r3","r4"],
+  residual: ["r0","r1","r2","r3","r4"],
   horizon: ["h1","h2"]
 };
 const TAB_LABELS = {screening:"Screening & Diagnosis", treatment:"Treatment", residual:"Residual Risk & Treatment Escalation", horizon:"On the Horizon"};
