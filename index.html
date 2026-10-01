@@ -541,7 +541,16 @@ s2: {
     { tag:"practical", label:"Real-world access and pathway gaps remain common even where testing exists",
       detail:"A multi-country HFA survey found 40% of respondent clinicians lacked a formal diagnostic referral pathway for elevated natriuretic peptides in their area, and roughly one-third lacked access to NP testing in the community setting at all \u2014 an access problem, not just an interpretation problem.",
       chart:{type:"badge", items:[{value:"40%", label:"lack a formal referral pathway", color:"limitation"},{value:"~33%", label:"lack community NP testing access", color:"limitation"}]},
-      citation:"Awareness, access, and adoption of natriuretic peptides for diagnosis of heart failure. ESC HFA survey, PMC. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11770566/" }
+      citation:"Awareness, access, and adoption of natriuretic peptides for diagnosis of heart failure. ESC HFA survey, PMC. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11770566/" },
+    { tag:"practical", label:"When NT-proBNP isn't available: BNP and MR-proANP are guideline-recognized alternatives",
+      detail:"The 2026 ESC Guidelines explicitly acknowledge that NT-proBNP testing is not universally available, and that some regions instead use BNP or mid-regional pro-atrial natriuretic peptide (MR-proANP) testing. All three have established non-acute rule-out thresholds. This gives EEs and HCPs in lower-testing-access settings a legitimate guideline-sourced path forward — the absence of NT-proBNP specifically doesn't mean natriuretic-peptide-based screening is off the table.",
+      chart:{type:"table", title:"Non-acute rule-out thresholds (HF unlikely below these levels)", columns:["Threshold"],
+        rows:[
+          {label:"NT-proBNP", values:["&lt;125 pg/mL"]},
+          {label:"BNP", values:["&lt;35 pg/mL"]},
+          {label:"MR-proANP", values:["&lt;40 pmol/L"]}
+        ]},
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" }
   ]
 },
 
@@ -954,13 +963,16 @@ r3: {
         ]},
       citation:"Chen C, Zhang S, Liu Y, et al. Inflammatory\u2013lipid residual risk phenotypes delineate the HFpEF probability spectrum independent of cardiometabolic mediation. BMC Cardiovasc Disord. 2026.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC13528071/" },
     { tag:"evidence", label:"Biomarker trajectories, not single readings, better identify escalation need",
-      detail:"Modeling work using serial NT-proBNP and other biomarkers suggests dynamic, trajectory-based monitoring \u2014 rather than fixed annual check-ins \u2014 more accurately identifies patients approaching decompensation, allowing earlier escalation before a hospitalization event occurs.",
+      detail:"Modeling work using serial NT-proBNP and troponin measurements (Bio-SHiFT cohort) suggests dynamic, trajectory-based monitoring \u2014 rather than fixed annual check-ins \u2014 more accurately identifies patients approaching decompensation, allowing earlier escalation before a hospitalization event occurs. Worth calibrating this correctly: this is a statistical modeling finding, not an ESC guideline recommendation. The 2026 ESC Guidelines themselves are more cautious about biomarker-guided monitoring strategies broadly, noting that trials have yielded inconsistent results and it remains unclear what additional value such a strategy offers beyond strict adherence to FMT.",
       chart:{type:"pathway", title:"Two monitoring strategies", connector:"vs.",
         items:[
           {title:"Fixed-interval monitoring", subtitle:"Same schedule for every patient, regardless of trajectory", bg:"rgba(216,72,76,0.08)", border:"var(--limitation)", color:"var(--limitation)"},
           {title:"Risk-based, trajectory monitoring", subtitle:"Next visit timed to the individual patient's changing risk", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
         ]},
-      citation:"Petersen TB, Boersma E, Kardys I, Rizopoulos D. Risk-Profile Based Monitoring Intervals for Multivariate Longitudinal Biomarker Measurements and Competing Events With Applications in Stable Heart Failure. Stat Med. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12083058/" },
+      citations:[
+        {citation:"Petersen TB, Boersma E, Kardys I, Rizopoulos D. Risk-Profile Based Monitoring Intervals for Multivariate Longitudinal Biomarker Measurements and Competing Events With Applications in Stable Heart Failure. Stat Med. 2025.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC12083058/"},
+        {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"}
+      ] },
     { tag:"practical", label:"CKM staging offers a structured framework for escalation triggers",
       detail:"A patient moving from CKM Stage 2 to Stage 3 represents an objective, guideline-anchored escalation trigger \u2014 distinct from, and complementary to, symptom-based assessment alone.",
       chart:{type:"pathway", title:"An objective escalation trigger", connector:"\u2192",
