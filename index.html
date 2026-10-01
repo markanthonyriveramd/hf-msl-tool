@@ -356,6 +356,9 @@
   .funnel-branch{ flex:1; background:var(--card); border:1.5px solid var(--line); border-radius:10px; padding:10px 12px; }
   .funnel-branch-label{ font-weight:800; font-size:11px; color:var(--brand); margin-bottom:4px; }
   .funnel-branch-text{ font-size:12px; color:var(--ink); line-height:1.4; }
+  .table-link-btn{ display:inline-block; background:var(--brand); color:#fff !important; font-size:11px; font-weight:700; padding:5px 12px; border-radius:20px; text-decoration:none; white-space:nowrap; }
+  .table-link-btn:hover{ opacity:0.85; }
+  .table-link-sub{ display:block; font-size:9.5px; color:var(--muted); margin-top:3px; font-weight:500; }
   @media (max-width: 700px){
     .funnel-branches{ flex-direction:column; }
   }
@@ -853,16 +856,28 @@ r0: {
   bullets: [
     { tag:"guideline", label:"Established tools exist to quantify risk in HF \u2014 including one built specifically for HFpEF",
       detail:"The 2026 ESC Guidelines name four risk-prediction tools for patients with established HF: the MAGGIC risk score and the Seattle Heart Failure Model (older, general-HF tools), and two newer ESC-initiated models \u2014 LIFE-HF for HFrEF (LVEF \u226440%) and LIFE-Preserved for HFpEF (LVEF \u226550%). LIFE-Preserved was derived and externally validated in a combined ~48,000 HFpEF patients, using 14 routinely available predictors to estimate both short-term and lifetime risk of HF hospitalization or CV death \u2014 giving HFpEF, for the first time, a dedicated, validated risk tool rather than relying on models built for HFrEF populations.",
-      chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population"],
+      chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population","Calculator"],
         rows:[
-          {label:"MAGGIC risk score", values:["General HF"]},
-          {label:"Seattle Heart Failure Model", values:["General HF"]},
-          {label:"LIFE-HF", values:["HFrEF (LVEF \u226440%)"]},
-          {label:"LIFE-Preserved", values:["HFpEF (LVEF \u226550%)"]}
+          {label:"MAGGIC risk score", values:["General HF","<a href=\"https://www.heartfailurerisk.org\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]},
+          {label:"Seattle Heart Failure Model", values:["General HF","<a href=\"https://www.seattleheartfailuremodel.org\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]},
+          {label:"LIFE-HF", values:["HFrEF (LVEF \u226440%)","<a href=\"https://onlinelibrary.wiley.com/doi/10.1002/ejhf.3028\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a><span class=\"table-link-sub\">Via supplementary material</span>"]},
+          {label:"LIFE-Preserved", values:["HFpEF (LVEF \u226550%)","<a href=\"https://tessa-r.shinyapps.io/shiny/\" target=\"_blank\" rel=\"noopener\" class=\"table-link-btn\">Open \u2192</a>"]}
         ]},
       citations:[
         {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"},
         {citation:"Piepoli M, Rossello X, Lees JS, et al. Risk prediction in patients with heart failure with preserved ejection fraction: the LIFE-Preserved model. Eur Heart J. 2026;47(34):4773\u20134788.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag182/8505998"}
+      ] },
+    { tag:"practical", label:"LIFE-Preserved specifically: built for HFpEF, when to reach for it",
+      detail:"LVEF is the real fork in the road for which tool to use. LIFE-HF was derived and validated specifically in LVEF \u226440% populations (PARADIGM-HF/ATMOSPHERE, validated in DAPA-HF); it shouldn't be applied to HFpEF. LIFE-Preserved is the mirror image \u2014 the only one of the four derived and externally validated specifically in HFpEF (LVEF \u226550%), including validation against the EMPEROR-Preserved trial itself. MAGGIC remains a reasonable cross-check in HFpEF since it's been separately re-validated there, though its output is mortality-only \u2014 narrower than LIFE-Preserved's HF-hospitalization-plus-CV-death composite. Seattle Heart Failure Model is the least suited of the four to HFpEF: it was derived in PRAISE-1, an HFrEF trial population, and its standout feature \u2014 modeling benefit from beta-blockers, ICDs, and CRT \u2014 reflects the HFrEF treatment landscape, not HFpEF's actual therapies. LIFE-Preserved uses 14 routinely available predictors in sex-specific models, estimates both short-term and lifetime risk, and \u2014 genuinely useful for an MSL conversation \u2014 can estimate individualized treatment benefit from starting an SGLT2i.",
+      chart:{type:"table", title:"Which tool, by LVEF", columns:["Recommended tool"],
+        rows:[
+          {label:"LVEF \u226440% (HFrEF)", values:["LIFE-HF"]},
+          {label:"LVEF \u226550% (HFpEF)", values:["LIFE-Preserved"]},
+          {label:"Either, as a cross-check", values:["MAGGIC (mortality only)"]}
+        ]},
+      citations:[
+        {citation:"Piepoli M, Rossello X, Lees JS, et al. Risk prediction in patients with heart failure with preserved ejection fraction: the LIFE-Preserved model. Eur Heart J. 2026;47(34):4773\u20134788.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag182/8505998"},
+        {citation:"Burger PM, Savarese G, Tromp J, et al. Personalized lifetime prediction of survival and treatment benefit in patients with heart failure with reduced ejection fraction: the LIFE-HF model. Eur J Heart Fail. 2023.", url:"https://onlinelibrary.wiley.com/doi/10.1002/ejhf.3028"}
       ] },
     { tag:"practical", label:"Residual risk: what remains even after a patient is on optimal foundational therapy",
       detail:"SGLT2i and MRA together form FMT and meaningfully reduce risk \u2014 but FMT lowers risk, it doesn't eliminate it. A patient fully optimized on foundational therapy can still carry substantial residual risk of HF hospitalization or CV death. This is the frame for the rest of this section: where that remaining risk comes from (real-world therapy underuse, biomarker trajectories signaling early deterioration, comorbid CKD), and what practical steps help identify and address it.",
