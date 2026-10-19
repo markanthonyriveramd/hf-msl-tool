@@ -488,6 +488,73 @@
   .pp-hint{ margin:8px 0 0; }
   .update-note{ display:none; margin:16px auto 0; background:#00E58A; color:#003B2B; border:none; font-weight:700; font-size:12.5px; padding:9px 18px; border-radius:20px; cursor:pointer; font-family:'Inter',sans-serif; }
   .update-note.show{ display:block; }
+
+  /* ============ v3.4 PHONE LAYOUT (<=700px only; iPad and laptop unchanged) ============ */
+  .ph-topic-wrap{ display:none; }
+  .ph-sheet-close{ display:none; }
+  @media (max-width: 700px){
+    header.top{ padding:calc(8px + env(safe-area-inset-top, 0px)) 12px 8px; }
+    .top-row{ margin-bottom:8px; gap:8px; }
+    .brand-name-group{ min-width:0; flex:1; gap:8px; }
+    .brand-name{ font-size:14px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; min-width:0; }
+    .exit-btn, .search-btn{ width:40px; height:40px; border-radius:12px; }
+    .exit-btn svg, .search-btn svg{ width:18px; height:18px; }
+    .search-btn{ border-radius:20px; }
+    .internal-badge{ min-height:40px; padding:0 12px; font-size:11px; }
+    .internal-badge span:first-child{ font-size:0; }
+    .internal-badge span:first-child::after{ content:"MSL"; font-size:11px; }
+    .top-right{ gap:6px; flex:none; }
+    .tab-row{ gap:6px; -webkit-mask-image:linear-gradient(to right,#000 90%,transparent); mask-image:linear-gradient(to right,#000 90%,transparent); padding-right:24px; }
+    .tab-btn{ min-height:40px; padding:0 14px; font-size:12.5px; }
+    .tab-btn-ref{ margin-left:0; padding-left:14px; }
+
+    /* topic row becomes one dropdown */
+    .topic-row{ padding:8px 12px; }
+    .topic-pills{ display:none; }
+    .ph-topic-wrap{ display:block; position:relative; }
+    .ph-topic-wrap select{
+      width:100%; min-height:44px; font-size:16px; font-weight:600; font-family:'Inter',sans-serif; color:var(--dark);
+      background:rgba(15,163,107,0.08); border:1.5px solid var(--evidence); border-radius:10px;
+      padding:0 36px 0 12px; -webkit-appearance:none; appearance:none; text-overflow:ellipsis;
+    }
+    .ph-topic-wrap::after{ content:"\25BE"; position:absolute; right:14px; top:50%; transform:translateY(-50%); color:var(--dark); pointer-events:none; font-size:16px; }
+
+    /* title block: full title (2 lines max), buttons on one row */
+    .topic-title-row{ padding:6px 12px 6px; }
+    .topic-eyebrow{ display:none; }
+    .topic-title{ font-size:15px; line-height:1.3; margin:0 0 8px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+    .title-and-insight{ display:block; }
+    .btn-pair{ flex-direction:row; align-items:stretch; gap:8px; width:100%; }
+    .btn-pair .insight-btn, .btn-pair .guide-btn{ flex:1; justify-content:center; min-height:44px; font-size:13px; padding:0 10px; }
+
+    /* talking points: Prev/Next stepper replaces chips */
+    .bullet-row{ display:none !important; }
+    .main-topbar{ padding:6px 12px 8px; }
+    .slide-counter{ font-size:13px; }
+    .nav-btn{ min-height:44px; min-width:84px; font-size:14px; padding:0 14px; }
+    .focus-content{ padding:6px 14px calc(60px + env(safe-area-inset-bottom, 0px)); }
+    .focus-inner{ padding-bottom:60px; }
+
+    /* bigger tap targets and text */
+    .nb-opt{ min-height:40px; font-size:13px; padding:0 14px; }
+    .pp-btn{ min-height:44px; }
+    .nb-prev{ font-size:12.5px; }
+    .guide-box li, .insight-box-text{ font-size:13.5px; }
+    .guide-k, .guide-label, .insight-box-label{ font-size:11px; }
+
+    /* MSL Guide as a bottom sheet */
+    .guide-box.show{
+      position:fixed; left:0; right:0; bottom:0; z-index:90; margin:0; border-radius:16px 16px 0 0;
+      max-height:72vh; max-height:72dvh; overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain;
+      padding:0 16px calc(16px + env(safe-area-inset-bottom, 0px)); box-shadow:0 -10px 30px rgba(0,0,0,0.25);
+      border-left:1.5px solid var(--line); border-top:5px solid var(--brand);
+    }
+    .guide-box.show .ph-sheet-close{
+      display:flex; position:sticky; top:0; z-index:2; background:#F1F6F3; padding:10px 0 6px; justify-content:flex-end;
+    }
+    .ph-sheet-close button{ min-height:40px; padding:0 16px; border-radius:20px; border:1.5px solid var(--line); background:#fff; font-weight:700; font-size:13px; color:var(--ink); font-family:'Inter',sans-serif; }
+    .nb-actions{ position:sticky; bottom:0; background:#F1F6F3; padding:8px 0; }
+  }
 </style>
 <link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#014a3a">
@@ -2747,13 +2814,48 @@ function resetSession(){
   if(en) en.addEventListener('click', resetSession);
 })();
 
-/*build:df8de4df*/
+/* =====================================================================
+   v3.4: phone layout helpers. Topic dropdown + close button for the
+   MSL Guide bottom sheet. Desktop/iPad views are unchanged (CSS hides these).
+   ===================================================================== */
+(function phoneLayer(){
+  const row = document.getElementById('topicRow');
+  if(row && !document.getElementById('phTopic')){
+    const w = document.createElement('div'); w.className = 'ph-topic-wrap';
+    w.innerHTML = '<select id="phTopic" aria-label="Choose topic"></select>';
+    row.appendChild(w);
+    w.firstChild.addEventListener('change', function(){ selectTopic(this.value); });
+  }
+  function fillTopic(){
+    const sel = document.getElementById('phTopic'); if(!sel || !TAB_TOPICS[activeTab]) return;
+    const ids = TAB_TOPICS[activeTab];
+    sel.innerHTML = ids.map((tid,i)=>'<option value="'+tid+'"'+(tid===activeTopic?' selected':'')+'>'+(i+1)+'/'+ids.length+' · '+TOPICS[tid].title.replace(/</g,'&lt;')+'</option>').join('');
+    sel.value = activeTopic;
+  }
+  const _rtp = renderTopicPills;
+  renderTopicPills = function(r){ _rtp(r); try{ fillTopic(); }catch(_){} };
+  try{ fillTopic(); }catch(_){}
+
+  const gb = document.getElementById('guideBox');
+  function addClose(){
+    if(!gb || !gb.classList.contains('show') || gb.querySelector('.ph-sheet-close')) return;
+    const d = document.createElement('div'); d.className = 'ph-sheet-close';
+    d.innerHTML = '<button type="button">Close ✕</button>';
+    d.firstChild.addEventListener('click', function(){ gb.classList.remove('show'); });
+    gb.insertBefore(d, gb.firstChild);
+  }
+  if(gb){
+    new MutationObserver(addClose).observe(gb, {attributes:true, attributeFilter:['class'], childList:true});
+  }
+})();
+
+/*build:5f06aa74*/
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   window.addEventListener('load', ()=>{
     fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
       const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
-      if(m && m[1] !== 'df8de4df') showUpdateNote();
+      if(m && m[1] !== '5f06aa74') showUpdateNote();
     }).catch(()=>{});
   });
 }
