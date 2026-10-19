@@ -2728,13 +2728,31 @@ function showUpdateNote(){ const n = document.getElementById('updateNote'); if(n
   n.addEventListener('click', ()=>{ location.reload(); });
 })();
 
-/*build:3dce1919*/
+/* =====================================================================
+   v3.2: leaving the tool (Exit) and entering it (Enter) both start clean.
+   Resets planner answers, post-call note, search, open panels, and puts
+   the view back on the first section / first topic / first talking point.
+   Nothing is stored. Planner links still open the recommended topic.
+   ===================================================================== */
+function resetSession(){
+  resetPlan(); renderPrep(); resetNote();
+  try{ const si = document.getElementById('searchInput'); if(si) si.value = ''; closeSearch(); }catch(_){}
+  selectTab('screening');      // first section, first topic, first talking point
+  try{ window.scrollTo(0,0); }catch(_){}
+}
+(function bindFreshStart(){
+  const ex = document.getElementById('exitBtn'), en = document.getElementById('enterBtn');
+  if(ex) ex.addEventListener('click', resetSession);
+  if(en) en.addEventListener('click', resetSession);
+})();
+
+/*build:e95a73f6*/
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   window.addEventListener('load', ()=>{
     fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
       const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
-      if(m && m[1] !== '3dce1919') showUpdateNote();
+      if(m && m[1] !== 'e95a73f6') showUpdateNote();
     }).catch(()=>{});
   });
 }
