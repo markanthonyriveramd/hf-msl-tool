@@ -500,9 +500,9 @@
     .exit-btn, .search-btn{ width:40px; height:40px; border-radius:12px; }
     .exit-btn svg, .search-btn svg{ width:18px; height:18px; }
     .search-btn{ border-radius:20px; }
-    .internal-badge{ min-height:40px; padding:0 12px; font-size:11px; }
-    .internal-badge span:first-child{ font-size:0; }
-    .internal-badge span:first-child::after{ content:"MSL"; font-size:11px; }
+    header.top .internal-badge{ min-height:40px; padding:0 12px; font-size:11px; }
+    header.top .internal-badge span:first-child{ font-size:0; }
+    header.top .internal-badge span:first-child::after{ content:"MSL"; font-size:11px; }
     .top-right{ gap:6px; flex:none; }
     .tab-row{ gap:6px; -webkit-mask-image:linear-gradient(to right,#000 90%,transparent); mask-image:linear-gradient(to right,#000 90%,transparent); padding-right:24px; }
     .tab-btn{ min-height:40px; padding:0 14px; font-size:12.5px; }
@@ -2849,13 +2849,13 @@ function resetSession(){
   }
 })();
 
-/*build:5f06aa74*/
+/*build:ff0ef8ff*/
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   window.addEventListener('load', ()=>{
     fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
       const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
-      if(m && m[1] !== '5f06aa74') showUpdateNote();
+      if(m && m[1] !== 'ff0ef8ff') showUpdateNote();
     }).catch(()=>{});
   });
 }
