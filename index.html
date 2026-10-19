@@ -837,6 +837,19 @@ t1: {
         ]}
       ],
       citation:"Anker SD, et al. Empagliflozin in Heart Failure with a Preserved Ejection Fraction. N Engl J Med. 2021;385:1451\u20131461.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038" },
+    { tag:"evidence", label:"EMPEROR-Preserved beyond the primary endpoint: HF hospitalization, kidney function, and diabetes status",
+      detail:"Beyond the 21% reduction in the primary composite, EMPEROR-Preserved showed three supporting findings for empagliflozin. First HF hospitalization was lower (HR 0.71, 95% CI 0.60\u20130.83; 8.6% vs 11.8%); total, first and recurrent, HF hospitalizations were lower too (HR 0.73, shown above). Kidney function declined more slowly: the eGFR slope was \u22121.25 vs \u22122.62 mL/min/1.73m\u00b2 per year with placebo (P<0.001). And the benefit on the primary endpoint was the same with and without diabetes (HR 0.79 and 0.78; interaction P=0.92). These are secondary and subgroup results, so they are best described as supporting the primary finding, not replacing it.",
+      chart:[
+        {type:"badge", items:[
+          {value:"HR 0.71", label:"First HF hospitalization (95% CI 0.60\u20130.83); 8.6% vs 11.8%", color:"evidence"},
+          {value:"\u22121.25 vs \u22122.62", label:"eGFR slope, mL/min/1.73m\u00b2 per year, empagliflozin vs placebo (P<0.001)", color:"evidence"}
+        ]},
+        {type:"hr", title:"Primary composite by diabetes status (HR, 95% CI)", rows:[
+          {label:"With diabetes", hr:0.79, lo:0.67, hi:0.94},
+          {label:"Without diabetes", hr:0.78, lo:0.64, hi:0.95}
+        ]}
+      ],
+      citation:"Anker SD, et al. Empagliflozin in Heart Failure with a Preserved Ejection Fraction. N Engl J Med. 2021;385:1451\u20131461.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038" },
     { tag:"limitation", label:"No significant reduction in cardiovascular mortality alone",
       detail:"EMPEROR-Preserved found a numerical but not statistically significant reduction in cardiovascular death alone (HR 0.91, 95% CI 0.76\u20131.09). This is a trial-design issue, not necessarily an absence of effect: the trial was powered to detect a difference in the primary composite endpoint (CV death or HF hospitalization), not to independently confirm significance for the CV-death component by itself \u2014 the same pattern seen in dapagliflozin's parallel DELIVER trial. Separately, in patients with type 2 diabetes and established cardiovascular disease, empagliflozin reduced CV death by 38% in EMPA-REG OUTCOME (HR 0.62, 95% CI 0.49\u20130.77) \u2014 a different trial and a different population, not a resolution of the HFpEF-specific finding above. Even within EMPA-REG, the small subgroup with a predicted-HFpEF-like phenotype did not reach significance for this outcome (HR 0.60, 95% CI 0.31\u20131.17), so this mortality signal should not be presented as HFpEF-specific.",
       chart:{type:"hr", title:"CV death: HFpEF trial vs. a different population (HR, 95% CI)", rows:[
@@ -1066,6 +1079,13 @@ r0: {
           footnote:"The full guideline figure \u2014 15 contributing factors spanning cardiac disease, cardiometabolic and renal comorbidities, lifestyle, and demographics. The more factors present, the higher the likelihood of HFpEF."}
       ],
       citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
+    { tag:"evidence", label:"On empagliflozin, risk is lower but not gone: the residual risk in EMPEROR-Preserved",
+      detail:"In EMPEROR-Preserved, 13.8% of patients on empagliflozin still had cardiovascular death or HF hospitalization over a median of 26.2 months, against 17.1% on placebo (HR 0.79, 95% CI 0.69\u20130.90). That is an absolute difference of 3.3 percentage points: empagliflozin lowers risk, and the risk that remains is the reason to reassess and to look at what can be added on top of it, such as an MRA. These are one trial\u2019s own event rates and should not be compared with rates from other trials.",
+      chart:{type:"badge", items:[
+        {value:"13.8%", label:"CV death or HF hospitalization on empagliflozin (median 26.2 months)", color:"evidence"},
+        {value:"17.1%", label:"Same endpoint on placebo", color:"limitation"}
+      ]},
+      citation:"Anker SD, et al. Empagliflozin in Heart Failure with a Preserved Ejection Fraction. N Engl J Med. 2021;385:1451\u20131461.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038" },
     { tag:"guideline", label:"Established tools exist to quantify risk in HF \u2014 including one built specifically for HFpEF",
       detail:"The 2026 ESC Guidelines name four risk-prediction tools for patients with established HF: the MAGGIC risk score and the Seattle Heart Failure Model (older, general-HF tools), and two newer ESC-initiated models \u2014 LIFE-HF for HFrEF (LVEF \u226440%) and LIFE-Preserved for HFpEF (LVEF \u226550%). LIFE-Preserved was derived and externally validated in a combined ~48,000 HFpEF patients, using 14 routinely available predictors to estimate both short-term and lifetime risk of HF hospitalization or CV death \u2014 giving HFpEF, for the first time, a dedicated, validated risk tool rather than relying on models built for HFrEF populations.",
       chart:{type:"table", title:"ESC-named risk-prediction tools for established HF", columns:["Population"],
@@ -1256,6 +1276,13 @@ r4: {
           {title:"12\u201318 months", subtitle:"Trajectories cross \u2014 SGLT2i now ahead of placebo", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
         ]},
       citation:"Coca SG. SGLT2i and Deterioration of Kidney Function in Heart Failure: Another Demonstration for Tolerance of \u2018Hypercreatininemia.\u2019 J Am Coll Cardiol. 2023;82(19):1864\u20131867.", url:"https://www.jacc.org/doi/10.1016/j.jacc.2023.09.797" },
+    { tag:"evidence", label:"Empagliflozin has its own kidney outcome trial: EMPA-KIDNEY",
+      detail:"In EMPA-KIDNEY (n=6,609 adults with chronic kidney disease), empagliflozin reduced the primary composite of kidney disease progression or cardiovascular death (HR 0.72, 95% CI 0.64\u20130.82; 13.1% vs 16.9%) over a median follow-up of 2.0 years, with consistent benefit in patients with and without diabetes and across eGFR ranges. This was a CKD population, not an HFpEF-specific one, and the composite of HF hospitalization or cardiovascular death was not significantly different, so it supports the kidney side of the cardio-kidney-metabolic picture rather than an HFpEF claim.",
+      chart:{type:"badge", items:[
+        {value:"HR 0.72", label:"Kidney disease progression or CV death (95% CI 0.64\u20130.82); 13.1% vs 16.9%", color:"evidence"},
+        {value:"n = 6,609", label:"Adults with chronic kidney disease, median follow-up 2.0 years", color:"guideline"}
+      ]},
+      citation:"The EMPA-KIDNEY Collaborative Group. Empagliflozin in Patients with Chronic Kidney Disease. N Engl J Med. 2023;388:117\u2013127.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2204233" },
     { tag:"evidence", label:"UACR predicts outcomes across HFpEF specifically, not just HFrEF",
       detail:"A systematic review found albuminuria predictive of adverse outcomes across both HFpEF and HFrEF phenotypes, while reduced eGFR showed a stronger prognostic signal specifically in HFrEF \u2014 meaning UACR may be the more broadly informative kidney marker in the HFpEF population specifically.",
       chart:{type:"compare", title:"Mortality risk vs normoalbuminuria (chronic HF)", unit:"relative risk", max:3,
@@ -2701,13 +2728,13 @@ function showUpdateNote(){ const n = document.getElementById('updateNote'); if(n
   n.addEventListener('click', ()=>{ location.reload(); });
 })();
 
-/*build:2ca1432d*/
+/*build:3dce1919*/
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   window.addEventListener('load', ()=>{
     fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
       const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
-      if(m && m[1] !== '2ca1432d') showUpdateNote();
+      if(m && m[1] !== '3dce1919') showUpdateNote();
     }).catch(()=>{});
   });
 }
