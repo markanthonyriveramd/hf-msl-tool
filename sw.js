@@ -1,7 +1,7 @@
 /* Service worker — keeps the tool usable offline.
    Same-origin files: cached, served instantly, refreshed in the background.
    Fonts: cached the first time they load online. */
-const CACHE = 'hf-msl-v3-2';
+const CACHE = 'hf-msl-v3-3';
 const CORE = ['./', './index.html', './manifest.json'];
 
 self.addEventListener('install', (e)=>{

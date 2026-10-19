@@ -2413,7 +2413,8 @@ function planWhy(P){
 
 function ladderSvg(active){
   const sw=168, sh=74, gap=14, W=760, H=316;
-  let s = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four-step ladder">';
+  let s = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Clinical Adoption Ladder: four steps">';
+  s += '<text x="16" y="42" style="fill:var(--deep)" font-family="Manrope,sans-serif" font-weight="800" font-size="26">Clinical Adoption Ladder</text>';
   const keys = [1,2,3,4];
   keys.forEach((k,i)=>{
     const x = 16 + i*(sw+gap), y = 232 - i*40, c = CAL[k];
@@ -2746,13 +2747,13 @@ function resetSession(){
   if(en) en.addEventListener('click', resetSession);
 })();
 
-/*build:e95a73f6*/
+/*build:df8de4df*/
 if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
   navigator.serviceWorker.register('sw.js').catch(()=>{});
   window.addEventListener('load', ()=>{
     fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
       const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
-      if(m && m[1] !== 'e95a73f6') showUpdateNote();
+      if(m && m[1] !== 'df8de4df') showUpdateNote();
     }).catch(()=>{});
   });
 }
