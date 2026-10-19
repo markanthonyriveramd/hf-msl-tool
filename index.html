@@ -385,7 +385,112 @@
     .focus-headline{ font-size:17px; }
     .chart-hr-label, .chart-compare-label{ width:100px; font-size:10.5px; }
   }
+
+  /* ============ MSL-ONLY LAYER (guide + call planner) ============ */
+  .btn-pair{ display:flex; gap:8px; flex:none; align-items:center; }
+  .guide-btn{
+    flex:none; display:flex; align-items:center; gap:6px; background:#fff; border:1.5px solid var(--line);
+    color:var(--muted); font-size:11.5px; font-weight:700; padding:5px 12px; border-radius:20px; cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .guide-btn:hover{ background:var(--bg); }
+  .guide-box{ display:none; background:#F1F6F3; border:1.5px solid var(--line); border-left:5px solid var(--brand); border-radius:10px; padding:12px 14px; margin:10px 0 6px; }
+  .guide-box.show{ display:block; }
+  .guide-label{ font-size:10px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:6px; }
+  .guide-row{ display:flex; align-items:center; gap:8px; margin-bottom:6px; font-size:13px; color:var(--deep); }
+  .guide-chip{ color:#fff; font-size:11px; font-weight:800; padding:3px 9px; border-radius:6px; }
+  .guide-box ul{ margin:4px 0 8px; padding-left:18px; }
+  .guide-box li{ font-size:12px; line-height:1.55; color:var(--ink); }
+  .guide-k{ font-size:10px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin:8px 0 2px; }
+  .guide-text{ font-size:12.5px; line-height:1.55; color:var(--ink); }
+  .guide-foot{ font-size:11px; color:var(--muted); margin-top:10px; padding-top:8px; border-top:1px dashed var(--line); }
+
+  .landing-plan{
+    display:block; margin:22px auto 0; background:transparent; border:1px solid rgba(255,255,255,0.28);
+    color:rgba(255,255,255,0.8); font-size:12px; font-weight:600; padding:8px 18px; border-radius:20px; cursor:pointer;
+    font-family:'Inter',sans-serif;
+  }
+  .landing-plan:hover{ background:rgba(255,255,255,0.1); }
+
+  .prep{ position:fixed; inset:0; z-index:110; background:var(--bg); display:none; flex-direction:column; }
+  .prep.show{ display:flex; }
+  .prep-head{
+    background:linear-gradient(155deg,var(--deep) 0%, var(--dark) 65%, #014a3a 100%); color:#fff; flex:none;
+    padding:calc(14px + env(safe-area-inset-top, 0px)) 20px 14px; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  }
+  .prep-head .brand-name-group{ gap:10px; }
+  .prep-note{ font-size:10.5px; font-weight:700; padding:5px 11px; border-radius:20px; border:1px solid rgba(255,255,255,0.3); background:rgba(255,255,255,0.1); letter-spacing:0.03em; }
+  .prep-scroll{ flex:1; overflow-y:auto; padding:18px 20px calc(60px + env(safe-area-inset-bottom, 0px)); }
+  .prep-inner{ max-width:820px; margin:0 auto; }
+  .pp-card{ background:var(--card); border:1.5px solid var(--line); border-radius:14px; padding:16px 18px; margin-bottom:14px; }
+  .pp-h{ font-family:'Manrope',sans-serif; font-weight:800; font-size:15px; color:var(--deep); margin:0 0 3px; }
+  .pp-sub{ font-size:12px; color:var(--muted); margin:0 0 12px; line-height:1.5; }
+  .pp-chips{ display:flex; flex-wrap:wrap; gap:8px; margin-bottom:12px; }
+  .pp-chip{ border:1.5px solid var(--line); background:var(--bg); color:var(--ink); font-size:12px; font-weight:600; padding:7px 13px; border-radius:20px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .pp-chip.on{ background:var(--dark); border-color:var(--dark); color:#fff; }
+  .pp-lbl{ font-size:10.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin:2px 0 7px; }
+  .pp-q{ display:flex; align-items:center; justify-content:space-between; gap:12px; padding:10px 0; border-top:1px solid var(--line); }
+  .pp-q:first-of-type{ border-top:none; }
+  .pp-q-text{ font-size:13px; line-height:1.45; color:var(--ink); flex:1; }
+  .pp-seg{ display:flex; border:1.5px solid var(--line); border-radius:10px; overflow:hidden; flex:none; }
+  .pp-seg button{ border:none; background:#FBFCFB; padding:8px 12px; font-size:12px; font-weight:600; color:var(--muted); cursor:pointer; border-right:1.5px solid var(--line); font-family:'Inter',sans-serif; }
+  .pp-seg button:last-child{ border-right:none; }
+  .pp-seg button.on{ background:var(--dark); color:#fff; }
+  .pp-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+  .pp-btn{ border:1.5px solid var(--line); background:#fff; color:var(--muted); font-size:12.5px; font-weight:700; padding:9px 16px; border-radius:10px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .pp-btn:hover{ background:var(--bg); }
+  .pp-btn.primary{ background:var(--brand); border-color:var(--brand); color:#fff; }
+  .pp-empty{ font-size:12.5px; color:var(--muted); line-height:1.6; padding:6px 0; }
+  .pp-plan-top{ display:flex; align-items:center; gap:10px; margin-bottom:6px; flex-wrap:wrap; }
+  .pp-cal-chip{ color:#fff; font-weight:800; font-family:'Manrope',sans-serif; font-size:13px; padding:5px 12px; border-radius:8px; }
+  .pp-why{ font-size:12.5px; line-height:1.6; color:var(--ink); margin-bottom:10px; }
+  .pp-block{ margin-top:14px; }
+  .pp-mdt{ display:flex; gap:10px; padding:10px 0; border-top:1px solid var(--line); }
+  .pp-mdt:first-of-type{ border-top:none; }
+  .pp-mdt-n{ flex:none; width:24px; height:24px; border-radius:50%; color:#fff; font-size:11.5px; font-weight:800; display:flex; align-items:center; justify-content:center; margin-top:1px; }
+  .pp-mdt-body{ flex:1; }
+  .pp-mdt-text{ font-size:13px; font-weight:600; color:var(--deep); line-height:1.45; margin-bottom:6px; }
+  .pp-open{ border:1.5px solid var(--line); background:var(--bg); color:var(--dark); font-size:11.5px; font-weight:600; padding:5px 11px; border-radius:16px; cursor:pointer; margin:0 6px 6px 0; text-align:left; font-family:'Inter',sans-serif; }
+  .pp-open:hover{ border-color:var(--brand); background:rgba(15,163,107,0.08); }
+  .pp-quote{ background:#FFF8E1; border:1.5px solid #E6C558; border-radius:10px; padding:11px 13px; font-size:13px; line-height:1.55; color:#3D2E00; }
+  .pp-tip{ font-size:12.5px; line-height:1.6; color:var(--ink); }
+  .pp-ladder > svg{ display:block; width:100%; height:auto; }
+  @media (max-width: 700px){
+    .pp-q{ flex-direction:column; align-items:flex-start; }
+    .btn-pair{ flex-direction:column; align-items:flex-end; gap:6px; }
+  }
+
+  /* ============ v3 additions ============ */
+  .top-right{ display:flex; align-items:center; gap:8px; }
+  .search-btn{ background:rgba(255,255,255,0.1); border:1px solid rgba(255,255,255,0.3); color:#fff; width:30px; height:28px; border-radius:20px; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0; }
+  .search-btn svg{ width:14px; height:14px; }
+  .search-ov{ position:fixed; inset:0; z-index:120; background:var(--bg); display:none; flex-direction:column; }
+  .search-ov.show{ display:flex; }
+  .search-head{ flex:none; background:linear-gradient(155deg,var(--deep) 0%, var(--dark) 65%, #014a3a 100%); padding:calc(14px + env(safe-area-inset-top, 0px)) 20px 14px; display:flex; gap:10px; align-items:center; }
+  .search-head input{ flex:1; font-size:16px; padding:10px 14px; border-radius:10px; border:none; outline:none; font-family:'Inter',sans-serif; }
+  .search-head button{ background:rgba(255,255,255,0.12); border:1px solid rgba(255,255,255,0.3); color:#fff; font-size:12px; font-weight:700; padding:9px 14px; border-radius:10px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .search-results{ flex:1; overflow-y:auto; padding:14px 20px calc(40px + env(safe-area-inset-bottom, 0px)); max-width:820px; width:100%; margin:0 auto; }
+  .sr-item{ display:block; width:100%; text-align:left; background:var(--card); border:1.5px solid var(--line); border-radius:12px; padding:11px 14px; margin-bottom:8px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .sr-item:hover{ border-color:var(--brand); }
+  .sr-topic{ display:block; font-size:10.5px; font-weight:800; color:var(--muted); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:3px; }
+  .sr-label{ display:block; font-size:13.5px; font-weight:600; color:var(--deep); line-height:1.4; }
+  .sr-snip{ display:block; font-size:11.5px; color:var(--muted); margin-top:4px; line-height:1.45; }
+  .sr-empty{ font-size:13px; color:var(--muted); padding:16px 2px; }
+  .nb{ margin-top:10px; padding-top:8px; border-top:1px dashed var(--line); }
+  .nb-opts{ display:flex; flex-wrap:wrap; gap:6px; margin-bottom:8px; }
+  .nb-opt{ border:1.5px solid var(--line); background:#fff; color:var(--ink); font-size:11.5px; font-weight:600; padding:6px 11px; border-radius:16px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .nb-opt.on{ background:var(--dark); border-color:var(--dark); color:#fff; }
+  .nb-input{ width:100%; box-sizing:border-box; font-size:16px; padding:8px 10px; border:1.5px solid var(--line); border-radius:8px; font-family:'Inter',sans-serif; margin-bottom:8px; }
+  .nb-prev{ white-space:pre-wrap; font-family:'Inter',sans-serif; font-size:11.5px; line-height:1.55; background:#fff; border:1px solid var(--line); border-radius:8px; padding:9px 11px; margin:0 0 8px; color:var(--ink); }
+  .nb-prev.empty{ color:var(--muted); }
+  .nb-actions{ display:flex; gap:8px; flex-wrap:wrap; }
+  .nb-remind{ font-size:10.5px; color:var(--muted); margin-top:8px; line-height:1.5; }
+  .pp-hint{ margin:8px 0 0; }
+  .update-note{ display:none; margin:16px auto 0; background:#00E58A; color:#003B2B; border:none; font-weight:700; font-size:12.5px; padding:9px 18px; border-radius:20px; cursor:pointer; font-family:'Inter',sans-serif; }
+  .update-note.show{ display:block; }
 </style>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#014a3a">
 </head>
 <body>
 <div id="landingPage" class="landing">
@@ -397,9 +502,28 @@
     <h1 class="landing-title">Navigating through HFpEF</h1>
     <p class="landing-sub">Screening &middot; Treatment &middot; Residual Risk &amp; Treatment Escalation</p>
     <button class="landing-enter" id="enterBtn" type="button">Enter <span>&rarr;</span></button>
+    <button class="landing-plan" id="planBtn" type="button">MSL call planner</button>
+    <button class="update-note" id="updateNote" type="button">Updated version ready — tap to refresh</button>
   </div>
 </div>
 
+<div class="prep" id="prepPage">
+  <div class="prep-head">
+    <div class="brand-name-group">
+      <button class="exit-btn" id="prepBack" type="button" title="Back" aria-label="Back">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="brand-name">MSL call planner</div>
+    </div>
+    <div class="prep-note">NOT SAVED &middot; MSL USE ONLY</div>
+  </div>
+  <div class="prep-scroll" id="prepScroll"><div class="prep-inner" id="prepBody"></div></div>
+</div>
+
+<div class="search-ov" id="searchOverlay">
+  <div class="search-head"><input type="search" id="searchInput" placeholder="Search the tool" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Search the tool"><button type="button" id="searchClose">Close</button></div>
+  <div class="search-results" id="searchResults"></div>
+</div>
 <div class="app" id="mainApp" style="display:none;">
   <header class="top">
     <div class="top-row">
@@ -409,10 +533,15 @@
         </button>
         <div class="brand-name">Navigating through HFpEF</div>
       </div>
+      <div class="top-right">
+        <button class="search-btn" id="searchBtn" type="button" title="Search" aria-label="Search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
       <button class="internal-badge" id="fullscreenBtn" type="button">
         <span>MSL USE ONLY</span>
         <span id="fullscreenIcon"></span>
       </button>
+      </div>
     </div>
     <div class="tab-row" id="tabRow"></div>
   </header>
@@ -425,14 +554,20 @@
     <div class="topic-eyebrow" id="topicEyebrow"></div>
     <div class="title-and-insight">
       <div class="topic-title" id="topicTitle"></div>
-      <button class="insight-btn" id="insightBtn" onclick="toggleInsight()" type="button">
-        <span>💡</span><span>Gather Insight</span>
-      </button>
+      <div class="btn-pair">
+        <button class="insight-btn" id="insightBtn" onclick="toggleInsight()" type="button">
+          <span>💡</span><span>Gather Insight</span>
+        </button>
+        <button class="guide-btn" id="guideBtn" onclick="toggleGuide()" type="button">
+          <span>🧭</span><span>MSL Guide</span>
+        </button>
+      </div>
     </div>
     <div class="insight-box" id="insightBox">
       <div class="insight-box-label">MSL Insight-Gathering Question</div>
       <div class="insight-box-text" id="insightBoxText"></div>
     </div>
+    <div class="guide-box" id="guideBox"></div>
   </div>
 
   <div class="bullet-row" id="bulletRow">
@@ -470,7 +605,16 @@ s0: {
           {head:"Right-sided congestion", items:["Peripheral oedema","Abdominal distension","Hepatomegaly","Jugular vein distension","Hepatojugular reflux","Pleural effusion","Elevated serum creatinine","Elevated bilirubin, ALP, GGT","Slightly elevated natriuretic peptides"]},
           {head:"Hypoperfusion", items:["Cold, sweaty extremities","Pale skin","Dizziness","Mental confusion","Oliguria","Narrow pulse pressure","Elevated serum lactate","Elevated serum creatinine","Elevated aminotransferase"]}
         ]},
-      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" }
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
+    { tag:"practical", label:"Who is at risk before symptoms appear — the patient profile to keep in mind",
+      detail:"HFpEF is often under-recognized, partly because it rarely announces itself with obvious congestion. The patients most likely to develop it tend to be older, carry excess weight, and often have atrial fibrillation — the same three features the HFpEF-ABA score is built from (see the screening topic). Hypertension, type 2 diabetes and chronic kidney disease are common companions (see the CKD topic). Keeping this profile in mind lets a clinician think about HFpEF earlier, before congestion signs are obvious, and decide who is worth screening.",
+      chart:{type:"badge", items:[
+        {value:"Older age", label:"First of the three HFpEF-ABA variables", color:"guideline"},
+        {value:"Higher BMI", label:"Second HFpEF-ABA variable — excess weight", color:"guideline"},
+        {value:"AF history", label:"Third HFpEF-ABA variable — atrial fibrillation", color:"guideline"}
+      ]},
+      citation:"Reddy YNV, Carter RE, Sundaram V, et al. An evidence-based screening tool for heart failure with preserved ejection fraction: the HFpEF-ABA score. Nat Med. 2024;30(8):2258–2264.", url:"https://www.nature.com/articles/s41591-024-03140-1" }
+
   ]
 },
 
@@ -726,6 +870,44 @@ t1: {
         rows:[
           {label:"Events", values:["Genital mycotic infections<br>Volume depletion","Euglycemic DKA<br>Fournier's gangrene<br>Lower-limb amputation"]}
         ]} }
+  ]
+},
+
+t1b: {
+  cat: "treatment", title: "Starting and Staying on SGLT2i — Barriers, Monitoring & Continuation",
+  insight: "When you start an SGLT2 inhibitor in a patient with heart failure, what makes you hesitate or delay — and what would help you keep that patient on it once they are back in the community?",
+  bullets: [
+    { tag:"limitation", label:"Why starting gets delayed — the usual hesitations, and how big the risks really are",
+      detail:"Hesitation usually centres on three things: kidney function, blood pressure and volume status, and the fear of genital infections. The kidney concern is narrower than it feels — the 2026 ESC CVD and CKD guideline supports SGLT2i use down to an eGFR of 20 (see the CKD topic). The other two are real but small in absolute terms: in EMPEROR-Preserved, empagliflozin was associated with an absolute increase in hypotension of 1.8% (NNH 55) and in genital infection of 1.5% (NNH 66) versus placebo, as summarized in an independent appraisal of the trial. These are the points worth covering with the patient at the start.",
+      chart:{type:"badge", items:[
+        {value:"eGFR 20", label:"SGLT2i recommended down to this level (2026 ESC CVD + CKD guideline)", color:"guideline"},
+        {value:"+1.8%", label:"Absolute increase in hypotension vs placebo (NNH 55)", color:"limitation"},
+        {value:"+1.5%", label:"Absolute increase in genital infection vs placebo (NNH 66)", color:"limitation"}
+      ]},
+      citations:[
+        {citation:"Anker SD, et al. Empagliflozin in Heart Failure with a Preserved Ejection Fraction. N Engl J Med. 2021;385:1451–1461.", url:"https://www.nejm.org/doi/full/10.1056/NEJMoa2107038"},
+        {citation:"Moon, Jackevicius. EMPEROR-Preserved evidence-based medicine appraisal. J Am Coll Clin Pharm. Summer 2022 (absolute risk increases and NNH as summarized there).", url:"https://www.westernu.edu/media/pharmacy/emperor-preserved-ebm-appraisal-moon-jackevicius-jaccp-summer-2022.pdf"}
+      ] },
+    { tag:"practical", label:"Starting well — a simple plan for before the first dose, the first weeks, and ongoing",
+      detail:"A practical way to frame it: before the first dose, check kidney function and volume status and review the diuretic dose; in the first weeks, review symptoms, vital signs and kidney function, bearing in mind that a small early eGFR dip can occur; then keep the plan going at every visit. The 2026 ESC Guidelines recommend reviewing and up-titrating foundational therapy at least every 1–2 weeks, guided by symptoms, vital signs and laboratory findings (Class I, Level C).",
+      chart:{type:"pathway", title:"Starting an SGLT2i — a practical sequence", connector:"→",
+        items:[
+          {title:"Before the first dose", subtitle:"Check kidney function and volume status; review the diuretic dose; cover genital hygiene", bg:"rgba(59,111,212,0.08)", border:"var(--guideline)", color:"var(--guideline)"},
+          {title:"First weeks", subtitle:"Review symptoms, vital signs and kidney function; a small early eGFR dip can occur", bg:"rgba(184,134,11,0.08)", border:"var(--practical)", color:"var(--practical)"},
+          {title:"Ongoing", subtitle:"Reassess at every visit; keep foundational therapy at the highest tolerated dose", bg:"rgba(15,163,107,0.08)", border:"var(--evidence)", color:"var(--evidence)"}
+        ]},
+      citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302" },
+    { tag:"guideline", label:"Staying on it — what the guidelines ask for after the first prescription",
+      detail:"Three Class I recommendations frame this: start in hospital after initial stabilization when the patient is admitted with decompensated HF (Class I, Level B1; EMPULSE supports in-hospital initiation), review and up-titrate foundational therapy at least every 1–2 weeks (Class I, Level C), and continue foundational therapy at the highest tolerated dose in all patients with HF (Class I, Level C). A useful question to settle at discharge is who reviews the patient, when, and who owns the prescription.",
+      chart:{type:"badge", items:[
+        {value:"Class I, B1", label:"In-hospital initiation after initial stabilization in decompensated HF", color:"guideline"},
+        {value:"Class I, C", label:"Review and up-titrate foundational therapy at least every 1–2 weeks", color:"guideline"},
+        {value:"Class I, C", label:"Continue foundational therapy at the highest tolerated dose", color:"guideline"}
+      ]},
+      citations:[
+        {citation:"2026 ESC Guidelines for the management of heart failure. Eur Heart J. 2026.", url:"https://academic.oup.com/eurheartj/advance-article/doi/10.1093/eurheartj/ehag100/8766302"},
+        {citation:"Voors AA, Angermann CE, Teerlink JR, et al. The SGLT2 inhibitor empagliflozin in patients hospitalized for acute heart failure (EMPULSE): a multinational randomized trial. Nat Med. 2022;28(3):568–574.", url:"https://pmc.ncbi.nlm.nih.gov/articles/PMC8938265"}
+      ] }
   ]
 },
 
@@ -1179,7 +1361,19 @@ h2: {
       citations:[
         {citation:"EASi-HF Reduced (NCT06935370): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure and a Weak Pumping Function of the Left Side of the Heart. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06935370"},
         {citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288"}
-      ] }
+      ] },
+    { tag:"practical", label:"What would need to be true to change practice? The questions the data will need to answer",
+      detail:"EASi-HF will not answer everything at once, and none of the questions below can be answered today because no outcomes data have been reported. For a clinician asking whether an aldosterone synthase inhibitor could ever change practice, five questions matter: whether adding vicadrostat to empagliflozin lowers the primary composite endpoint; what happens to potassium and kidney function; whether the cortisol-axis concern, theoretical for the class, is borne out; where it sits next to MRA in a patient who is already treated; and which patients benefit most. This is a framework for the conversation, not a prediction of the result.",
+      chart:{type:"table", title:"Five questions for the EASi-HF data — and where we stand today", columns:["What the data need to show","Where we stand today"],
+        rows:[
+          {label:"Efficacy on top of SGLT2i", values:["Effect on CV death, HF hospitalization or urgent HF visit","Primary endpoint defined; no results yet"]},
+          {label:"Potassium and kidney function", values:["How an ASI behaves alongside an SGLT2i in HFpEF","No HFpEF outcomes or safety data yet"]},
+          {label:"Cortisol axis", values:["Whether the class-level theoretical concern materializes","Not observed to date with vicadrostat; to be confirmed in Phase III"]},
+          {label:"Place next to MRA", values:["Where an ASI sits for patients on, or unable to take, an MRA","No head-to-head data"]},
+          {label:"Who benefits most", values:["Patient profile and subgroups","Subgroup results will come with the full outcome data"]}
+        ]},
+      citation:"EASi-HF Preserved (NCT06424288): A Study to Test Whether Vicadrostat in Combination With Empagliflozin Helps People With Heart Failure. ClinicalTrials.gov. Boehringer Ingelheim.", url:"https://clinicaltrials.gov/study/NCT06424288" }
+
   ]
 }
 
@@ -1191,7 +1385,7 @@ h2: {
 <script>
 const TAB_TOPICS = {
   screening: ["s0","s1","s2","s2b","s2c","s3"],
-  treatment: ["t1","t2","t3"],
+  treatment: ["t1","t1b","t2","t3"],
   residual: ["r0","r1","r2","r3","r4"],
   horizon: ["h1","h2"]
 };
@@ -1858,6 +2052,7 @@ function renderTopicInsight(){
   const t = TOPICS[activeTopic];
   document.getElementById('insightBoxText').textContent = t.insight || '';
   document.getElementById('insightBox').classList.remove('show');
+  const gb = document.getElementById('guideBox'); if(gb) gb.classList.remove('show');
 }
 
 function toggleInsight(){
@@ -2045,6 +2240,477 @@ document.getElementById('exitBtn').addEventListener('click', ()=>{
   document.getElementById('landingPage').style.display = 'flex';
 });
 
+
+/* =====================================================================
+   MSL-ONLY LAYER
+   Nothing below is rendered on the main HCP-facing screen unless the MSL
+   opens the Guide. The call planner stores nothing: no names, no answers,
+   no browser storage. State lives in plain variables and is wiped on Clear/Back.
+   ===================================================================== */
+const CAL = {
+  1:{ name:"Recognise & diagnose", color:"#216B46", light:"#DDEFE6",
+      belief:"There is an urgency to act on early recognition, diagnosis and treatment of HF among key stakeholders",
+      state:"Recognizes the need for earlier HF identification",
+      end:"Can identify who to screen, how to assess and when to refer",
+      gate:"actively look for HFpEF in symptomatic or at-risk patients",
+      qtext:"Actively looks for HFpEF in symptomatic or at-risk patients (NT-proBNP, echo, screening score)",
+      probe:"When a patient comes in with unexplained breathlessness, what is your usual route to a diagnosis?",
+      bridge:"Once they can identify and refer, ask how they treat patients once HFpEF is confirmed.",
+      mdts:[
+        {n:1, text:"Identify patients at risk and recognize key signs and symptoms", links:[{t:"s0", f:"Who is at risk"},{t:"s2c"}]},
+        {n:2, text:"Apply a structured diagnostic approach using appropriate biomarkers and imaging", links:[{t:"s2"},{t:"s2b"}]},
+        {n:3, text:"Establish practical screening and referral pathways", links:[{t:"s1"},{t:"s3"}]}
+      ]},
+  2:{ name:"Adopt foundational therapy", color:"#087F6B", light:"#D9EEE9",
+      belief:"There is a need to establish SGLT2 inhibition as foundational therapy and initiate empagliflozin early across the HF spectrum",
+      state:"Adopts SGLT2i as foundational HF treatment",
+      end:"Routinely considers early empagliflozin for appropriate HF patients",
+      gate:"routinely use an SGLT2i across the HF spectrum, including after hospitalization",
+      qtext:"Routinely uses an SGLT2i across the HF spectrum, including after a hospitalization",
+      probe:"For patients you have confirmed with HFpEF, what is your usual first-line treatment?",
+      bridge:"Once SGLT2i is routine, explore what happens next for patients who are stable but still at risk.",
+      mdts:[
+        {n:1, text:"Recognize SGLT2i as foundational therapy across the HF spectrum", links:[{t:"t1"}]},
+        {n:2, text:"Consider early empagliflozin initiation, including after in-hospital stabilization", links:[{t:"t1", f:"2026 ESC Guidelines expand"}]},
+        {n:3, text:"Address barriers to initiation, monitoring and continuation", links:[{t:"t1b"}]}
+      ]},
+  3:{ name:"Address residual risk", color:"#B56B00", light:"#FFF0D7",
+      belief:"There is a need to address residual risk in HF management and understand the role of aldosterone in cardio-renal outcomes",
+      state:"Recognizes that treated HF patients remain at risk",
+      end:"Actively reassesses risk and identifies opportunities for treatment optimization",
+      gate:"reassess residual risk in stable patients and consider an MRA",
+      qtext:"Reassesses residual risk in stable, treated patients and considers an MRA",
+      probe:"For your stable HFpEF patients who are already on treatment, how do you decide whether anything more is needed?",
+      bridge:"Once residual risk and the aldosterone pathway are on their radar, introduce what is being studied next.",
+      mdts:[
+        {n:1, text:"Recognize residual risk despite clinical stability and foundational therapy", links:[{t:"r0"}]},
+        {n:2, text:"Use clinical and biomarker assessment to trigger reassessment", links:[{t:"r3"},{t:"r4"}]},
+        {n:3, text:"Explore current treatment limitations, including the aldosterone pathway and MRA use", links:[{t:"t2"},{t:"t3"},{t:"r1"},{t:"r2"}]}
+      ]},
+  4:{ name:"Prepare for future science", color:"#68469B", light:"#E9E2F4",
+      belief:"There is a need to understand the role of ASI as an emerging treatment class in the context of the EASi-HF clinical program",
+      state:"Is scientifically prepared for EASi-HF and potential future Vica/Empa adoption",
+      end:"Ready for an evidence-led, data-dependent discussion on potential future adoption",
+      gate:"know about aldosterone synthase inhibition and the EASi-HF program",
+      qtext:"Knows about aldosterone synthase inhibition and the EASi-HF program",
+      probe:"How familiar are you with the aldosterone synthase inhibitor programme, and what would you want to see from it?",
+      bridge:"Keep it evidence-led and data-dependent: there are no outcome results yet. Listen for what data would change their practice.",
+      mdts:[
+        {n:1, text:"Understand the rationale and mechanism of aldosterone synthase inhibition", links:[{t:"h1"}]},
+        {n:2, text:"Understand the EASi-HF clinical development program and evidence being generated", links:[{t:"h2"}]},
+        {n:3, text:"Define the efficacy, safety and implementation evidence needed to change practice", links:[{t:"h2", f:"What would need to be true"}]}
+      ]}
+};
+
+/* ---------- MSL Guide (closed by default, closes on every topic/tab change) ---------- */
+function guideEntries(tid){
+  const out = [];
+  Object.keys(CAL).forEach(c=>{
+    CAL[c].mdts.forEach(m=>{ if(m.links.some(l=>l.t===tid)) out.push({cal:+c, m}); });
+  });
+  return out;
+}
+function toggleGuide(){
+  const box = document.getElementById('guideBox');
+  if(box.classList.contains('show')){ box.classList.remove('show'); return; }
+  const es = guideEntries(activeTopic);
+  if(!es.length){
+    box.style.borderLeftColor = 'var(--line)';
+    box.innerHTML = '<div class="guide-label">MSL Guide &middot; internal</div><div class="guide-text">No framework link for this topic.</div>';
+  } else {
+    const c = CAL[es[0].cal];
+    box.style.borderLeftColor = c.color;
+    box.innerHTML =
+      '<div class="guide-label">MSL Guide &middot; internal</div>' +
+      '<div class="guide-row"><span class="guide-chip" style="background:'+c.color+'">CAL '+es[0].cal+'</span><b>'+c.name+'</b></div>' +
+      '<ul>' + es.map(e=>'<li><b>MDT '+e.m.n+'</b> — '+e.m.text+'</li>').join('') + '</ul>' +
+      '<div class="guide-k">Belief state to move toward</div><div class="guide-text">'+c.state+'</div>' +
+      '<div class="guide-k">End-state for this CAL</div><div class="guide-text">'+c.end+'</div>' +
+      '<div class="guide-k">Next</div><div class="guide-text">'+c.bridge+'</div>' +
+      noteHtml(activeTopic, c) +
+      '<div class="guide-foot">After the call, record the HCP’s response to the insight question in your CRM.</div>';
+  }
+  box.classList.add('show');
+  if(es.length) noteRefresh();
+}
+
+/* ---------- Deep link from planner into the tool ---------- */
+function openInTool(tid, find){
+  const t = TOPICS[tid]; if(!t) return;
+  document.getElementById('prepPage').classList.remove('show');
+  document.getElementById('landingPage').style.display = 'none';
+  document.getElementById('mainApp').style.display = 'flex';
+  selectTab(t.cat);
+  selectTopic(tid);
+  if(find){
+    const i = t.bullets.findIndex(b=>b.label.indexOf(find) === 0);
+    if(i > 0) selectBullet(i);
+  }
+  resetPlan();
+}
+
+/* ---------- Call planner (stateless) ---------- */
+const PP_TYPES = [
+  {k:"cardiologist", label:"Cardiologist",
+   note:"Cardiologists are usually diagnosing already — confirm that quickly, then spend your time on treatment and residual risk.", extra:null},
+  {k:"gp", label:"GP / primary care",
+   note:"GPs often see the patient before a diagnosis — lean on screening and the referral pathway, and keep the science simple.", extra:{t:"s3"}},
+  {k:"endo", label:"Endocrinologist",
+   note:"Endocrinologists meet HFpEF through diabetes and excess weight — link the patient profile to the SGLT2i story.", extra:{t:"t1"}},
+  {k:"nephro", label:"Nephrologist",
+   note:"Nephrologists meet HFpEF through CKD — link kidney function and UACR to cardiac risk.", extra:{t:"r4"}},
+  {k:"other", label:"Other"},
+  {k:"unknown", label:"Not known"}
+];
+const PP_TIMES = [{k:5,label:"5 min"},{k:10,label:"10 min"},{k:20,label:"20 min"}];
+let pp = {type:null, time:null, q:[null,null,null,null]};
+
+function resetPlan(){ pp = {type:null, time:null, q:[null,null,null,null]}; }
+
+function planFor(){
+  let start = 4, deciding = null;
+  for(let i=0;i<4;i++){ if(pp.q[i] !== 'yes'){ start = i+1; deciding = pp.q[i]; break; } }
+  const allYes = pp.q.every(a=>a==='yes');
+  const c = CAL[start];
+  const n = pp.time===5 ? 1 : pp.time===10 ? 2 : 3;
+  const mdts = c.mdts.slice(0, n);
+  const next = start < 4 ? CAL[start+1] : null;
+  return {start, c, mdts, next, deciding, allYes, peek: pp.time===20 && next};
+}
+
+function planWhy(P){
+  if(P.allYes) return 'All four are in place, so spend the call on CAL 4: evidence-led and data-dependent.';
+  if(P.deciding==='no') return 'You said they do not yet '+P.c.gate+'. Start here.';
+  return 'You were not sure whether they '+P.c.gate+'. Start here and confirm with the opening question below.';
+}
+
+function ladderSvg(active){
+  const sw=168, sh=74, gap=14, W=760, H=316;
+  let s = '<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Four-step ladder">';
+  const keys = [1,2,3,4];
+  keys.forEach((k,i)=>{
+    const x = 16 + i*(sw+gap), y = 232 - i*40, c = CAL[k];
+    const dim = active && active!==k;
+    s += '<g opacity="'+(dim?0.4:1)+'">' +
+         '<rect x="'+x+'" y="'+y+'" width="'+sw+'" height="'+sh+'" rx="12" fill="'+c.color+'"'+(active===k?' stroke="#00E58A" stroke-width="3"':'')+'/>' +
+         '<text x="'+(x+14)+'" y="'+(y+30)+'" fill="#fff" font-family="Manrope,sans-serif" font-weight="800" font-size="17">CAL '+k+'</text>' +
+         '<text x="'+(x+14)+'" y="'+(y+52)+'" fill="#fff" font-family="Inter,sans-serif" font-size="11">'+c.name+'</text></g>';
+  });
+  const di = (active||1)-1, dx = 16 + di*(sw+gap) + 40, dy = 232 - di*40 - 120 + 6;
+  s += '<svg x="'+dx+'" y="'+dy+'" width="90" height="120" viewBox="0 0 300 400"> <ellipse cx="150" cy="388" rx="78" ry="9" fill="#000" opacity="0.18"/> <path d="M138 262 L112 352 L96 352 Q92 366 108 368 L132 368 Q140 366 136 356 L160 272 Z" fill="#2F4858"/> <path d="M96 352 Q88 372 104 374 L134 374 Q146 372 138 358 L128 352 Z" fill="#1F2D36"/> <path d="M152 262 L198 336 L218 326 L172 252 Z" fill="#2F4858"/> <path d="M142 276 L152 262 L172 252 L160 280 Z" fill="#2F4858"/> <path d="M192 330 L222 318 L230 336 Q252 342 252 356 Q252 366 238 366 L204 366 Q192 362 194 348 Z" fill="#1F2D36"/> <path d="M118 168 L84 232 Q78 244 90 248 Q100 250 106 240 L138 184 Z" fill="#FFFFFF" stroke="#C9D6D0" stroke-width="2"/> <circle cx="92" cy="248" r="12" fill="#F2C9A5"/> <path d="M112 150 Q150 136 188 150 L200 268 Q150 282 100 268 Z" fill="#FFFFFF" stroke="#C9D6D0" stroke-width="2"/> <path d="M132 148 L150 196 L168 148 Z" fill="#0FA3A3"/> <path d="M150 196 L150 268" stroke="#C9D6D0" stroke-width="2"/> <rect x="164" y="214" width="26" height="22" rx="3" fill="none" stroke="#C9D6D0" stroke-width="2"/> <rect x="172" y="204" width="3" height="16" rx="1.5" fill="#E24D4D"/> <path d="M126 150 Q112 200 138 214 Q150 220 150 206" fill="none" stroke="#3A4A52" stroke-width="5" stroke-linecap="round"/> <path d="M174 150 Q188 190 162 206 Q150 214 150 206" fill="none" stroke="#3A4A52" stroke-width="5" stroke-linecap="round"/> <circle cx="150" cy="210" r="9" fill="#9AA7AE" stroke="#3A4A52" stroke-width="3"/> <path d="M186 164 L226 210 Q232 220 222 226 Q212 228 206 220 L176 186 Z" fill="#FFFFFF" stroke="#C9D6D0" stroke-width="2"/> <g transform="rotate(-8 232 206)"> <rect x="212" y="170" width="52" height="68" rx="6" fill="#8A5A2B"/> <rect x="218" y="178" width="40" height="54" rx="3" fill="#FFFFFF"/> <rect x="228" y="166" width="20" height="10" rx="3" fill="#B8BEC2"/> <line x1="223" y1="192" x2="253" y2="192" stroke="#0FA3A3" stroke-width="3"/> <line x1="223" y1="204" x2="253" y2="204" stroke="#B8C4BD" stroke-width="3"/> <line x1="223" y1="216" x2="246" y2="216" stroke="#B8C4BD" stroke-width="3"/> </g> <circle cx="224" cy="222" r="12" fill="#F2C9A5"/> <rect x="140" y="124" width="20" height="26" rx="6" fill="#F2C9A5"/> <circle cx="150" cy="92" r="42" fill="#F2C9A5"/> <path d="M108 86 Q106 46 150 46 Q196 46 192 88 Q176 64 150 66 Q124 66 108 86 Z" fill="#2B2B33"/> <circle cx="110" cy="96" r="7" fill="#EBB88F"/> <circle cx="160" cy="92" r="4.5" fill="#2B2B33"/> <circle cx="178" cy="92" r="4.5" fill="#2B2B33"/> <circle cx="161.5" cy="90.5" r="1.4" fill="#fff"/> <circle cx="179.5" cy="90.5" r="1.4" fill="#fff"/> <path d="M154 82 Q160 78 166 81" stroke="#2B2B33" stroke-width="3" fill="none" stroke-linecap="round"/> <path d="M172 81 Q178 78 184 82" stroke="#2B2B33" stroke-width="3" fill="none" stroke-linecap="round"/> <path d="M158 108 Q170 120 184 106" stroke="#B5553E" stroke-width="3.5" fill="none" stroke-linecap="round"/> <circle cx="156" cy="106" r="5" fill="#F0A58E" opacity="0.6"/> <path d="M112 70 Q150 52 188 70" stroke="#9AA7AE" stroke-width="5" fill="none" stroke-linecap="round"/> <circle cx="150" cy="58" r="11" fill="#DDE5E1" stroke="#9AA7AE" stroke-width="3"/> <circle cx="150" cy="58" r="4" fill="#9AA7AE"/> </svg>';
+  return s + '</svg>';
+}
+
+function renderPrep(){
+  const body = document.getElementById('prepBody');
+  const scroller = document.getElementById('prepScroll');
+  const top = scroller.scrollTop;
+  const ready = pp.time!==null && pp.q.every(a=>a!==null);
+  const P = ready ? planFor() : null;
+
+  let h = '';
+  h += '<div class="pp-card pp-ladder">'+ladderSvg(P ? P.start : 0)+'</div>';
+
+  h += '<div class="pp-card"><div class="pp-h">1. About this HCP</div>' +
+       '<p class="pp-sub">Nothing is saved — no names, no answers. Close this screen and it is gone.</p>' +
+       '<div class="pp-lbl">HCP type</div><div class="pp-chips">' +
+       PP_TYPES.map(t=>'<button class="pp-chip'+(pp.type===t.k?' on':'')+'" data-type="'+t.k+'">'+t.label+'</button>').join('') +
+       '</div><div class="pp-lbl">Time you expect to have</div><div class="pp-chips">' +
+       PP_TIMES.map(t=>'<button class="pp-chip'+(pp.time===t.k?' on':'')+'" data-time="'+t.k+'">'+t.label+'</button>').join('') +
+       '</div></div>';
+
+  h += '<div class="pp-card"><div class="pp-h">2. Where is this HCP today?</div>' +
+       '<p class="pp-sub">Tap what you know. “Not sure” is fine — the plan will give you a question to confirm it in the first minute.</p>';
+  for(let i=0;i<4;i++){
+    h += '<div class="pp-q"><div class="pp-q-text">'+CAL[i+1].qtext+'</div><div class="pp-seg" data-q="'+i+'">' +
+         ['yes','no','unsure'].map(v=>'<button data-v="'+v+'" class="'+(pp.q[i]===v?'on':'')+'">'+(v==='yes'?'Yes':v==='no'?'No':'Not sure')+'</button>').join('') +
+         '</div></div>';
+  }
+  h += '<div class="pp-actions"><button class="pp-btn" id="ppUnknown">I don’t know this HCP</button><button class="pp-btn" id="ppClear">Clear</button></div></div>';
+
+  if(!P){
+    h += '<div class="pp-card"><div class="pp-h">3. Your plan</div><div class="pp-empty">Choose the time you have and answer the four questions to see a plan.</div></div>';
+  } else {
+    const typ = PP_TYPES.find(t=>t.k===pp.type);
+    const why = planWhy(P);
+
+    h += '<div class="pp-card"><div class="pp-h">3. Your plan</div>' +
+         '<div class="pp-plan-top"><span class="pp-cal-chip" style="background:'+P.c.color+'">Start at CAL '+P.start+'</span><b>'+P.c.name+'</b></div>' +
+         '<div class="pp-why">'+why+'</div>';
+
+    h += '<div class="pp-block"><div class="pp-lbl">Goal for this call</div><div class="pp-tip">'+P.c.end+'.</div></div>';
+
+    h += '<div class="pp-block"><div class="pp-lbl">Open in this order</div>';
+    P.mdts.forEach(m=>{
+      h += '<div class="pp-mdt"><div class="pp-mdt-n" style="background:'+P.c.color+'">'+m.n+'</div><div class="pp-mdt-body">' +
+           '<div class="pp-mdt-text">MDT '+m.n+' — '+m.text+'</div>' +
+           m.links.map(l=>'<button class="pp-open" data-t="'+l.t+'" data-f="'+(l.f||'')+'">'+TOPICS[l.t].title+'</button>').join('') +
+           '</div></div>';
+    });
+    if(P.peek){
+      const m = P.next.mdts[0];
+      h += '<div class="pp-mdt"><div class="pp-mdt-n" style="background:'+P.next.color+'">→</div><div class="pp-mdt-body">' +
+           '<div class="pp-mdt-text">If time allows, peek ahead — CAL '+(P.start+1)+', MDT '+m.n+': '+m.text+'</div>' +
+           m.links.map(l=>'<button class="pp-open" data-t="'+l.t+'" data-f="'+(l.f||'')+'">'+TOPICS[l.t].title+'</button>').join('') +
+           '</div></div>';
+    }
+    h += '</div>';
+
+    h += '<div class="pp-block"><div class="pp-lbl">Opening question (first minute)</div><div class="pp-quote">'+P.c.probe+'</div>' +
+         '<div class="pp-sub" style="margin-top:6px;">Their answer tells you whether to stay here or move on.</div></div>';
+
+    if(P.next){
+      h += '<div class="pp-block"><div class="pp-lbl">If they are ahead of you</div><div class="pp-tip">'+P.c.bridge+' ' +
+           '<button class="pp-open" data-t="'+P.next.mdts[0].links[0].t+'" data-f="'+(P.next.mdts[0].links[0].f||'')+'">Jump to CAL '+(P.start+1)+': '+TOPICS[P.next.mdts[0].links[0].t].title+'</button></div></div>';
+    } else {
+      h += '<div class="pp-block"><div class="pp-lbl">Keep in mind</div><div class="pp-tip">'+P.c.bridge+'</div></div>';
+    }
+
+    if(typ && typ.note){
+      h += '<div class="pp-block"><div class="pp-lbl">For this type of HCP</div><div class="pp-tip">'+typ.note+
+           (typ.extra ? ' <button class="pp-open" data-t="'+typ.extra.t+'" data-f="">'+TOPICS[typ.extra.t].title+'</button>' : '')+'</div></div>';
+    }
+    h += '<div class="pp-block"><div class="pp-sub">You can still go anywhere in the tool during the call. This plan is a starting point, not a script.</div></div>';
+    h += '<div class="pp-actions"><button class="pp-btn primary" id="ppCopy">Copy plan</button><button class="pp-btn" id="ppEmail">Email plan</button></div>' +
+         '<div class="pp-sub pp-hint" id="ppHint">Email opens your mail app with the plan filled in — add your own address. If nothing opens, use Copy. Do not add HCP names.</div>';
+    h += '</div>';
+  }
+  body.innerHTML = h;
+  scroller.scrollTop = top;
+}
+
+(function bindPrep(){
+  const body = document.getElementById('prepBody');
+  body.addEventListener('click', (e)=>{
+    const b = e.target.closest('button'); if(!b) return;
+    if(b.dataset.type){ pp.type = b.dataset.type; renderPrep(); return; }
+    if(b.dataset.time){ pp.time = +b.dataset.time; renderPrep(); return; }
+    if(b.parentElement && b.parentElement.dataset.q !== undefined && b.dataset.v){ pp.q[+b.parentElement.dataset.q] = b.dataset.v; renderPrep(); return; }
+    if(b.id==='ppCopy'){ copyText(planText(), b); return; }
+    if(b.id==='ppEmail'){ sendMail('MSL call plan', planText()); return; }
+    if(b.id==='ppClear'){ resetPlan(); renderPrep(); return; }
+    if(b.id==='ppUnknown'){ pp.type = 'unknown'; pp.q = ['unsure','unsure','unsure','unsure']; if(pp.time===null) pp.time = 10; renderPrep(); return; }
+    if(b.classList.contains('pp-open')){ openInTool(b.dataset.t, b.dataset.f || null); return; }
+  });
+  document.getElementById('planBtn').addEventListener('click', ()=>{
+    resetPlan(); renderPrep(); resetNote();
+    document.getElementById('landingPage').style.display = 'none';
+    document.getElementById('prepPage').classList.add('show');
+    document.getElementById('prepScroll').scrollTop = 0;
+  });
+  document.getElementById('prepBack').addEventListener('click', ()=>{
+    resetPlan(); renderPrep(); resetNote();
+    document.getElementById('prepPage').classList.remove('show');
+    document.getElementById('landingPage').style.display = 'flex';
+  });
+})();
+
+/* =====================================================================
+   v3 ADDITIONS (MSL-only): copy / email, post-call note, search, update notice
+   Nothing here is written to browser storage. Text is built on demand
+   from in-memory variables only.
+   ===================================================================== */
+function copyText(text, btn){
+  const done = ()=>{ if(btn){ const o = btn.dataset.o || btn.textContent; btn.dataset.o = o; btn.textContent = 'Copied ✓'; setTimeout(()=>{ btn.textContent = o; }, 1600); } };
+  const fallback = ()=>{
+    const ta = document.createElement('textarea'); ta.value = text; ta.setAttribute('readonly','');
+    ta.style.cssText = 'position:fixed;top:0;left:0;opacity:0;'; document.body.appendChild(ta);
+    ta.select(); ta.setSelectionRange(0, text.length);
+    try{ document.execCommand('copy'); done(); }catch(e){}
+    document.body.removeChild(ta);
+  };
+  if(navigator.clipboard && navigator.clipboard.writeText){ navigator.clipboard.writeText(text).then(done, fallback); }
+  else fallback();
+}
+const MAIL_MAX = 1500;
+function mailtoUrl(subject, body){
+  let b = body;
+  if(b.length > MAIL_MAX) b = b.slice(0, MAIL_MAX).replace(/\s+\S*$/, '') + '\n…(shortened — use Copy for the full text)';
+  return 'mailto:?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(b);
+}
+function sendMail(subject, body){ window.location.href = mailtoUrl(subject, body); }
+
+/* ---------- Plan as text ---------- */
+function planText(){
+  if(!(pp.time!==null && pp.q.every(a=>a!==null))) return '';
+  const P = planFor();
+  const typ = PP_TYPES.find(t=>t.k===pp.type);
+  const L = [];
+  L.push('MSL CALL PLAN');
+  L.push('HCP type: ' + (typ ? typ.label : 'Not stated') + '  |  Time: ' + pp.time + ' min');
+  L.push('');
+  L.push('Start at CAL ' + P.start + ' — ' + P.c.name);
+  L.push(planWhy(P));
+  L.push('Goal for this call: ' + P.c.end + '.');
+  L.push('');
+  L.push('Open in this order:');
+  P.mdts.forEach(m=>{
+    L.push('  ' + m.n + '. ' + m.text);
+    L.push('     → ' + m.links.map(l=>TOPICS[l.t].title).join('; '));
+  });
+  if(P.peek){
+    const m = P.next.mdts[0];
+    L.push('  If time allows (CAL ' + (P.start+1) + ', MDT ' + m.n + '): ' + m.text);
+    L.push('     → ' + m.links.map(l=>TOPICS[l.t].title).join('; '));
+  }
+  L.push('');
+  L.push('Opening question: ' + P.c.probe);
+  L.push((P.next ? 'If they are ahead of you: ' : 'Keep in mind: ') + P.c.bridge);
+  if(typ && typ.note) L.push('For this HCP type: ' + typ.note);
+  L.push('');
+  L.push('Plan only — no HCP name or identifiers.');
+  return L.join('\n');
+}
+
+/* ---------- Post-call note builder (inside the MSL Guide) ---------- */
+const NB_OPTS = [
+  {k:'doing',   label:'Already doing this'},
+  {k:'open',    label:'Open to it'},
+  {k:'concern', label:'Has concerns'},
+  {k:'na',      label:'Not relevant'}
+];
+let nb = {};   // { topicId: {r:'open', c:'free text'} } — memory only
+function resetNote(){ nb = {}; }
+
+function noteHtml(tid, cal){
+  const cur = nb[tid] || {};
+  return '<div class="nb">' +
+    '<div class="guide-k">Post-call note</div>' +
+    '<div class="guide-text" style="margin-bottom:6px;">How did the HCP respond on this topic?</div>' +
+    '<div class="nb-opts">' + NB_OPTS.map(o=>'<button type="button" class="nb-opt'+(cur.r===o.k?' on':'')+'" data-nb="'+o.k+'">'+o.label+'</button>').join('') + '</div>' +
+    '<input type="text" class="nb-input" id="nbComment" maxlength="140" placeholder="Optional one-line comment (no names)" value="'+(cur.c||'').replace(/"/g,'&quot;')+'">' +
+    '<pre class="nb-prev" id="nbPrev"></pre>' +
+    '<div class="nb-actions"><button type="button" class="pp-btn primary" id="nbCopy">Copy note</button><button type="button" class="pp-btn" id="nbEmail">Email note</button><button type="button" class="pp-btn" id="nbClear">Clear note</button></div>' +
+    '<div class="nb-remind">Not saved anywhere. Do not include HCP or patient names or identifiers. Report any adverse event through your normal route, not this note.</div>' +
+    '</div>';
+}
+function noteText(){
+  const ids = Object.keys(nb).filter(t=>nb[t].r);
+  if(!ids.length) return '';
+  const L = ['MSL POST-CALL NOTE (draft)', ''];
+  ids.forEach(t=>{
+    const es = guideEntries(t), e = nb[t];
+    const calTxt = es.length ? 'CAL ' + es[0].cal + ' · ' : '';
+    L.push('- ' + calTxt + TOPICS[t].title + ': ' + NB_OPTS.find(o=>o.k===e.r).label + (e.c ? ' — ' + e.c : ''));
+  });
+  L.push('');
+  L.push('No HCP/patient identifiers. Adverse events: report via the normal route.');
+  return L.join('\n');
+}
+function noteRefresh(){
+  const p = document.getElementById('nbPrev'); if(!p) return;
+  const t = noteText();
+  p.textContent = t || 'Pick a response above and the note appears here.';
+  p.classList.toggle('empty', !t);
+}
+(function bindNote(){
+  const box = document.getElementById('guideBox');
+  box.addEventListener('click', (e)=>{
+    const b = e.target.closest('button'); if(!b) return;
+    if(b.dataset.nb){
+      const cur = nb[activeTopic] || (nb[activeTopic] = {r:null, c:''});
+      cur.r = (cur.r === b.dataset.nb) ? null : b.dataset.nb;
+      box.querySelectorAll('.nb-opt').forEach(x=>x.classList.toggle('on', x.dataset.nb === cur.r));
+      noteRefresh(); return;
+    }
+    if(b.id==='nbCopy'){ const t = noteText(); if(t) copyText(t, b); return; }
+    if(b.id==='nbEmail'){ const t = noteText(); if(t) sendMail('MSL post-call note', t); return; }
+    if(b.id==='nbClear'){ resetNote(); const c = document.getElementById('nbComment'); if(c) c.value=''; box.querySelectorAll('.nb-opt').forEach(x=>x.classList.remove('on')); noteRefresh(); return; }
+  });
+  box.addEventListener('input', (e)=>{
+    if(e.target.id !== 'nbComment') return;
+    const cur = nb[activeTopic] || (nb[activeTopic] = {r:null, c:''});
+    cur.c = e.target.value.trim(); noteRefresh();
+  });
+  // the call is over when the MSL leaves the tool
+  document.getElementById('exitBtn').addEventListener('click', ()=>{ resetNote(); box.classList.remove('show'); });
+})();
+
+/* ---------- Search (titles only in results — no framework wording) ---------- */
+function plainText(h){ const d = document.createElement('div'); d.innerHTML = h; return (d.textContent || '').replace(/\s+/g,' ').trim(); }
+let SEARCH_IDX = null;
+function buildSearchIndex(){
+  SEARCH_IDX = [];
+  Object.keys(TOPICS).forEach(tid=>{
+    const t = TOPICS[tid];
+    t.bullets.forEach((b,i)=>{
+      const label = plainText(b.label || '');
+      const detail = plainText(b.detail || '');
+      SEARCH_IDX.push({tid, i, topic:t.title, label, hay:(t.title+' '+label+' '+detail).toLowerCase(), labelLow:label.toLowerCase(), detailLow:detail.toLowerCase(), detail});
+    });
+  });
+}
+function runSearch(q){
+  if(!SEARCH_IDX) buildSearchIndex();
+  const terms = q.toLowerCase().split(/\s+/).filter(x=>x.length>1);
+  if(!terms.length) return [];
+  const out = [];
+  SEARCH_IDX.forEach(r=>{
+    if(!terms.every(w=>r.hay.indexOf(w) >= 0)) return;
+    let score = 0;
+    terms.forEach(w=>{ if(r.labelLow.indexOf(w) >= 0) score += 3; if(r.topic.toLowerCase().indexOf(w) >= 0) score += 1; });
+    out.push({r, score});
+  });
+  out.sort((a,b)=>b.score-a.score);
+  return out.slice(0, 30).map(x=>x.r);
+}
+function searchSnippet(r, terms){
+  if(r.labelLow.indexOf(terms[0]) >= 0) return '';
+  const at = r.detailLow.indexOf(terms[0]); if(at < 0) return '';
+  const s = Math.max(0, at - 30);
+  return (s ? '…' : '') + r.detail.slice(s, s + 90) + '…';
+}
+function openSearch(){
+  const o = document.getElementById('searchOverlay'); o.classList.add('show');
+  const inp = document.getElementById('searchInput'); inp.value=''; renderSearch(); setTimeout(()=>inp.focus(), 30);
+}
+function closeSearch(){ document.getElementById('searchOverlay').classList.remove('show'); }
+function renderSearch(){
+  const q = document.getElementById('searchInput').value;
+  const res = runSearch(q), box = document.getElementById('searchResults');
+  const terms = q.toLowerCase().split(/\s+/).filter(x=>x.length>1);
+  if(!terms.length){ box.innerHTML = '<div class="sr-empty">Type a word — e.g. empagliflozin, NT-proBNP, finerenone.</div>'; return; }
+  if(!res.length){ box.innerHTML = '<div class="sr-empty">No match. Try a shorter word.</div>'; return; }
+  box.innerHTML = res.map(r=>{
+    const sn = searchSnippet(r, terms);
+    return '<button type="button" class="sr-item" data-t="'+r.tid+'" data-i="'+r.i+'"><span class="sr-topic">'+r.topic+'</span><span class="sr-label">'+r.label+'</span>'+(sn?'<span class="sr-snip">'+sn.replace(/</g,'&lt;')+'</span>':'')+'</button>';
+  }).join('');
+}
+function goToResult(tid, i){
+  closeSearch();
+  document.getElementById('landingPage').style.display = 'none';
+  document.getElementById('mainApp').style.display = 'flex';
+  const t = TOPICS[tid];
+  selectTab(t.cat); selectTopic(tid);
+  if(i > 0) selectBullet(i);
+}
+(function bindSearch(){
+  document.getElementById('searchBtn').addEventListener('click', openSearch);
+  document.getElementById('searchClose').addEventListener('click', closeSearch);
+  document.getElementById('searchInput').addEventListener('input', renderSearch);
+  document.getElementById('searchResults').addEventListener('click', (e)=>{
+    const b = e.target.closest('.sr-item'); if(b) goToResult(b.dataset.t, +b.dataset.i);
+  });
+  document.addEventListener('keydown', (e)=>{ if(e.key === 'Escape') closeSearch(); });
+})();
+
+/* ---------- "Updated — refresh" notice (shown on the start screen only) ---------- */
+function showUpdateNote(){ const n = document.getElementById('updateNote'); if(n) n.classList.add('show'); }
+(function bindUpdate(){
+  const n = document.getElementById('updateNote'); if(!n) return;
+  n.addEventListener('click', ()=>{ location.reload(); });
+})();
+
+/*build:2ca1432d*/
+if('serviceWorker' in navigator && /^https?:$/.test(location.protocol)){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+  window.addEventListener('load', ()=>{
+    fetch('index.html?nocache=' + Date.now(), {cache:'no-store'}).then(r=>r.ok ? r.text() : '').then(t=>{
+      const m = t.match(/\/\*build:([a-z0-9]+)\*\//);
+      if(m && m[1] !== '2ca1432d') showUpdateNote();
+    }).catch(()=>{});
+  });
+}
 renderTopicInsight();
 renderAll(true, true);
 </script>
